@@ -1,0 +1,29 @@
+//apply plugin: 'java'
+//apply plugin: 'jacoco'
+//apply plugin: 'application'
+
+plugins 
+{
+  id 'application'
+  id 'org.openjfx.javafxplugin' version '0.0.8'
+}
+
+mainClassName = 'OptiVee.Main'
+
+repositories {
+    jcenter()
+}
+
+javafx 
+{
+    version = "14"
+    modules = [ 'javafx.controls' ]
+}
+
+dependencies 
+{
+    testImplementation     'junit:junit:4.13'
+    compile 'mysql:mysql-connector-java:8.0.20'
+    compile 'org.apache.commons:commons-dbcp2:2.8.0'
+}
+
