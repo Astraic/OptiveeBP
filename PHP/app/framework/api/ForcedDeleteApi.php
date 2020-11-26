@@ -11,9 +11,8 @@ abstract class ForcedDeleteApi extends ForcedApi{
     public function __construct(String $delete = null){
 
         parent::__construct();
-
-        if($_SERVER['REQUEST_METHOD'] === 'DELETE'){
-            $this->delete = (null !== $_GET['delete'] ? $_GET['delete'] : $delete);
+        $this->delete = (null !== $_GET['delete'] ? $_GET['delete'] : $delete);
+        if($this->delete !== null){
             $this->delete();
         }
     }
