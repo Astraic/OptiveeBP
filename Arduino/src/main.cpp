@@ -70,8 +70,8 @@ void servoSwitch(int hoek) {
  */
 void fetchFeedingPattern() {
   feed = 2; 
-  allocated = 600;
-  portionsize = 100;
+  allocated = 2000;
+  portionsize = 250;
 }
 
 /*
@@ -81,12 +81,10 @@ void fetchFeedingPattern() {
  */
 void feedDistribution() {
   float currentWeight = scale.get_units();
-  if (distributed < allocated) {
-    if (currentWeight < portionsize / 10) {
-      servoSwitch(150);
-    } else if (currentWeight >= portionsize) {
-      servoSwitch(30);
-    }
+  if (distributed < allocated && currentWeight < portionsize / 10) {
+      servoSwitch(180);
+  } else if (distributed >= allocated || currentWeight >= portionsize) {
+      servoSwitch(0);
   }
 
   // Berekend het verschil in gewicht ten opzichte van het laatste gewicht.
@@ -94,7 +92,7 @@ void feedDistribution() {
   // Indien dat niet het geval is, heeft het dier een deel van het voer opgegeten.
   // Tot slot wordt het huidige gewicht het laatste gewicht.
   float difference = currentWeight - lastWeight;
-  if (difference > 0) {
+  if (difference > 0.2) {
     distributed += difference;
   }
   lastWeight = currentWeight;
@@ -133,7 +131,7 @@ boolean nfcPresent() {
 }
 
 void loop() {
-  if(nfcPresent) {  // Controle of er op het moment een nfctag aanwezig is.
+  if(nfcPresent()) {  // Controle of er op het moment een nfctag aanwezig is.
     /*
      * Er is sprake van een nieuw tag indien de uitgelezen waarde ongelijk is aan nfcTag.
      * Indien dat het geval is wordt het nieuw ncf tag uitgelezen en opgeslagen.
@@ -157,7 +155,7 @@ void loop() {
    * de nfc reader het ontbreken van het voorgaande tag waarneemt.
    * Dieren kunnen namelijk niet nagenoeg direct op dezelfde locate aanwezig zijn.
    */
-  if (!nfcPresent && nfcTag != "") { 
+  if (!nfcPresent() && nfcTag != "") { 
     feedTransaction();
   }  
 
