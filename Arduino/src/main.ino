@@ -79,7 +79,7 @@ void loop(void) {
       uint8_t uid[] = { 0, 0, 0, 0};
       bool success = scanForNFC(uid);
       if(success) { // Controle of er op het moment een nfctag aanwezig is.
-        printUIDtoLCD();
+        printUIDtoLCD(uid);
       /*
        * Er is sprake van een nieuw tag indien de uitgelezen waarde ongelijk is aan nfcTag.
        * Indien dat het geval is wordt het nieuw ncf tag uitgelezen en opgeslagen.
@@ -115,7 +115,7 @@ void printUIDtoLCD(uint8_t* uid){
   for (int i = 0; i < 4; i++) {
       if (uid[i] < 0x10) {
           uidString += " 0";
-      } else {a
+      } else {
           uidString += " ";
       }
       uidString += String(uid[i], HEX);
