@@ -118,7 +118,8 @@ void printUIDtoLCD(){
       } else {a
           uidString += " ";
       }
-      uidString += String(uid[i], HEX).toUpperCase();
+      uidString += String(uid[i], HEX);
+      uidString.toUpperCase();
   }
   lcd.setCursor(0,1);
   lcd.print(uidString);
