@@ -101,13 +101,13 @@ void loop(void) {
     } else if (!success && fc.getNFC() != nullptr) {
       servoSwitch(0);
       fc.closeTransaction(scale.get_units());
-    }     
+    }
   }
-  
+
   if (digitalRead(BTN_PIN) == LOW) scale.calibrate(159, 10);
 }
 
-void printUIDtoLCD(){
+void printUIDtoLCD(uint8_t* uid){
   lcd.clear();
   lcd.setCursor(0,0);
   lcd.print("Koe: ");
@@ -140,8 +140,7 @@ bool scanForNFC(uint8_t* uid){
     //set the timeout
     starttime = millis();
   }else{
-    Serial.println("Ooops ... read failed: Is there a card present?");
+    Serial.println("Oops... read failed: Is there a card present?");
   }
-  
   return success;
 }
