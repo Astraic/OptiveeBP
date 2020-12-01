@@ -1,4 +1,5 @@
 #include <Arduino.h>
+#include <LiquidCrystal_I2C.h>
 #include <Servo.h>
 #include <Loadcell.h>
 #include <FeedControl.h>
@@ -97,7 +98,7 @@ void loop(void) {
               } else {
                   uidString += " ";
               }
-              uidString += String(data[i], HEX);
+              uidString += String(uid[i], HEX);
           }
           lcd.setCursor(0,1);
           lcd.print(uidString);
