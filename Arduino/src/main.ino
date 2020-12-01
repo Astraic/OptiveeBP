@@ -95,7 +95,7 @@ void loop(void) {
               if (uid[i] < 0x10) {
                   uidString += " 0";
               } else {
-                  uidString += "  ";
+                  uidString += " ";
               }
               uidString += String(data[i], HEX);
           }
