@@ -87,7 +87,7 @@ void loop(void) {
       float currentValue = scale.get_units();
       if(fc.compareNFC(uid)) {
         if (fc.distributeFeed(currentValue)){
-          //lcd.clear();
+          lcd.clear();
           lcd.setCursor(0,0);
           lcd.print("Koe: ");
           String uidString = "";
