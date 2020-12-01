@@ -75,14 +75,17 @@ void loop(void) {
   if(timeout > 1000) {
       uint8_t uid[] = { 0, 0, 0, 0};
       bool success = scanForNFC(uid);
-      if(succes) { // Controle of er op het moment een nfctag aanwezig is.
+      if(success) { // Controle of er op het moment een nfctag aanwezig is.
       /*
        * Er is sprake van een nieuw tag indien de uitgelezen waarde ongelijk is aan nfcTag.
        * Indien dat het geval is wordt het nieuw ncf tag uitgelezen en opgeslagen.
        * Er wordt eenmalig een opvraag gedaan naar het voedingspatroon van het dier dat
        * overeenkomt met het waargenomen nfc tag en de load cell wordt getarreerd.
        */
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
       float currentValue = scale.get_units();
       if(fc.compareNFC(uid)) {
         if (fc.distributeFeed(currentValue)){
@@ -109,6 +112,7 @@ void loop(void) {
         fc.fetchFeedingPattern(uid);
         scale.tare();
       }
+<<<<<<< Updated upstream
     } else if (!succes && fc.getNFC() != nullptr) {
     fc.closeTransaction(scale.get_units());
   }
@@ -117,6 +121,15 @@ void loop(void) {
   }
 
   if (digitalRead(BTN_PIN) == LOW) scale.calibrate(290, 10);
+=======
+    } else if (!success && fc.getNFC() != nullptr) {
+      servoSwitch(0);
+      fc.closeTransaction(scale.get_units());
+    }     
+  }
+  
+  if (digitalRead(BTN_PIN) == LOW) scale.calibrate(159, 10);
+>>>>>>> Stashed changes
 }
 
 bool scanForNFC(uint8_t* uid){
@@ -136,7 +149,11 @@ bool scanForNFC(uint8_t* uid){
   }else{
     Serial.println("Ooops ... read failed: Is there a card present?");
   }
+<<<<<<< Updated upstream
 
 
+=======
+  
+>>>>>>> Stashed changes
   return success;
 }
