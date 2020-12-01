@@ -77,7 +77,7 @@ void loop(void) {
       uint8_t uid[] = { 0, 0, 0, 0};
       bool success = scanForNFC(uid);
       if(succes) { // Controle of er op het moment een nfctag aanwezig is.
-        printUIDtoLCD();
+        printUIDtoLCD(uid);
       /*
        * Er is sprake van een nieuw tag indien de uitgelezen waarde ongelijk is aan nfcTag.
        * Indien dat het geval is wordt het nieuw ncf tag uitgelezen en opgeslagen.
@@ -107,7 +107,7 @@ void loop(void) {
   if (digitalRead(BTN_PIN) == LOW) scale.calibrate(290, 10);
 }
 
-void printUIDtoLCD(){
+void printUIDtoLCD(uint8_t* uid){
   lcd.clear();
   lcd.setCursor(0,0);
   lcd.print("Koe: ");
@@ -140,9 +140,7 @@ bool scanForNFC(uint8_t* uid){
     //set the timeout
     starttime = millis();
   }else{
-    Serial.println("Ooops ... read failed: Is there a card present?");
+    Serial.println("Oops... read failed: Is there a card present?");
   }
-
-
   return success;
 }
