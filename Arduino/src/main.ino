@@ -6,6 +6,8 @@
 #include <Wire.h>
 #include <PN532_I2C.h>
 #include <PN532.h>
+#include <LiquidCrystal_I2C.h>
+
 PN532_I2C pn532i2c(Wire);
 PN532 nfc(pn532i2c);
 LiquidCrystal_I2C lcd(0x27,16,2);
@@ -76,7 +78,7 @@ void loop(void) {
   if(timeout > 1000) {
       uint8_t uid[] = { 0, 0, 0, 0};
       bool success = scanForNFC(uid);
-      if(succes) { // Controle of er op het moment een nfctag aanwezig is.
+      if(success) { // Controle of er op het moment een nfctag aanwezig is.
         printUIDtoLCD();
       /*
        * Er is sprake van een nieuw tag indien de uitgelezen waarde ongelijk is aan nfcTag.
@@ -84,7 +86,6 @@ void loop(void) {
        * Er wordt eenmalig een opvraag gedaan naar het voedingspatroon van het dier dat
        * overeenkomt met het waargenomen nfc tag en de load cell wordt getarreerd.
        */
-
       float currentValue = scale.get_units();
       if(fc.compareNFC(uid)) {
         if (fc.distributeFeed(currentValue)){
@@ -97,14 +98,13 @@ void loop(void) {
         fc.fetchFeedingPattern(uid);
         scale.tare();
       }
-    } else if (!succes && fc.getNFC() != nullptr) {
-    fc.closeTransaction(scale.get_units());
+    } else if (!success && fc.getNFC() != nullptr) {
+      servoSwitch(0);
+      fc.closeTransaction(scale.get_units());
+    }     
   }
-
-
-  }
-
-  if (digitalRead(BTN_PIN) == LOW) scale.calibrate(290, 10);
+  
+  if (digitalRead(BTN_PIN) == LOW) scale.calibrate(159, 10);
 }
 
 void printUIDtoLCD(){
@@ -142,7 +142,6 @@ bool scanForNFC(uint8_t* uid){
   }else{
     Serial.println("Ooops ... read failed: Is there a card present?");
   }
-
-
+  
   return success;
 }
