@@ -79,6 +79,7 @@ void loop(void) {
       uint8_t uid[] = { 0, 0, 0, 0};
       bool success = scanForNFC(uid);
       if(success) { // Controle of er op het moment een nfctag aanwezig is.
+        printUIDtoLCD();
       /*
        * Er is sprake van een nieuw tag indien de uitgelezen waarde ongelijk is aan nfcTag.
        * Indien dat het geval is wordt het nieuw ncf tag uitgelezen en opgeslagen.
@@ -88,20 +89,6 @@ void loop(void) {
       float currentValue = scale.get_units();
       if(fc.compareNFC(uid)) {
         if (fc.distributeFeed(currentValue)){
-          lcd.clear();
-          lcd.setCursor(0,0);
-          lcd.print("Koe: ");
-          String uidString = "";
-          for (int i = 0; i < 4; i++) {
-              if (uid[i] < 0x10) {
-                  uidString += " 0";
-              } else {
-                  uidString += " ";
-              }
-              uidString += String(uid[i], HEX);
-          }
-          lcd.setCursor(0,1);
-          lcd.print(uidString);
           servoSwitch(180);
         } else {
           servoSwitch(0);
@@ -118,6 +105,24 @@ void loop(void) {
   }
   
   if (digitalRead(BTN_PIN) == LOW) scale.calibrate(159, 10);
+}
+
+void printUIDtoLCD(){
+  lcd.clear();
+  lcd.setCursor(0,0);
+  lcd.print("Koe: ");
+  String uidString = "";
+  for (int i = 0; i < 4; i++) {
+      if (uid[i] < 0x10) {
+          uidString += " 0";
+      } else {a
+          uidString += " ";
+      }
+      uidString += String(uid[i], HEX);
+  }
+  uidString.toUpperCase();
+  lcd.setCursor(0,1);
+  lcd.print(uidString);
 }
 
 bool scanForNFC(uint8_t* uid){
