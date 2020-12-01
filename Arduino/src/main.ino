@@ -2,6 +2,13 @@
 #include <Servo.h>
 #include <Loadcell.h>
 #include <FeedControl.h>
+#include <Wire.h>
+#include <PN532_I2C.h>
+#include <PN532.h>
+PN532_I2C pn532i2c(Wire);
+PN532 nfc(pn532i2c);
+long timeout = 0;
+long starttime = 0;
 
 #define DOUT_PIN 2
 #define SCK_PIN 3
@@ -12,11 +19,35 @@ Loadcell scale;
 Servo servo;
 FeedControl fc;
 
-void setup() {
-  scale.begin(DOUT_PIN, SCK_PIN);
-  pinMode(BTN_PIN, INPUT_PULLUP);
-  servo.attach(SERVO_PIN);
-  servo.write(0);
+void setupNFC(){
+    nfc.begin();
+
+    uint32_t versiondata = nfc.getFirmwareVersion();
+    if (! versiondata) {
+      Serial.print("Didn't find PN53x board");
+      while (1); // halt
+    }
+    // Got ok data, print it out!
+    Serial.print("Found chip PN5");
+    Serial.println((versiondata>>24) & 0xFF, HEX);
+    Serial.print("Firmware ver. ");
+    Serial.print((versiondata>>16) & 0xFF, DEC);
+    Serial.print('.');
+    Serial.println((versiondata>>8) & 0xFF, DEC);
+
+    // configure board to read RFID tags
+    nfc.SAMConfig();
+
+    Serial.println("Waiting for an ISO14443A Card ...");
+}
+
+void setup(void) {
+    Serial.begin(9600);
+    setupNFC();
+    scale.begin(DOUT_PIN, SCK_PIN);
+    pinMode(BTN_PIN, INPUT_PULLUP);
+    servo.attach(SERVO_PIN);
+    servo.write(0);
 }
 
 /*
@@ -35,34 +66,60 @@ void servoSwitch(int hoek) {
   }
 }
 
-void loop() {
-
-  uint8_t uid[] = {0, 0, 0, 0};
-  boolean succes = true;
-
-  if(succes) { // Controle of er op het moment een nfctag aanwezig is.
-    /*
-     * Er is sprake van een nieuw tag indien de uitgelezen waarde ongelijk is aan nfcTag.
-     * Indien dat het geval is wordt het nieuw ncf tag uitgelezen en opgeslagen.
-     * Er wordt eenmalig een opvraag gedaan naar het voedingspatroon van het dier dat 
-     * overeenkomt met het waargenomen nfc tag en de load cell wordt getarreerd.
-     */
+void loop(void) {
+  //Use a timeout to make sure the card is only scaned once per second to prevent double reads
+  timeout = millis() - starttime;
+  if(timeout > 1000) {
+      uint8_t uid[] = { 0, 0, 0, 0};
+      bool success = scanForNFC(uid);
+      if(succes) { // Controle of er op het moment een nfctag aanwezig is.
+      /*
+       * Er is sprake van een nieuw tag indien de uitgelezen waarde ongelijk is aan nfcTag.
+       * Indien dat het geval is wordt het nieuw ncf tag uitgelezen en opgeslagen.
+       * Er wordt eenmalig een opvraag gedaan naar het voedingspatroon van het dier dat 
+       * overeenkomt met het waargenomen nfc tag en de load cell wordt getarreerd.
+       */
     
-    float currentValue = scale.get_units();
-    if(fc.compareNFC(uid)) {
-      if (fc.distributeFeed(currentValue)){
-        servoSwitch(180);
+      float currentValue = scale.get_units();
+      if(fc.compareNFC(uid)) {
+        if (fc.distributeFeed(currentValue)){
+          servoSwitch(180);
+        } else {
+          servoSwitch(0);
+        }
+        fc.calculateDistributed(currentValue);
       } else {
-        servoSwitch(0);
+        fc.fetchFeedingPattern(uid);
+        scale.tare();
       }
-      fc.calculateDistributed(currentValue);
-    } else {
-      fc.fetchFeedingPattern(uid);
-      scale.tare();
-    }
-  } else if (!succes && fc.getNFC() != nullptr) {
+    } else if (!succes && fc.getNFC() != nullptr) {
     fc.closeTransaction(scale.get_units());
+  }    
+    
+  
   }
-
+  
   if (digitalRead(BTN_PIN) == LOW) scale.calibrate(290, 10);
+}
+
+bool scanForNFC(uint8_t* uid){
+  uint8_t uidLength;
+  bool success;
+  //Check if there is a card available to read
+  success = nfc.readPassiveTargetID(PN532_MIFARE_ISO14443A, uid, &uidLength);
+  if (success) {
+    // Assumtion that we always use mifare NFC so length is always 4
+    // Display the uid of the card
+    Serial.println("Found an ISO14443A card");
+    Serial.print("  UID Value: ");
+    nfc.PrintHex(uid, 4);
+    Serial.println("");
+    //set the timeout
+    starttime = millis();
+  }else{
+    Serial.println("Ooops ... read failed: Is there a card present?");
+  }
+  
+  
+  return success;
 }
