@@ -96,7 +96,7 @@ void loop(void) {
               } else {
                   uidString += "  ";
               }
-              uidString = String(data[i], HEX);
+              uidString += String(data[i], HEX);
           }
           lcd.setCursor(0,1);
           lcd.print(uidString);
