@@ -5,6 +5,8 @@
 #include <Wire.h>
 #include <PN532_I2C.h>
 #include <PN532.h>
+#include <LiquidCrystal_I2C.h>
+
 PN532_I2C pn532i2c(Wire);
 PN532 nfc(pn532i2c);
 LiquidCrystal_I2C lcd(0x27,16,2);
@@ -82,10 +84,6 @@ void loop(void) {
        * Er wordt eenmalig een opvraag gedaan naar het voedingspatroon van het dier dat
        * overeenkomt met het waargenomen nfc tag en de load cell wordt getarreerd.
        */
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
       float currentValue = scale.get_units();
       if(fc.compareNFC(uid)) {
         if (fc.distributeFeed(currentValue)){
@@ -94,12 +92,12 @@ void loop(void) {
           lcd.print("Koe: ");
           String uidString = "";
           for (int i = 0; i < 4; i++) {
-              if (data[i] < 0x10) {
+              if (uid[i] < 0x10) {
                   uidString += " 0";
               } else {
                   uidString += "  ";
               }
-              uidString = String(data[i], HEX);
+              uidString = String(uid[i], HEX);
           }
           lcd.setCursor(0,1);
           lcd.print(uidString);
@@ -112,16 +110,6 @@ void loop(void) {
         fc.fetchFeedingPattern(uid);
         scale.tare();
       }
-<<<<<<< Updated upstream
-    } else if (!succes && fc.getNFC() != nullptr) {
-    fc.closeTransaction(scale.get_units());
-  }
-
-
-  }
-
-  if (digitalRead(BTN_PIN) == LOW) scale.calibrate(290, 10);
-=======
     } else if (!success && fc.getNFC() != nullptr) {
       servoSwitch(0);
       fc.closeTransaction(scale.get_units());
@@ -129,7 +117,6 @@ void loop(void) {
   }
   
   if (digitalRead(BTN_PIN) == LOW) scale.calibrate(159, 10);
->>>>>>> Stashed changes
 }
 
 bool scanForNFC(uint8_t* uid){
@@ -149,11 +136,6 @@ bool scanForNFC(uint8_t* uid){
   }else{
     Serial.println("Ooops ... read failed: Is there a card present?");
   }
-<<<<<<< Updated upstream
-
-
-=======
   
->>>>>>> Stashed changes
   return success;
 }
