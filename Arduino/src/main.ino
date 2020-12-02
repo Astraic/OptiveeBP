@@ -33,8 +33,13 @@
 #include <SPI.h>
 #include <Lora.hpp>
 
+#define DEBUG false
+
 unsigned long nTimer = 0;
 unsigned int uid[] = {24, 24, 24, 24};
+unsigned long nDurationTimer = 0;
+
+
 void setup() {
     Serial.begin(115200);
     Serial.println(F("Starting"));
@@ -53,6 +58,7 @@ void setup() {
 
     // Start job (sending automatically starts OTAA too)
     nTimer = millis();
+    nDurationTimer = millis() - ALIVETIME;
     do_send(&sendjob);
 
 
@@ -64,13 +70,14 @@ void loop()
     os_runloop_once();
     if((millis() - nTimer) > ALIVETIME)
     {
-        do_send(&sendjob);
+        // do_send(&sendjob);
+        sendEntityRegistration(uid, 100, 21);       // Send data for registation enity
         nTimer = millis();
     }
 
-    sendEntityProduction(uid, 100);             // Send data for product enity
-    sendEntityFood(uid, 100);                   // Send data for food enity
-    sendEntityRegistration(uid, 100, 21);       // Send data for registation enity
+    // sendEntityProduction(uid, 100);             // Send data for product enity
+    // sendEntityFood(uid, 100);                   // Send data for food enity
 
-
+    if(DEBUG)
+        Serial.println(millis() - nDurationTimer);
 }

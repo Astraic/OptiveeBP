@@ -123,14 +123,15 @@ void onEvent (ev_t ev) {
             break;
         case EV_TXCOMPLETE:
             Serial.println(F("EV_TXCOMPLETE (includes waiting for RX windows)"));
+
             if (LMIC.txrxFlags & TXRX_ACK)
               Serial.println(F("Received ack"));
             if (LMIC.dataLen) {
               Serial.println(F("Received "));
               Serial.println(LMIC.dataLen);
               Serial.println(F(" bytes of payload"));
-              lWaitingResponse = false;
             }
+            lWaitingResponse = false;
             // Schedule next transmission
             // os_setTimedCallback(&sendjob, os_getTime()+sec2osticks(TX_INTERVAL), do_send);
             break;
@@ -172,8 +173,11 @@ void do_send(osjob_t* j)
             sOutputBuffer.toCharArray(mydata, 25);
          
 
-        LMIC_setTxData2(1, ((xref2u1_t)mydata), sizeof((uint8_t)mydata)-1, 0);
-        // Serial.println(sOutputBuffer);
+        LMIC_setTxData2(1, ((xref2u1_t)mydata), sizeof(mydata)-1, 0);
+        for(int i = 0; i < 25; i++)
+            Serial.print(mydata[i]);
+        Serial.println();
+        Serial.println(sOutputBuffer);
         Serial.println(F("Packet queued"));
         lWaitingResponse = true;
     }
@@ -209,4 +213,17 @@ void sendEntityRegistration(unsigned int nUID[], int nWeight, int nTemp)
 {
     oOutPutBufferData.append(String(ENTITYFOOD, HEX) + UIDTOSTRING(nUID) + String(nWeight, HEX) + String(nTemp, HEX));
     do_send(&sendjob);
+}
+
+
+bool btnState(bool nState)
+{
+    static bool nPreviousState = false;
+    if(nState != nPreviousState)
+    {
+        Serial.println(nState);
+        nPreviousState = nState;
+    }
+
+    return nPreviousState;
 }

@@ -6,16 +6,10 @@
 
 #define BUFFERSIZE 25
 #define ALIVETIME 600000
-
 #define ENTITYPRODUCTION    0xC   //1100
 #define ENTITYREGISTRATION  0x8   //1000
 #define ENTITYFOOD          0x4   //0100
 // #define ENTITYANIMAL     0x0   //0000
-
-
-
-
-
 
 extern const unsigned TX_INTERVAL;
 extern const lmic_pinmap lmic_pins;
@@ -50,11 +44,8 @@ public:
     };
 
     void append(String sInput);
-
     String get(int nGetPoint);
-
     String getAndRemoveFirst();
-
     void clear();
 };
 
