@@ -20,6 +20,11 @@ void Loadcell::begin(byte dout, byte pd_sck, byte gain) {
  */
 void Loadcell::calibrate(float calibration_weight ,byte precision) {
 	slope = get_value(precision) / calibration_weight; // get_value() = read_average() - offset.
-	set_scale(slope); // Calibreert de load cell op basis van de berekende factor.
-	EEPROM.put(SLOPE_ADDRESS, slope); // Plaats de calibratiewaarde in het EEPROM voor later gebruik.
+	if (slope > 0) { 
+		set_scale(slope); // Calibreert de load cell op basis van de berekende factor.
+	} else {
+		set_scale(1);
+	}
+	
+	EEPROM.put(SLOPE_ADDRESS, get_scale()); // Plaats de calibratiewaarde in het EEPROM voor later gebruik.
 }

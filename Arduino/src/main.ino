@@ -13,10 +13,9 @@ LiquidCrystal_I2C lcd(0x27,16,2);
 long timeout = 0;
 long starttime = 0;
 
-#define DOUT_PIN 2
-#define SCK_PIN 3
+#define DOUT_PIN 4
+#define SCK_PIN 5
 #define SERVO_PIN 11
-#define BTN_PIN 7
 
 Loadcell scale;
 Servo servo;
@@ -26,6 +25,7 @@ void setupNFC(){
     nfc.begin();
 
     uint32_t versiondata = nfc.getFirmwareVersion();
+    Serial.println("FIRMWARE");
     if (! versiondata) {
       Serial.print("Didn't find PN53x board");
       while (1); // halt
@@ -44,11 +44,13 @@ void setupNFC(){
     Serial.println("Waiting for an ISO14443A Card ...");
 }
 
-void setup(void) {
+void setup() {
     Serial.begin(9600);
+    Serial.println("Starting...");
     setupNFC();
     scale.begin(DOUT_PIN, SCK_PIN);
-    pinMode(BTN_PIN, INPUT_PULLUP);
+    Serial.print("Kalibratiefactor: ");
+    Serial.println(scale.get_scale());
     servo.attach(SERVO_PIN);
     servo.write(0);
     lcd.init();
@@ -102,8 +104,6 @@ void loop(void) {
       fc.closeTransaction(scale.get_units());
     }
   }
-
-  if (digitalRead(BTN_PIN) == LOW) scale.calibrate(159, 10);
 }
 
 void printUIDtoLCD(uint8_t* uid){
