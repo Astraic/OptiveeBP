@@ -10,22 +10,25 @@ abstract class ForcedApi extends Api implements CRUInterface{
     protected $whereRequired;
 
     public function __construct(String $select = null, String $where = null, String $order = null, String $json = null){
-        $this->json = (false != file_get_contents('php://input') ? file_get_contents('php://input') : $json);
-        header('Content-Type: application/json');
+
         set_error_handler(array($this, 'error_handler'));
         $this->database = $this->createDatabase();
+        header('Content-Type: application/json');
 
-        if($_SERVER['REQUEST_METHOD'] === 'GET'){
-            $this->where = (null !== $_GET['where'] ? $_GET['where'] : $where);
-            $this->select = (null !== $_GET['select'] ? $_GET['select'] : $select);
-            $this->order = (null !== $_GET['order'] ? $_GET['order'] : $order);
+        $this->where = (null !== $_GET['where'] ? $_GET['where'] : $where);
+        $this->select = (null !== $_GET['select'] ? $_GET['select'] : $select);
+        $this->order = (null !== $_GET['order'] ? $_GET['order'] : $order);
+        $this->json = (false != file_get_contents('php://input') ? file_get_contents('php://input') : $json);
+
+        if($this->json === null){
             $this->select();
-        }else if($_SERVER['REQUEST_METHOD'] === 'POST'){
+        }else if($this->where === null){
             $this->insert();
-        }else if($_SERVER['REQUEST_METHOD'] === 'PATCH'){
-            $this->where = (null !== $_GET['where'] ? $_GET['where'] : $where);
+        }else if($this->where !== null){
             $this->update();
         }
+
+
 
         parent::__construct();
     }
@@ -36,7 +39,6 @@ abstract class ForcedApi extends Api implements CRUInterface{
           $model = $this->createFilledModel();
           //insert the model into the db
           $code = $this->database->insert($model);
-          var_dump($code);
           //get the class code from the full error code
           $code = substr($code, 0, 2);
 
@@ -59,7 +61,6 @@ abstract class ForcedApi extends Api implements CRUInterface{
           //rebuild the get parameters in useful queries
           $model = $this->createWhereModel();
           $queryBuilder = parent::buildQuery($model);
-          var_dump($queryBuilder);
           $this->database->addSelectStatement($queryBuilder);
 
           //execute the select statement and get the code and result object
@@ -68,6 +69,7 @@ abstract class ForcedApi extends Api implements CRUInterface{
 
           //if the query was succesful return the data
           if($code === '00'){
+              header('Content-Type: application/json');
               echo json_encode($codeAndResult[1][0]);
           }
 
@@ -106,7 +108,6 @@ abstract class ForcedApi extends Api implements CRUInterface{
       }catch(\app\framework\exception\NullPointerException $e){
           header('HTTP/1.0 400 Bad Request');
           //set the datatype to json for consistancy with all select query's
-          header('Content-Type: application/json');
           //return the error code for easy debug
           echo json_encode($e->getMessage());
           restore_error_handler();
