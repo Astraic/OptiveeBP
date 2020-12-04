@@ -1,7 +1,5 @@
 <?php
 namespace app\framework\api;
-interface CRInterface{
+interface Read{
     function select();
-
-    function insert();
 }

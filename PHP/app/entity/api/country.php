@@ -14,11 +14,11 @@ class Country extends \app\framework\api\ForcedApi{
         parent::__construct();
     }
 
-    public static function getFields() {
+    public function getFields() : array{
         return [['code'], ['name']];
     }
 
-    public static function getUpdateableFields(){
+    public function getUpdateableFields() : array{
         return [['code'], ['name']];
     }
 

@@ -14,11 +14,11 @@ class Production extends \app\framework\api\ForcedApi{
         parent::__construct();
     }
 
-    public static function getFields() {
+    public function getFields() : array{
         return [['animal'], ['production'], ['product'], ['productiondate'], ['productiontime']];
     }
 
-    public static function getUpdateableFields(){
+    public function getUpdateableFields() : array{
         return [];
     }
 

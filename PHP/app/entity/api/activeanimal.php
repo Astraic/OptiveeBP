@@ -22,12 +22,12 @@ class ActiveAnimal extends \app\framework\api\ForcedApi{
         return new \app\entity\database\Animal();
     }
 
-    public static function getFields() {
+    public function getFields() : array{
         return [['id'], ['nfc'], ['country'], ['serial'], ['working'], ['control'], ['product'], ['room'], ['environment']];
     }
 
-    public static function getUpdateableFields(){
-        return [['country'], ['serial'], ['working'], ['control'], ['product'], ['room'], ['environment']];
+    public function getUpdateableFields() : array{
+        return [['reasonofdeath'], ['passdate']];
     }
 
     public function bindModel(\app\framework\model\Model $model, Array $value) : \app\framework\model\Model{
