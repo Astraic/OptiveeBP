@@ -128,7 +128,15 @@ void servoSwitch(int hoek) {
   }
 }
 
-void loop(void) {
+
+
+
+
+
+
+
+void loop(void) 
+{
     os_runloop_once();
     if((millis() - nTimer) > ALIVETIME)
     {
@@ -136,9 +144,6 @@ void loop(void) {
         // sendEntityRegistration(uid, 100, 21);       // Send data for registation enity
         nTimer = millis();
     }
-
-    // sendEntityProduction(uid, 100);             // Send data for product enity
-    // sendEntityFood(uid, 100);                   // Send data for food enity
 
     if(DEBUG)
         Serial.println(millis() - nDurationTimer);
@@ -150,12 +155,12 @@ void loop(void) {
       bool success = scanForNFC(uid);
       if(success) { // Controle of er op het moment een nfctag aanwezig is.
         printUIDtoLCD(uid);
-      /*
-       * Er is sprake van een nieuw tag indien de uitgelezen waarde ongelijk is aan nfcTag.
-       * Indien dat het geval is wordt het nieuw ncf tag uitgelezen en opgeslagen.
-       * Er wordt eenmalig een opvraag gedaan naar het voedingspatroon van het dier dat
-       * overeenkomt met het waargenomen nfc tag en de load cell wordt getarreerd.
-       */
+        /*
+        * Er is sprake van een nieuw tag indien de uitgelezen waarde ongelijk is aan nfcTag.
+        * Indien dat het geval is wordt het nieuw ncf tag uitgelezen en opgeslagen.
+        * Er wordt eenmalig een opvraag gedaan naar het voedingspatroon van het dier dat
+        * overeenkomt met het waargenomen nfc tag en de load cell wordt getarreerd.
+        */
       float currentValue = scale.get_units();
       if(fc.compareNFC(uid)) {
         if (fc.distributeFeed(currentValue)){
@@ -168,12 +173,15 @@ void loop(void) {
         fc.fetchFeedingPattern(uid);
         scale.tare();
       }
+
     } else if (!success && fc.getNFC() != nullptr) {
       servoSwitch(0);
+      sendEntityFood(uid, scale.get_units());
       fc.closeTransaction(scale.get_units());
     }
   }
 }
+
 
 void printUIDtoLCD(uint8_t* uid){
   lcd.clear();

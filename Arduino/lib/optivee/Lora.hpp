@@ -53,5 +53,5 @@ extern StringShift oOutPutBufferData;// = StringShift();
 void onEvent (ev_t ev);
 void do_send(osjob_t* j);
 void sendEntityProduction(unsigned int nUID[], int nWeight);
-void sendEntityFood(unsigned int nUID[], int nWeight);
+void sendEntityFood(uint8_t nUID[], int nWeight);
 void sendEntityRegistration(unsigned int nUID[], int nWeight, int nTemp);
