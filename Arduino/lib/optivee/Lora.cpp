@@ -183,7 +183,7 @@ void do_send(osjob_t* j)
     }
 }
 
-String UIDTOSTRING(unsigned int UIDID[])
+String UIDTOSTRING(uint8_t UIDID[])
 {
     String sReturn = "";
     for(int i = 0; i < 4; i++)
@@ -197,19 +197,19 @@ String UIDTOSTRING(unsigned int UIDID[])
 }
 
 
-void sendEntityProduction(unsigned int nUID[], int nWeight)
+void sendEntityProduction(uint8_t nUID[], int nWeight)
 {
     oOutPutBufferData.append(String(ENTITYPRODUCTION, HEX) + UIDTOSTRING(nUID) + String(nWeight, HEX));
     do_send(&sendjob);
 }
 
-void sendEntityFood(unsigned int nUID[], int nWeight)
+void sendEntityFood(uint8_t nUID[], int nWeight)
 {
     oOutPutBufferData.append(String(ENTITYREGISTRATION, HEX) + UIDTOSTRING(nUID) + String(nWeight, HEX));
     do_send(&sendjob);
 }
 
-void sendEntityRegistration(unsigned int nUID[], int nWeight, int nTemp)
+void sendEntityRegistration(uint8_t nUID[], int nWeight, int nTemp)
 {
     oOutPutBufferData.append(String(ENTITYFOOD, HEX) + UIDTOSTRING(nUID) + String(nWeight, HEX) + String(nTemp, HEX));
     do_send(&sendjob);
