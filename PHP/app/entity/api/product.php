@@ -14,11 +14,11 @@ class Product extends \app\framework\api\ForcedApi{
         parent::__construct();
     }
 
-    public static function getFields() {
+    public function getFields() : array{
         return [['product']];
     }
 
-    public static function getUpdateableFields(){
+    public function getUpdateableFields() : array{
         return [['product']];
     }
 

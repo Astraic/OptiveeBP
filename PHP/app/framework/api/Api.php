@@ -13,6 +13,7 @@ abstract class Api {
       protected $where = null;
       protected $order = null;
       protected $json = null;
+      protected $delete = null;
 
       public function __construct(){}
 
