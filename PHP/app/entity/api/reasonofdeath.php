@@ -14,11 +14,11 @@ class ReasonOfDeath extends \app\framework\api\ForcedApi{
         parent::__construct();
     }
 
-    public static function getFields() {
+    public function getFields() : array {
         return [['reasonofdeath']];
     }
 
-    public static function getUpdateableFields(){
+    public function getUpdateableFields() : array{
         return [];
     }
 

@@ -5,7 +5,9 @@ require_once(dirname(__FILE__,3) . '/framework/database/CRUD.php');
 require_once(dirname(__FILE__,3) . '/framework/database/CRUInterface.php');
 require_once(dirname(__FILE__,3) . '/entity/model/Country.php');
 
-  class Country extends \framework\database\CRUD implements \framework\database\CRUInterface{
+  class Country extends \framework\database\CRUD implements \app\framework\database\Read,
+                                                              \app\framework\database\Write,
+                                                              \app\framework\database\Update {
 
       function __construct(QueryBuilderParent ...$query){
             $sql = "INSERT INTO Country (code, name) VALUES (:code, :name)";

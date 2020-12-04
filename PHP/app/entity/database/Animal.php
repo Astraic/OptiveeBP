@@ -5,10 +5,12 @@ require_once(dirname(__FILE__,3) . '/framework/database/CRUD.php');
 require_once(dirname(__FILE__,3) . '/framework/database/CRUInterface.php');
 require_once(dirname(__FILE__,3) . '/entity/model/Animal.php');
 
-  class Animal extends \app\framework\database\CRUD implements \app\framework\database\CRUInterface{
+  class Animal extends \app\framework\database\CRUD implements \app\framework\database\Read,
+                                                              \app\framework\database\Write,
+                                                              \app\framework\database\Update {
 
       function __construct(\app\framework\database\QueryBuilderParent ...$query){
-            $sql = "INSERT INTO Animal (id, product, enviroment, nfc, reasonofdeath, country, serial, working, control, passdate, room) VALUES (:id, :product, :enviroment, :nfc, :reasonofdeath, :country, :serial, :working, :control, :passdate, :room)";
+            $sql = "INSERT INTO Animal (id, nfc) VALUES (:id, :nfc)";
 
             $this->insert = \app\framework\database\Database::getConnection()->prepare($sql);
             parent::__construct($query);
