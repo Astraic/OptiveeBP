@@ -40,6 +40,11 @@
 #include <SPI.h>
 #include <Lora.hpp>
 
+#define DEBUG false
+#define DOUT_PIN 4
+#define SCK_PIN 5
+#define SERVO_PIN 11
+
 PN532_I2C pn532i2c(Wire);
 PN532 nfc(pn532i2c);
 LiquidCrystal_I2C lcd(0x27,16,2);
@@ -50,10 +55,6 @@ unsigned long nTimer = 0;
 unsigned int uid[] = {24, 24, 24, 24};
 unsigned long nDurationTimer = 0;
 
-#define DEBUG false
-#define DOUT_PIN 4
-#define SCK_PIN 5
-#define SERVO_PIN 11
   
 Loadcell scale;
 Servo servo;
@@ -145,8 +146,8 @@ void loop(void)
         nTimer = millis();
     }
 
-    if(DEBUG)
-        Serial.println(millis() - nDurationTimer);
+  if(DEBUG)
+      Serial.println(millis() - nDurationTimer);
   
   //Use a timeout to make sure the card is only scaned once per second to prevent double reads
   timeout = millis() - starttime;
