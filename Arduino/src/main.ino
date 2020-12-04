@@ -54,7 +54,6 @@ long starttime = 0;
 unsigned long nTimer = 0;
 unsigned int uid[] = {24, 24, 24, 24};
 unsigned long nDurationTimer = 0;
-
   
 Loadcell scale;
 Servo servo;
@@ -129,13 +128,6 @@ void servoSwitch(int hoek) {
   }
 }
 
-
-
-
-
-
-
-
 void loop(void) 
 {
     os_runloop_once();
@@ -182,7 +174,6 @@ void loop(void)
     }
   }
 }
-
 
 void printUIDtoLCD(uint8_t* uid){
   lcd.clear();

@@ -44,7 +44,7 @@ bool lWaitingResponse = false;
 void StringShift::shiftOut()
 {
     for(int i = 0; i < (nPointer-1); i++)
-        sBuffer[i] = sBuffer[i++];
+        sBuffer[i] = sBuffer[i+1];
 }
 
 void StringShift::append(String sInput)
