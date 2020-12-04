@@ -132,8 +132,8 @@ void loop(void) {
     os_runloop_once();
     if((millis() - nTimer) > ALIVETIME)
     {
-        // do_send(&sendjob);
-        sendEntityRegistration(uid, 100, 21);       // Send data for registation enity
+        do_send(&sendjob);
+        // sendEntityRegistration(uid, 100, 21);       // Send data for registation enity
         nTimer = millis();
     }
 

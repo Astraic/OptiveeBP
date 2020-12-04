@@ -35,7 +35,6 @@ private:
     int nPointer = 0;
 
     void shiftOut();
-
 public:
 
     StringShift()
