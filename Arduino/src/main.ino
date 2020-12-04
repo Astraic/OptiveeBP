@@ -43,7 +43,7 @@
 #define DEBUG false
 #define DOUT_PIN 4
 #define SCK_PIN 5
-#define SERVO_PIN 11
+#define SERVO_PIN 3
 
 PN532_I2C pn532i2c(Wire);
 PN532 nfc(pn532i2c);
