@@ -83,7 +83,7 @@ void setupNFC(){
 }
 
 void setup() {
-    Serial.begin(9600);
+    Serial.begin(115200);
     Serial.println("Starting...");
     setupNFC();
     scale.begin(DOUT_PIN, SCK_PIN);
@@ -94,22 +94,22 @@ void setup() {
     lcd.init();
     lcd.backlight();
   
-    #ifdef VCC_ENABLE
+   // #ifdef VCC_ENABLE
     // For Pinoccio Scout boards
-    pinMode(VCC_ENABLE, OUTPUT);
-    digitalWrite(VCC_ENABLE, HIGH);
-    delay(1000);
-    #endif
+    //pinMode(VCC_ENABLE, OUTPUT);
+    //digitalWrite(VCC_ENABLE, HIGH);
+    //delay(1000);
+    //#endif
 
     // LMIC init
-    os_init();
+    //os_init();
     // Reset the MAC state. Session and pending data transfers will be discarded.
-    LMIC_reset();
+    //LMIC_reset();
 
     // Start job (sending automatically starts OTAA too)
-    nTimer = millis();
-    nDurationTimer = millis() - ALIVETIME;
-    do_send(&sendjob);
+    //nTimer = millis();
+    //nDurationTimer = millis() - ALIVETIME;
+    //do_send(&sendjob);
 }
 
 /*
@@ -130,16 +130,16 @@ void servoSwitch(int hoek) {
 
 void loop(void) 
 {
-    os_runloop_once();
-    if((millis() - nTimer) > ALIVETIME)
-    {
-        do_send(&sendjob);
+    //os_runloop_once();
+    //if((millis() - nTimer) > ALIVETIME)
+    //{
+      //  do_send(&sendjob);
         // sendEntityRegistration(uid, 100, 21);       // Send data for registation enity
-        nTimer = millis();
-    }
+        //nTimer = millis();
+    //}
 
-  if(DEBUG)
-      Serial.println(millis() - nDurationTimer);
+  //if(DEBUG)
+    //  Serial.println(millis() - nDurationTimer);
   
   //Use a timeout to make sure the card is only scaned once per second to prevent double reads
   timeout = millis() - starttime;
@@ -169,7 +169,7 @@ void loop(void)
 
     } else if (!success && fc.getNFC() != nullptr) {
       servoSwitch(0);
-      sendEntityFood(uid, scale.get_units());
+      //sendEntityFood(uid, scale.get_units());
       fc.closeTransaction(scale.get_units());
     }
   }
@@ -211,4 +211,35 @@ bool scanForNFC(uint8_t* uid){
     Serial.println("Oops... read failed: Is there a card present?");
   }
   return success;
+}
+
+String UIDTOSTRING(uint8_t UIDID[])
+{
+    String sReturn = "";
+    for(int i = 0; i < 4; i++)
+    {
+        if(UIDID[i] < 0x10)
+            sReturn += "0" + String(UIDID[i], HEX);
+        else
+            sReturn += String(UIDID[i], HEX);
+    }
+    return sReturn;
+}
+
+void sendEntityProduction(uint8_t nUID[], int nWeight)
+{
+    Serial.println(String(ENTITYPRODUCTION, HEX) + UIDTOSTRING(nUID) + String(nWeight, HEX));
+    
+}
+
+void sendEntityFood(uint8_t nUID[], int nWeight)
+{
+    Serial.println(String(ENTITYREGISTRATION, HEX) + UIDTOSTRING(nUID) + String(nWeight, HEX));
+    
+}
+
+void sendEntityRegistration(uint8_t nUID[], int nWeight, int nTemp)
+{
+    Serial.println(String(ENTITYFOOD, HEX) + UIDTOSTRING(nUID) + String(nWeight, HEX) + String(nTemp, HEX));
+    
 }
