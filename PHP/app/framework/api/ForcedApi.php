@@ -2,8 +2,8 @@
 namespace app\framework\api;
 
 require_once(dirname(__FILE__,2) . '/exception/NullPointerException.php');
-require_once(dirname(__FILE__,1) . '/CRUInterface.php');
-require_once(dirname(__FILE__,1) . '/InsertableApi.php');
+require_once(dirname(__FILE__,1) . '/Update.php');
+require_once(dirname(__FILE__,1) . '/ReadonlyApi.php');
 
 abstract class ForcedApi extends ReadonlyApi implements Update {
 
@@ -12,7 +12,7 @@ abstract class ForcedApi extends ReadonlyApi implements Update {
     public function __construct(String $select = null, String $where = null, String $order = null, String $json = null){
         parent::__construct();
 
-        if($this->json !== null && $this->where !== null){
+        if($this->json !== null && $this->where !== null && $this->testing === false){
             $this->update();
         }
     }

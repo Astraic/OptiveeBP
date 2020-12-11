@@ -8,7 +8,6 @@ abstract class QueryParent{
   public function setWhereArguments(array $arguments = array()) : bool{
     $approvedArguments = $this->api->getFields();
     $this->whereArguments = array();
-    var_dump($arguments);
     $skipper = false;
     if(count($arguments) != 0 && count($arguments) <= count($approvedArguments)){
         for($i = 0; $i <= count($arguments) - 1; $i++){
@@ -30,7 +29,6 @@ abstract class QueryParent{
             }
         }
     }
-    //\var_dump($this->whereArguments);
     if(($skipper && count($arguments) - 1 === count($this->whereArguments)) || count($arguments) === count($this->whereArguments)){
 
         return true;
@@ -62,7 +60,7 @@ abstract class QueryParent{
    *
    * @return mixed
    */
-  public function getWhereArguments()
+  public function getWhereArguments() : array
   {
       return $this->whereArguments;
   }

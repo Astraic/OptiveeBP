@@ -23,7 +23,7 @@ class ActiveAnimal extends \app\framework\api\ForcedApi{
     }
 
     public function getFields() : array{
-        return [['id'], ['nfc'], ['country'], ['serial'], ['working'], ['control'], ['product'], ['room'], ['environment']];
+        return [['id'], ['nfc'], ['country'], ['serial'], ['working'], ['control'], ['product'], ['environment']];
     }
 
     public function getUpdateableFields() : array{
@@ -53,11 +53,14 @@ class ActiveAnimal extends \app\framework\api\ForcedApi{
               case 'product':
                 $model->setProduct(end($value));
                 break;
-              case 'room':
-                $model->setRoom(end($value));
-                break;
               case 'enviroment':
                 $model->setEnviroment(end($value));
+                break;
+              case 'reasonofdeath':
+                $model->setReasonofdeath(end($value));
+                break;
+              case 'passdate':
+                $model->setPassdate(\DateTime::createFromFormat('Y-m-d', end($value));
                 break;
           }
         return $model;

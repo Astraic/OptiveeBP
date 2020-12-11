@@ -2,7 +2,9 @@
 namespace app\entity\database;
 require_once(dirname(__FILE__,3) . '/framework/database/Database.php');
 require_once(dirname(__FILE__,3) . '/framework/database/CRUD.php');
-require_once(dirname(__FILE__,3) . '/framework/database/CRUInterface.php');
+require_once(dirname(__FILE__,3) . '/framework/database/Read.php');
+require_once(dirname(__FILE__,3) . '/framework/database/Write.php');
+require_once(dirname(__FILE__,3) . '/framework/database/Update.php');
 require_once(dirname(__FILE__,3) . '/entity/model/Production.php');
 
   class Production extends \framework\database\CRUD implements \app\framework\database\Read,
@@ -34,15 +36,9 @@ require_once(dirname(__FILE__,3) . '/entity/model/Production.php');
           }
 
           try{
-              $this->insert->bindValue(':productiondate', $model->getProductiondate());
+              $this->insert->bindValue(':productiondatetime', $model->getProductiondatetime());
           }catch(\app\framework\exception\ModelNullException $e){
-              $this->insert->bindValue(':productiondate', null);
-          }
-
-          try{
-              $this->insert->bindValue(':productiontime', $model->getProductiontime());
-          }catch(\app\framework\exception\ModelNullException $e){
-              $this->insert->bindValue(':productiontime', null);
+              $this->insert->bindValue(':productiondatetime', null);
           }
 
           $this->insert->execute();
@@ -53,22 +49,18 @@ require_once(dirname(__FILE__,3) . '/entity/model/Production.php');
       function select(\model\Model $model) : array{
           try{
               $this->select[0]->bindValue(':animal', $model->getAnimal());
-          }catch(\exception\ModelNullException $e){}
+          }catch(\app\framework\exception\ModelNullException $e){}
           try{
               $this->select[0]->bindValue(':production', $model->getProduction());
-          }catch(\exception\ModelNullException $e){}
+          }catch(\app\framework\exception\ModelNullException $e){}
 
           try{
               $this->select[0]->bindValue(':product', $model->getProduct());
-          }catch(\exception\ModelNullException $e){}
+          }catch(\app\framework\exception\ModelNullException $e){}
 
           try{
-              $this->select[0]->bindValue(':productiondate', $model->getProductiondate());
-          }catch(\exception\ModelNullException $e){}
-
-          try{
-              $this->select[0]->bindValue(':productiontime', $model->getProductiontime());
-          }catch(\exception\ModelNullException $e){}
+              $this->select[0]->bindValue(':productiondatetime', $model->getProductiondatetime());
+          }catch(\app\framework\exception\ModelNullException $e){}
 
 
           $this->select[0]->execute();
@@ -81,43 +73,35 @@ require_once(dirname(__FILE__,3) . '/entity/model/Production.php');
       function update(\model\Model $model, \model\Model $modelOld) : String {
           try{
               $this->update[0]->bindValue(':animalUpdate', $model->getAnimal());
-          }catch(\exception\ModelNullException $e){}
+          }catch(\app\framework\exception\ModelNullException $e){}
 
           try{
               $this->update[0]->bindValue(':productionUpdate', $model->getProduct());
-          }catch(\exception\ModelNullException $e){}
+          }catch(\app\framework\exception\ModelNullException $e){}
 
           try{
               $this->update[0]->bindValue(':productUpdate', $model->getProduction());
-          }catch(\exception\ModelNullException $e){}
+          }catch(\app\framework\exception\ModelNullException $e){}
 
           try{
-              $this->update[0]->bindValue(':productiondateUpdate', $model->getProductiondate());
-          }catch(\exception\ModelNullException $e){}
-
-          try{
-              $this->update[0]->bindValue(':productiontimeUpdate', $model->getProductiontime());
-          }catch(\exception\ModelNullException $e){}
+              $this->update[0]->bindValue(':productiondatetimeUpdate', $model->getProductiondatetime());
+          }catch(\app\framework\exception\ModelNullException $e){}
 
           try{
               $this->update[0]->bindValue(':animal', $modelOld->getAnimal());
-          }catch(\exception\ModelNullException $e){}
+          }catch(\app\framework\exception\ModelNullException $e){}
 
           try{
               $this->update[0]->bindValue(':production', $modelOld->getProduct());
-          }catch(\exception\ModelNullException $e){}
+          }catch(\app\framework\exception\ModelNullException $e){}
 
           try{
               $this->update[0]->bindValue(':product', $modelOld->getProduction());
-          }catch(\exception\ModelNullException $e){}
+          }catch(\app\framework\exception\ModelNullException $e){}
 
           try{
-              $this->update[0]->bindValue(':productiondate', $modelOld->getProductiondate());
-          }catch(\exception\ModelNullException $e){}
-
-          try{
-              $this->update[0]->bindValue(':productiontime', $modelOld->getProductiontime());
-          }catch(\exception\ModelNullException $e){}
+              $this->update[0]->bindValue(':productiondatetime', $modelOld->getProductiondatetime());
+          }catch(\app\framework\exception\ModelNullException $e){}
 
           $this->update[0]->execute();
 

@@ -15,7 +15,6 @@ class Animal extends \app\framework\model\Model {
     protected $working;
     protected $control;
     protected $product;
-    protected $room;
     protected $environment;
     protected $passdate;
     protected $reasonofdeath;
@@ -85,20 +84,6 @@ class Animal extends \app\framework\model\Model {
             return $this->product;
         }
         throw new \app\framework\exception\ModelNullException("product is not set");
-    }
-
-
-
-
-    public function setRoom($room){
-        $this->room = $room;
-    }
-
-    public function getRoom() {
-        if($this->room !== null) {
-            return $this->room;
-        }
-        throw new \app\framework\exception\ModelNullException("room is not set");
     }
 
     public function setEnvironment($environment){

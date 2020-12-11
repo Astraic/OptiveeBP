@@ -14,6 +14,7 @@ abstract class Api {
       protected $order = null;
       protected $json = null;
       protected $delete = null;
+      protected $testing = true;
 
       public function __construct(){}
 
@@ -68,6 +69,7 @@ abstract class Api {
 
       public function buildQuery(\app\framework\model\Model $entity) : \app\framework\database\QueryBuilder{
           $query = new \app\framework\database\Query($entity, $this);
+
           //check if the user passed a select restriction
           if(isset($this->select)){
               //rebuild the arguments in array form
@@ -157,13 +159,12 @@ abstract class Api {
 
       public function rebuildArgumentsFromJson(String $json){
         //convert json to Asso Array
-        $argumentsUnformated = json_decode($this->json, true);
+        $argumentsUnformated = json_decode($json, true);
         //create new array
         $arguments = array();
-
         //convert Asso Array to Multidementional array
         //Format [['colname', 'colvalue'], ['colname', 'colvalue'], ['colname', 'colvalue']]
-        foreach($argumentsUnformated[0] as $key => $value){
+        foreach($argumentsUnformated as $key => $value){
             $arguments[] = [$key, $value];
         }
         return $arguments;

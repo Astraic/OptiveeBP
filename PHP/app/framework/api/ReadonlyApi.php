@@ -8,17 +8,16 @@ require_once(dirname(__FILE__,1) . '/Api.php');
 abstract class ReadonlyApi extends Api implements Read{
 
   public function __construct(String $select = null, String $where = null, String $order = null, String $json = null){
-
       set_error_handler(array($this, 'error_handler'));
       $this->database = $this->createDatabase();
       header('Content-Type: application/json');
 
-      $this->where = (null !== $_GET['where'] ? $_GET['where'] : $where);
-      $this->select = (null !== $_GET['select'] ? $_GET['select'] : $select);
-      $this->order = (null !== $_GET['order'] ? $_GET['order'] : $order);
+      $this->where = (isset($_GET['where']) ? $_GET['where'] : $where);
+      $this->select = (isset($_GET['select']) ? $_GET['select'] : $select);
+      $this->order = (isset($_GET['order']) ? $_GET['order'] : $order);
       $this->json = (false != file_get_contents('php://input') ? file_get_contents('php://input') : $json);
 
-      if($this->json === null && $this->delete === null ){
+      if($this->json === null && $this->delete === null && $this->testing === false){
           $this->select();
       }
       parent::__construct();
@@ -37,7 +36,6 @@ abstract class ReadonlyApi extends Api implements Read{
 
         //if the query was succesful return the data
         if($code === '00'){
-            header('Content-Type: application/json');
             echo json_encode($codeAndResult[1][0]);
         }
 

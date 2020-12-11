@@ -41,11 +41,8 @@ class Production extends \app\framework\api\ForcedApi{
               case 'product':
                 $model->setProduct(end($value));
                 break;
-              case 'productiondate':
-                $model->setProductionDate(end($value));
-                break;
-              case 'productiontime':
-                $model->setProductionTime(end($value));
+              case 'productiondatetime':
+                $model->setProductionDatetime(\DateTime::createFromFormat('Y-m-d H:i:s', end($value));
                 break;
           }
         return $model;

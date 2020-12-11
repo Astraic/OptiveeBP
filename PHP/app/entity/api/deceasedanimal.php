@@ -15,7 +15,7 @@ class Animal extends \app\framework\api\ReadonlyApi{
     }
 
     public function getFields() : array{
-        return [['id'], ['nfc'], ['country'], ['serial'], ['working'], ['control'], ['product'], ['room'], ['environment'], ['passdate'], ['reasonofdeath']];
+        return [['id'], ['nfc'], ['country'], ['serial'], ['working'], ['control'], ['product'], ['environment'], ['passdate'], ['reasonofdeath']];
     }
 
     public function getUpdateableFields() : array{
@@ -57,7 +57,7 @@ class Animal extends \app\framework\api\ReadonlyApi{
                 $model->setReasonofdeath(end($value));
                 break;
               case 'passdate':
-                $model->setPassdate(end($value));
+                $model->setPassdate(\DateTime::createFromFormat('Y-m-d', end($value));
                 break;
               case 'room':
                 $model->setRoom(end($value));

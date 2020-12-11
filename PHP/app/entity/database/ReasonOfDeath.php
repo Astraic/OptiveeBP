@@ -2,7 +2,9 @@
 namespace app\entity\database;
 require_once(dirname(__FILE__,3) . '/framework/database/Database.php');
 require_once(dirname(__FILE__,3) . '/framework/database/CRUD.php');
-require_once(dirname(__FILE__,3) . '/framework/database/CRUInterface.php');
+require_once(dirname(__FILE__,3) . '/framework/database/Read.php');
+require_once(dirname(__FILE__,3) . '/framework/database/Write.php');
+require_once(dirname(__FILE__,3) . '/framework/database/Update.php');
 require_once(dirname(__FILE__,3) . '/entity/model/Reasonofdeath.php');
 
   class Reasonofdeath extends \framework\database\CRUD implements \app\framework\database\Read,
@@ -18,7 +20,7 @@ require_once(dirname(__FILE__,3) . '/entity/model/Reasonofdeath.php');
       function insert(\model\Model $model) : String{
           try{
             $this->insert->bindValue(':reasonofdeath',  $model->getReasonofdeath());
-          }catch(ModelNullException $e){
+          }catch(\app\framework\exception\ModelNullException $e){
             $this->insert->bindValue(':reasonofdeath',  null);
           }
 
@@ -30,7 +32,7 @@ require_once(dirname(__FILE__,3) . '/entity/model/Reasonofdeath.php');
       function select(\model\Model $model) : array{
           try{
               $this->select[0]->bindValue(':reasonofdeath', $model->getReasonofdeath());
-          }catch(\exception\ModelNullException $e){}
+          }catch(\app\framework\exception\ModelNullException $e){}
 
           $this->select[0]->execute();
 
@@ -42,11 +44,11 @@ require_once(dirname(__FILE__,3) . '/entity/model/Reasonofdeath.php');
       function update(\model\Model $model, \model\Model $modelOld) : String {
           try{
               $this->update[0]->bindValue(':reasonofdeathUpdate', $model->getReasonofdeath());
-          }catch(\exception\ModelNullException $e){}
+          }catch(\app\framework\exception\ModelNullException $e){}
 
           try{
               $this->update[0]->bindValue(':reasonofdeath', $modelOld->getReasonofdeath());
-          }catch(\exception\ModelNullException $e){}
+          }catch(\app\framework\exception\ModelNullException $e){}
 
           $this->update[0]->execute();
 

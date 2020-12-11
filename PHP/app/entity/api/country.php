@@ -30,7 +30,7 @@ class Country extends \app\framework\api\ForcedApi{
         return new \app\entity\database\Country();
     }
 
-    public function bindModel(\model\Model $model, Array $value) : \app\framework\model\Model{
+    public function bindModel(\app\framework\model\Model $model, Array $value) : \app\framework\model\Model{
           switch($value[0]){
               case 'code':
                   $model->setCode(end($value));
