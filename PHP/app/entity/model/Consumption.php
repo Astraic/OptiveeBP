@@ -9,18 +9,18 @@ require_once(dirname(__FILE__,3) . '/framework/exception/ModelNullException.php'
 require_once(dirname(__FILE__,3) . '/framework/model/Model.php');
 
 /**
- * Classification model class op basis van \app\framework\model\Model
+ * Consumption model class op basis van \app\framework\model\Model
  * @author Stephan de Jongh
  */
 
-class Classification extends \app\framework\model\Model {
+class Consumption extends \app\framework\model\Model {
     protected $animalid;
     protected $date;
     protected $time;
-    protected $category;
-    protected $fatgrade;
-    protected $meatgrade;
-    protected $amount;
+    protected $feedid;
+    protected $portion;
+    protected $assigned;
+    protected $consumption;
 
     // functie voor het maken van een json als php object met de objectvariabelen
     // deze functie is voor elke model class exact hetzelfde, behoort dit niet in de superclass \app\framework\model\Model?
@@ -65,48 +65,48 @@ class Classification extends \app\framework\model\Model {
         throw new \app\framework\exception\ModelNullException("Time variable is not set correctly.");
     }
 
-    public function setCategory($category){
-        $this->category = $category;
+    public function setFeedid($feedid){
+        $this->feedid = $feedid;
     }
 
-    public function getCategory() {
-        if($this->category !== null) {
-            return $this->category;
+    public function getFeedid() {
+        if($this->feedid !== null) {
+            return $this->feedid;
         }
-        throw new \app\framework\exception\ModelNullException("Category variable is not set correctly.");
+        throw new \app\framework\exception\ModelNullException("Feedid variable is not set correctly.");
     }
 
-    public function setFatgrade($fatgrade){
-        $this->fatgrade = $fatgrade;
+    public function setPortion($portion){
+        $this->portion = $portion;
     }
 
-    public function getFatgrade() {
-        if($this->fatgrade !== null) {
-            return $this->fatgrade;
+    public function getPortion() {
+        if($this->portion !== null) {
+            return $this->portion;
         }
-        throw new \app\framework\exception\ModelNullException("Fatgrade variable is not set correctly.");
-    }
-    
-    public function setMeatgrade($meatgrade){
-        $this->meatgrade = $meatgrade;
+        throw new \app\framework\exception\ModelNullException("Portion variable is not set correctly.");
     }
 
-    public function getMeatgrade() {
-        if($this->meatgrade !== null) {
-            return $this->meatgrade;
+    public function setAssigned($assigned){
+        $this->assigned = $assigned;
+    }
+
+    public function getAssigned() {
+        if($this->assigned !== null) {
+            return $this->assigned;
         }
-        throw new \app\framework\exception\ModelNullException("Meatgrade variable is not set correctly.");
+        throw new \app\framework\exception\ModelNullException("Assigned variable is not set correctly.");
     }
 
-    public function setAmount($amount){
-        $this->amount = $amount;
+    public function setConsumption($consumption){
+        $this->consumption = $consumption;
     }
 
-    public function getAmount() {
-        if($this->amount !== null) {
-            return $this->amount;
+    public function getConsumption() {
+        if($this->consumption !== null) {
+            return $this->consumption;
         }
-        throw new \app\framework\exception\ModelNullException("Amount variable is not set correctly.");
+        throw new \app\framework\exception\ModelNullException("Consumption variable is not set correctly.");
     }
 }
 ?>

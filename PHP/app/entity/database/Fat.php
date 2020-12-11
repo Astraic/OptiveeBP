@@ -3,19 +3,21 @@ namespace app\entity\database;
 
 require_once(dirname(__FILE__,3) . '/framework/database/Database.php');
 require_once(dirname(__FILE__,3) . '/framework/database/CRUD.php');
-require_once(dirname(__FILE__,3) . '/framework/database/CRUInterface.php');
-require_once(dirname(__FILE__,3) . '/entity/model/FatGrade.php');
+require_once(dirname(__FILE__,3) . '/framework/database/Read.php');
+require_once(dirname(__FILE__,3) . '/framework/database/Write.php');
+require_once(dirname(__FILE__,3) . '/framework/database/Update.php');
+require_once(dirname(__FILE__,3) . '/entity/model/Fat.php');
 
 /**
- * Databinding voor create, update en read queries voor fatgrade model class.
+ * Databinding voor create, update en read queries voor Fat model class.
  * @author Stephan de Jongh
  */
 
-class FatGrade extends \framework\database\CRUD implements \framework\database\CRUInterface {
+class Fat extends \framework\database\CRUD implements \framework\database\Read, \framework\database\Write, \framework\database\Update {
 
     // Constructor ter voorbereiding prepared insert statement.
     function __construct(QueryBuilderParent ...$query){
-        $sql = "INSERT INTO FatGrade (name) VALUES (:name)";
+        $sql = "INSERT INTO Fat (name) VALUES (:name)";
         $this->insert = \database\Database::getConnection()->prepare($sql);
         parent::__construct($query);
     }
@@ -41,7 +43,7 @@ class FatGrade extends \framework\database\CRUD implements \framework\database\C
         }catch(\exception\ModelNullException $e){}
 
         $this->select[0]->execute();
-        $results = $this->select[0]->fetchAll(\PDO::FETCH_CLASS|\PDO::FETCH_PROPS_LATE, 'model\FatGrade');
+        $results = $this->select[0]->fetchAll(\PDO::FETCH_CLASS|\PDO::FETCH_PROPS_LATE, 'model\Fat');
         return array($this->select[0]->errorCode(), array($results));
     }
 

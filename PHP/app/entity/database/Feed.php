@@ -3,7 +3,9 @@ namespace app\entity\database;
 
 require_once(dirname(__FILE__,3) . '/framework/database/Database.php');
 require_once(dirname(__FILE__,3) . '/framework/database/CRUD.php');
-require_once(dirname(__FILE__,3) . '/framework/database/CRUInterface.php');
+require_once(dirname(__FILE__,3) . '/framework/database/Read.php');
+require_once(dirname(__FILE__,3) . '/framework/database/Write.php');
+require_once(dirname(__FILE__,3) . '/framework/database/Update.php');
 require_once(dirname(__FILE__,3) . '/entity/model/Feed.php');
 
 /**
@@ -11,11 +13,11 @@ require_once(dirname(__FILE__,3) . '/entity/model/Feed.php');
  * @author Stephan de Jongh
  */
 
-class Feed extends \framework\database\CRUD implements \framework\database\CRUInterface {
+class Feed extends \framework\database\CRUD implements \framework\database\Read, \framework\database\Write, \framework\database\Update {
 
     // Constructor ter voorbereiding prepared insert statement.
     function __construct(QueryBuilderParent ...$query){
-        $sql = "INSERT INTO Feed (name) VALUES (:name)";
+        $sql = "INSERT INTO Feed (id, name) VALUES (:id, :name)";
         $this->insert = \database\Database::getConnection()->prepare($sql);
         parent::__construct($query);
     }
@@ -23,6 +25,11 @@ class Feed extends \framework\database\CRUD implements \framework\database\CRUIn
     // Functie om model variable aan prepared insert statement toe te voegen
     // en vervolgens het prepared statement uit te voeren, return error code voor succesindicatie.
     function insert(\model\Model $model) : String{
+        try{
+            $this->insert->bindValue(':id', $model->getId());
+        }catch(ModelNullException $e){
+            $this->insert->bindValue(':id', null);
+        }
         try{
             $this->insert->bindValue(':name', $model->getName());
         }catch(ModelNullException $e){
@@ -37,6 +44,9 @@ class Feed extends \framework\database\CRUD implements \framework\database\CRUIn
     // return een array met model classes terug met overeenkomstige resultaten.
     function select(\model\Model $model) : array{
         try{
+            $this->select[0]->bindValue(':id', $model->getId());
+        }catch(\exception\ModelNullException $e){}
+        try{
             $this->select[0]->bindValue(':name', $model->getName());
         }catch(\exception\ModelNullException $e){}
 
@@ -49,9 +59,15 @@ class Feed extends \framework\database\CRUD implements \framework\database\CRUIn
     // uitvoering van prepared statement, return error code voor succesindicatie.
     function update(\model\Model $model, \model\Model $modelOld) : String {
         try{
+            $this->update[0]->bindValue(':idUpdate', $model->getId());
+        }catch(\exception\ModelNullException $e){}
+        try{
             $this->update[0]->bindValue(':nameUpdate', $model->getName());
         }catch(\exception\ModelNullException $e){}
 
+        try{
+            $this->update[0]->bindValue(':id', $modelOld->getId());
+        }catch(\exception\ModelNullException $e){}
         try{
             $this->update[0]->bindValue(':name', $modelOld->getName());
         }catch(\exception\ModelNullException $e){}

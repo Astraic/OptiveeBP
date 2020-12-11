@@ -3,19 +3,21 @@ namespace app\entity\database;
 
 require_once(dirname(__FILE__,3) . '/framework/database/Database.php');
 require_once(dirname(__FILE__,3) . '/framework/database/CRUD.php');
-require_once(dirname(__FILE__,3) . '/framework/database/CRUInterface.php');
-require_once(dirname(__FILE__,3) . '/entity/model/FeedDistribution.php');
+require_once(dirname(__FILE__,3) . '/framework/database/Read.php');
+require_once(dirname(__FILE__,3) . '/framework/database/Write.php');
+require_once(dirname(__FILE__,3) . '/framework/database/Update.php');
+require_once(dirname(__FILE__,3) . '/entity/model/Consumption.php');
 
 /**
- * Databinding voor create, update en read queries voor feeddistribution model class.
+ * Databinding voor create, update en read queries voor Consumption model class.
  * @author Stephan de Jongh
  */
 
-class FeedDistribution extends \framework\database\CRUD implements \framework\database\CRUInterface {
+class Consumption extends \framework\database\CRUD implements \framework\database\Read, \framework\database\Write, \framework\database\Update {
 
     // Constructor ter voorbereiding prepared insert statement.
     function __construct(QueryBuilderParent ...$query){
-        $sql = "INSERT INTO FeedDistribution (animelid, date, time, feedname, portionsize, allocated, consumed) VALUES (:animelid, :date, :time, :feedname, :portionsize, :allocated, :consumed)";
+        $sql = "INSERT INTO Consumption (animelid, date, time, feedid, portion, assigned, consumption) VALUES (:animelid, :date, :time, :feedid, :portion, :assigned, :consumption)";
         $this->insert = \database\Database::getConnection()->prepare($sql);
         parent::__construct($query);
     }
@@ -39,24 +41,24 @@ class FeedDistribution extends \framework\database\CRUD implements \framework\da
             $this->insert->bindValue(':time', null);
         }
         try{
-            $this->insert->bindValue(':feedname', $model->getFeedname());
+            $this->insert->bindValue(':feedid', $model->getFeedid());
         }catch(ModelNullException $e){
-            $this->insert->bindValue(':feedname', null);
+            $this->insert->bindValue(':feedid', null);
         }
         try{
-            $this->insert->bindValue(':portionsize', $model->getPortionsize());
+            $this->insert->bindValue(':portion', $model->getPortion());
         }catch(ModelNullException $e){
-            $this->insert->bindValue(':portionsize', null);
+            $this->insert->bindValue(':portion', null);
         }
         try{
-            $this->insert->bindValue(':allocated', $model->getAllocated());
+            $this->insert->bindValue(':assigned', $model->getAssigned());
         }catch(ModelNullException $e){
-            $this->insert->bindValue(':allocated', null);
+            $this->insert->bindValue(':assigned', null);
         }
         try{
-            $this->insert->bindValue(':consumed', $model->getConsumed());
+            $this->insert->bindValue(':consumption', $model->getConsumption());
         }catch(ModelNullException $e){
-            $this->insert->bindValue(':consumed', null);
+            $this->insert->bindValue(':consumption', null);
         }
 
         $this->insert->execute();
@@ -76,20 +78,20 @@ class FeedDistribution extends \framework\database\CRUD implements \framework\da
             $this->select[0]->bindValue(':time', $model->getTime());
         }catch(\exception\ModelNullException $e){}
         try{
-            $this->select[0]->bindValue(':feedname', $model->getFeedname());
+            $this->select[0]->bindValue(':feedid', $model->getFeedid());
         }catch(\exception\ModelNullException $e){}
         try{
-            $this->select[0]->bindValue(':portionsize', $model->getPortionsize());
+            $this->select[0]->bindValue(':portion', $model->getPortion());
         }catch(\exception\ModelNullException $e){}
         try{
-            $this->select[0]->bindValue(':allocated', $model->getAllocated());
+            $this->select[0]->bindValue(':assigned', $model->getAssigned());
         }catch(\exception\ModelNullException $e){}
         try{
-            $this->select[0]->bindValue(':consumed', $model->getConsumed());
+            $this->select[0]->bindValue(':consumption', $model->getConsumption());
         }catch(\exception\ModelNullException $e){}
 
         $this->select[0]->execute();
-        $results = $this->select[0]->fetchAll(\PDO::FETCH_CLASS|\PDO::FETCH_PROPS_LATE, 'model\FeedDistribution');
+        $results = $this->select[0]->fetchAll(\PDO::FETCH_CLASS|\PDO::FETCH_PROPS_LATE, 'model\Consumption');
         return array($this->select[0]->errorCode(), array($results));
     }
 
@@ -106,16 +108,16 @@ class FeedDistribution extends \framework\database\CRUD implements \framework\da
             $this->update[0]->bindValue(':timeUpdate', $model->getTime());
         }catch(\exception\ModelNullException $e){}
         try{
-            $this->update[0]->bindValue(':feednameUpdate', $model->getFeedname());
+            $this->update[0]->bindValue(':feedidUpdate', $model->getFeedid());
         }catch(\exception\ModelNullException $e){}
         try{
-            $this->update[0]->bindValue(':portionsizeUpdate', $model->getPortionsize());
+            $this->update[0]->bindValue(':portionUpdate', $model->getPortion());
         }catch(\exception\ModelNullException $e){}
         try{
-            $this->update[0]->bindValue(':allocatedUpdate', $model->getAllocated());
+            $this->update[0]->bindValue(':assignedUpdate', $model->getAssigned());
         }catch(\exception\ModelNullException $e){}
         try{
-            $this->update[0]->bindValue(':consumedUpdate', $model->getConsumed());
+            $this->update[0]->bindValue(':consumptionUpdate', $model->getConsumption());
         }catch(\exception\ModelNullException $e){}
 
         try{
@@ -128,16 +130,16 @@ class FeedDistribution extends \framework\database\CRUD implements \framework\da
             $this->update[0]->bindValue(':time', $modelOld->getTime());
         }catch(\exception\ModelNullException $e){}
         try{
-            $this->update[0]->bindValue(':feedname', $modelOld->getFeedname());
+            $this->update[0]->bindValue(':feedid', $modelOld->getFeedid());
         }catch(\exception\ModelNullException $e){}
         try{
-            $this->update[0]->bindValue(':portionsize', $modelOld->getPortionsize());
+            $this->update[0]->bindValue(':portion', $modelOld->getPortion());
         }catch(\exception\ModelNullException $e){}
         try{
-            $this->update[0]->bindValue(':allocated', $modelOld->getAllocated());
+            $this->update[0]->bindValue(':assigned', $modelOld->getAssigned());
         }catch(\exception\ModelNullException $e){}
         try{
-            $this->update[0]->bindValue(':consumed', $modelOld->getConsumed());
+            $this->update[0]->bindValue(':consumption', $modelOld->getConsumption());
         }catch(\exception\ModelNullException $e){}
 
         $this->update[0]->execute();

@@ -3,7 +3,9 @@ namespace app\entity\database;
 
 require_once(dirname(__FILE__,3) . '/framework/database/Database.php');
 require_once(dirname(__FILE__,3) . '/framework/database/CRUD.php');
-require_once(dirname(__FILE__,3) . '/framework/database/CRUInterface.php');
+require_once(dirname(__FILE__,3) . '/framework/database/Read.php');
+require_once(dirname(__FILE__,3) . '/framework/database/Write.php');
+require_once(dirname(__FILE__,3) . '/framework/database/Update.php');
 require_once(dirname(__FILE__,3) . '/entity/model/Category.php');
 
 /**
@@ -11,7 +13,7 @@ require_once(dirname(__FILE__,3) . '/entity/model/Category.php');
  * @author Stephan de Jongh
  */
 
-class Category extends \framework\database\CRUD implements \framework\database\CRUInterface {
+class Category extends \framework\database\CRUD implements \framework\database\Read, \framework\database\Write, \framework\database\Update {
 
     // Constructor ter voorbereiding prepared insert statement.
     function __construct(QueryBuilderParent ...$query){

@@ -21,7 +21,7 @@ class Feed extends \app\framework\api\ForcedApi {
 
     // Opvragen van alle variabelen binnen een entiteit.
     public static function getFields() {
-        return [['name']];
+        return [['id'], ['name']];
     }
 
     // Opvragen van variable van een entiteit die bewerkt mogen worden.
@@ -42,6 +42,9 @@ class Feed extends \app\framework\api\ForcedApi {
     // Databinding van gegevens aan de model class
     public function bindModel(\app\framework\model\Model $model, Array $value) : \app\framework\model\Model {
         switch($value[0]){
+            case 'id':
+                $model->setId(end($value));
+                break;
             case 'name':
                 $model->setName(end($value));
                 break;
