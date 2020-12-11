@@ -65,3 +65,9 @@ CREATE TABLE Quality
 	CONSTRAINT Quality_Fat_FK FOREIGN KEY (fatname) REFERENCES Fat(name) ON UPDATE CASCADE,
 	CONSTRAINT Quality_Meat_FK FOREIGN KEY (meatname) REFERENCES Meat(name) ON UPDATE CASCADE,
 );
+
+DROP VIEW IF EXISTS v_Distribution;
+
+CREATE VIEW v_Distribution AS
+SELECT a.nfc, d.feedid, d.portion, d.assigned
+FROM Animal AS a INNER JOIN Distribution AS d ON a.id = d.animalid;
