@@ -22,7 +22,7 @@ final class ProductDatabaseTest extends TestCase
         $this->database = new \app\entity\database\Product();
         $this->database->assignStatement($this->mock);
         $this->mock = $this->createMock('app\framework\database\QueryBuilderUpdate');
-        $this->mock->expects($this->any())->method('getSql')->will($this->returnValue("UPDATE Product SET product = :product WHERE product = :product"));
+        $this->mock->expects($this->any())->method('getSql')->will($this->returnValue("UPDATE Product SET product = :productUpdate WHERE product = :product"));
         $this->database->assignStatement($this->mock);
 
         $this->input1 = new \app\entity\model\Product();
@@ -48,7 +48,7 @@ final class ProductDatabaseTest extends TestCase
             '00000',
             $result[0]
         );
-    
+
         $this->assertEquals(
             array(array($this->output1)),
             $result[1]

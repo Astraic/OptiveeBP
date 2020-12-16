@@ -57,7 +57,8 @@ class Animal extends \app\framework\api\ReadonlyApi{
                 $model->setReasonofdeath(end($value));
                 break;
               case 'passdate':
-                $model->setPassdate(\DateTime::createFromFormat('Y-m-d', end($value));
+                $date = \DateTime::createFromFormat('Y-m-d', end($value));
+                $model->setPassdate($date);
                 break;
               case 'room':
                 $model->setRoom(end($value));
@@ -70,4 +71,5 @@ class Animal extends \app\framework\api\ReadonlyApi{
     }
 }
 $api = new \app\entity\api\Animal();
+$api->checkIfExecuted();
 ?>

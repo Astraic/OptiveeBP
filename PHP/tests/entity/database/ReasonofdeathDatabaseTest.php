@@ -18,11 +18,11 @@ final class ReasonofdeathDatabaseTest extends TestCase
 
     public function setUp() : void{
         $this->mock = $this->createMock('app\framework\database\QueryBuilder');
-        $this->mock->expects($this->any())->method('getSql')->will($this->returnValue("SELECT * FROM Reasonofdeath WHERE Reasonofdeath = :Reasonofdeath"));
+        $this->mock->expects($this->any())->method('getSql')->will($this->returnValue("SELECT * FROM Reasonofdeath WHERE reasonofdeath = :reasonofdeath"));
         $this->database = new \app\entity\database\Reasonofdeath();
         $this->database->assignStatement($this->mock);
         $this->mock = $this->createMock('app\framework\database\QueryBuilderUpdate');
-        $this->mock->expects($this->any())->method('getSql')->will($this->returnValue("UPDATE Reasonofdeath SET Reasonofdeath = :Reasonofdeath WHERE Reasonofdeath = :Reasonofdeath"));
+        $this->mock->expects($this->any())->method('getSql')->will($this->returnValue("UPDATE Reasonofdeath SET reasonofdeath = :reasonofdeathUpdate WHERE reasonofdeath = :reasonofdeath"));
         $this->database->assignStatement($this->mock);
 
         $this->input1 = new \app\entity\model\Reasonofdeath();

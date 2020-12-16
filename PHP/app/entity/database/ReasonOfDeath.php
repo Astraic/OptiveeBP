@@ -7,17 +7,17 @@ require_once(dirname(__FILE__,3) . '/framework/database/Write.php');
 require_once(dirname(__FILE__,3) . '/framework/database/Update.php');
 require_once(dirname(__FILE__,3) . '/entity/model/Reasonofdeath.php');
 
-  class Reasonofdeath extends \framework\database\CRUD implements \app\framework\database\Read,
+  class Reasonofdeath extends \app\framework\database\CRUD implements \app\framework\database\Read,
                                                                   \app\framework\database\Write,
                                                                   \app\framework\database\Update {
 
       function __construct(QueryBuilderParent ...$query){
             $sql = "INSERT INTO Reasonofdeath (reasonofdeath) VALUES (:reasonofdeath)";
-            $this->insert = \database\Database::getConnection()->prepare($sql);
+            $this->insert = \app\framework\database\Database::getConnection()->prepare($sql);
             parent::__construct($query);
       }
 
-      function insert(\model\Model $model) : String{
+      function insert(\app\framework\model\Model $model) : String{
           try{
             $this->insert->bindValue(':reasonofdeath',  $model->getReasonofdeath());
           }catch(\app\framework\exception\ModelNullException $e){
@@ -29,19 +29,19 @@ require_once(dirname(__FILE__,3) . '/entity/model/Reasonofdeath.php');
           return $this->insert->errorCode();
       }
 
-      function select(\model\Model $model) : array{
+      function select(\app\framework\model\Model $model) : array{
           try{
               $this->select[0]->bindValue(':reasonofdeath', $model->getReasonofdeath());
           }catch(\app\framework\exception\ModelNullException $e){}
 
           $this->select[0]->execute();
 
-          $results = $this->select[0]->fetchAll(\PDO::FETCH_CLASS|\PDO::FETCH_PROPS_LATE, 'model\Reasonofdeath');
+          $results = $this->select[0]->fetchAll(\PDO::FETCH_CLASS|\PDO::FETCH_PROPS_LATE, '\app\entity\model\Reasonofdeath');
 
           return array($this->select[0]->errorCode(), array($results));
       }
 
-      function update(\model\Model $model, \model\Model $modelOld) : String {
+      function update(\app\framework\model\Model $model, \app\framework\model\Model $modelOld) : String {
           try{
               $this->update[0]->bindValue(':reasonofdeathUpdate', $model->getReasonofdeath());
           }catch(\app\framework\exception\ModelNullException $e){}

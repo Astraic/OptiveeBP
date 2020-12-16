@@ -2,9 +2,9 @@
 namespace app\framework\api;
 
 require_once(dirname(__FILE__,2) . '/exception/NullPointerException.php');
-require_once(dirname(__FILE__,1) . '/ForcedApi.php');
+require_once(dirname(__FILE__,1) . '/InsertableApi.php');
 
-abstract class ForcedDeleteApi extends ForcedApi implements Delete{
+abstract class ForcedDeleteApi extends InsertableApi implements Delete{
 
 
 
@@ -14,6 +14,7 @@ abstract class ForcedDeleteApi extends ForcedApi implements Delete{
 
         if($this->delete !== null && $this->testing === false){
             $this->delete();
+            $this->executed = true;
         }
     }
 

@@ -53,7 +53,8 @@ final class AnimalDatabaseTest extends TestCase
         $this->input3->setWorking(9876);
         $this->input3->setControl(3);
         $this->input3->setReasonofdeath("Child");
-        $this->input3->setPassdate("2020-01-03");
+        $date = \DateTime::createFromFormat('Y-m-d', "2020-01-03");
+        $this->input3->setPassdate($date);
         $this->input3->setProduct("Melk");
         $this->input3->setEnvironment("Massa");
 
@@ -80,7 +81,7 @@ final class AnimalDatabaseTest extends TestCase
             '00000',
             $result[0]
         );
-        
+
         $this->assertEquals(
             array(array($this->output1)),
             $result[1]

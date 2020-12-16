@@ -60,11 +60,13 @@ class ActiveAnimal extends \app\framework\api\ForcedApi{
                 $model->setReasonofdeath(end($value));
                 break;
               case 'passdate':
-                $model->setPassdate(\DateTime::createFromFormat('Y-m-d', end($value));
+                $date = \DateTime::createFromFormat('Y-m-d', end($value));
+                $model->setPassdate($date);
                 break;
           }
         return $model;
     }
 }
 $api = new \app\entity\api\ActiveAnimal();
+$api->checkIfExecuted();
 ?>

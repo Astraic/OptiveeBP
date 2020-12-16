@@ -7,20 +7,23 @@ require_once(dirname(__FILE__,1) . '/Api.php');
 
 abstract class ReadonlyApi extends Api implements Read{
 
+  protected $whereRequired = false;
+
   public function __construct(String $select = null, String $where = null, String $order = null, String $json = null){
       set_error_handler(array($this, 'error_handler'));
       $this->database = $this->createDatabase();
+
       header('Content-Type: application/json');
 
       $this->where = (isset($_GET['where']) ? $_GET['where'] : $where);
       $this->select = (isset($_GET['select']) ? $_GET['select'] : $select);
       $this->order = (isset($_GET['order']) ? $_GET['order'] : $order);
-      $this->json = (false != file_get_contents('php://input') ? file_get_contents('php://input') : $json);
+      $this->json = (isset($_GET['json']) ? $_GET['json'] : $json);
 
       if($this->json === null && $this->delete === null && $this->testing === false){
           $this->select();
+          $this->executed = true;
       }
-      parent::__construct();
   }
 
   public function select(){

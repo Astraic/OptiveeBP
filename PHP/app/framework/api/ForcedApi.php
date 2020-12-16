@@ -7,13 +7,12 @@ require_once(dirname(__FILE__,1) . '/ReadonlyApi.php');
 
 abstract class ForcedApi extends ReadonlyApi implements Update {
 
-    protected $whereRequired;
-
     public function __construct(String $select = null, String $where = null, String $order = null, String $json = null){
         parent::__construct();
 
         if($this->json !== null && $this->where !== null && $this->testing === false){
             $this->update();
+            $this->executed = true;
         }
     }
 
@@ -32,8 +31,10 @@ abstract class ForcedApi extends ReadonlyApi implements Update {
           if(count($result[1][0]) == 1){
               $resultUpdate = $this->database->update($modelNew, $modelOld);
               parent::setHttpCode($resultUpdate);
-          }else{
+          }else if(count($result[1][0]) == 1){
               throw new \app\framework\exception\NullPointerException("The request changed more than one record, please change your where scope");
+          }else if(count($result[1][0]) > 1){
+            throw new \app\framework\exception\NullPointerException("The request changed no record, please change your where scope");
           }
 
       }catch(\PDOException $e){

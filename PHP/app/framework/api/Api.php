@@ -14,9 +14,19 @@ abstract class Api {
       protected $order = null;
       protected $json = null;
       protected $delete = null;
-      protected $testing = true;
+      protected $testing = false;
+      protected $executed = false;
 
-      public function __construct(){}
+      public function __construct(){
+
+      }
+
+      public function checkIfExecuted(){
+          if(!$this->executed){
+              header('HTTP/1.0 400 Bad Request');
+              echo 'The selected method is not supported';
+          }
+      }
 
       public function setHttpCode($code) {
           switch($code){
@@ -164,7 +174,7 @@ abstract class Api {
         $arguments = array();
         //convert Asso Array to Multidementional array
         //Format [['colname', 'colvalue'], ['colname', 'colvalue'], ['colname', 'colvalue']]
-        foreach($argumentsUnformated as $key => $value){
+        foreach($argumentsUnformated[0] as $key => $value){
             $arguments[] = [$key, $value];
         }
         return $arguments;

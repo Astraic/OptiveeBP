@@ -1,5 +1,6 @@
 <?php
 namespace app\entity\api;
+
 ini_set('display_startup_errors', 1);
 ini_set('display_errors', 1);
 error_reporting(E_ALL | E_STRICT);
@@ -56,7 +57,8 @@ class Animal extends \app\framework\api\ReadonlyApi{
                 $model->setReasonofdeath(end($value));
                 break;
               case 'passdate':
-                $model->setPassdate(\DateTime::createFromFormat('Y-m-d', end($value));
+                $date = \DateTime::createFromFormat('Y-m-d', end($value));
+                $model->setPassdate($date);
                 break;
               case 'environment':
                 $model->setEnvironment(end($value));
@@ -66,4 +68,5 @@ class Animal extends \app\framework\api\ReadonlyApi{
     }
 }
 $api = new \app\entity\api\Animal();
+$api->checkIfExecuted();
 ?>

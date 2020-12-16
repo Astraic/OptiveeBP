@@ -65,8 +65,8 @@ abstract class QueryParent{
       return $this->whereArguments;
   }
 
-  public function getEntity() : \app\framework\model\Model{
-      return $this->entity;
+  public function getEntity() : \app\framework\api\Api{
+      return $this->api;
   }
 
 

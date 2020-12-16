@@ -12,6 +12,7 @@ abstract class InsertableApi extends ForcedApi implements Write{
 
         if($this->json !== null && $this->where === null && $this->testing === false){
             $this->insert();
+            $this->executed = true;
         }
     }
 

@@ -120,7 +120,7 @@ require_once(dirname(__FILE__,3) . '/entity/model/Animal.php');
           }catch(\app\framework\exception\ModelNullException $e){}
 
           try{
-              $this->update[0]->bindValue(':passdateUpdate', $model->getPassdate());
+              $this->update[0]->bindValue(':passdateUpdate', $model->getPassdate()->format('Y-m-d'));
           }catch(\app\framework\exception\ModelNullException $e){}
 
           try{
@@ -161,7 +161,7 @@ require_once(dirname(__FILE__,3) . '/entity/model/Animal.php');
           }catch(\app\framework\exception\ModelNullException $e){}
 
           try{
-              $this->update[0]->bindValue(':passdate', $modelOld->getPassdate());
+              $this->update[0]->bindValue(':passdate', $modelOld->getPassdate()->format('Y-m-d'));
           }catch(\app\framework\exception\ModelNullException $e){}
 
           try{

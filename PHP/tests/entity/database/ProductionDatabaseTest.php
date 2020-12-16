@@ -28,28 +28,31 @@ final class ProductionDatabaseTest extends TestCase
                                  production = :productionUpdate,
                                  productiondatetime = :productiondatetimeUpdate
                               WHERE animal = :animal"));
+
         $this->database->assignStatement($this->mock);
 
         $this->input1 = new \app\entity\model\Production();
         $this->input1->setAnimal("ab45d4ce-266c-4499-a40f-fc923751978e");
 
         $this->input2 = new \app\entity\model\Production();
-        $this->input3->setAnimal("ab45d4ce-266c-4499-a40f-fc923751978e");
-        $this->input3->setProduct("Melk");
-        $this->input3->setProduction(2);
-        $this->input3->setProductiondatetime("Melk");
+        $this->input2->setAnimal("ab45d4ce-266c-4499-a40f-fc923751978e");
+        $this->input2->setProduct("Melk");
+        $this->input2->setProduction(2);
+        $date = \DateTime::createFromFormat('Y-m-d H:i:s', "2020-01-04 00:00:00");
+        $this->input2->setProductiondatetime($date);
 
         $this->input3 = new \app\entity\model\Production();
         $this->input3->setAnimal("ab45d4ce-266c-4499-a40f-fc923751978e");
         $this->input3->setProduct("Melk");
         $this->input3->setProduction(1);
-        $this->input3->setProductiondatetime("2020-01-03");
+        $date = \DateTime::createFromFormat('Y-m-d H:i:s', "2020-01-03 00:00:00");
+        $this->input3->setProductiondatetime($date);
 
         $this->output1 = new \app\entity\model\Production();
         $this->output1->setAnimal("ab45d4ce-266c-4499-a40f-fc923751978e");
         $this->output1->setProduct("Melk");
         $this->output1->setProduction(3);
-        $this->output1->setProductiondatetime("2020-01-03");
+        $this->output1->setProductiondatetime("2020-01-03 00:00:00");
     }
 
     public function testSelect(): void

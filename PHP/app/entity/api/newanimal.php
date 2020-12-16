@@ -62,4 +62,5 @@ class NewAnimal extends \app\framework\api\InsertableApi{
     }
 }
 $api = new \app\entity\api\NewAnimal();
+$api->checkIfExecuted();
 ?>

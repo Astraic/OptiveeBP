@@ -48,7 +48,7 @@ class Query extends QueryParent{
                   if(count($arguments[$i]) > 0){
                       if($arguments[$i][0] == $approvedArguments[$k][0]){
                           $this->orderArguments[$i][0] = $approvedArguments[$k][0];
-                          $this->orderArguments[$i][1] = $this->getOrderOperator($arguments[$i][1]);
+                          $this->orderArguments[$i][1] = (isset($arguments[$i][1]) ? $this->getOrderOperator($arguments[$i][1]) : "asc");
                       }
                   }else{
                       return false;

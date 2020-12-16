@@ -36,7 +36,7 @@ class QueryBuilderUpdate extends QueryBuilderParent{
     }
 
     public function generateUpdate(){
-        $this->sql .= "UPDATE " . substr(get_class($this->query->getEntity()), 17);
+        $this->sql .= "UPDATE " . substr(get_class($this->query->getEntity()), 15);
     }
 
 }

@@ -47,7 +47,7 @@ class QueryBuilder extends QueryBuilderParent{
     }
 
     public function generateFrom(){
-        $this->sql .= " FROM " . substr(get_class($this->query->getEntity()), 17);
+        $this->sql .= " FROM " . substr(get_class($this->query->getEntity()), 15);
     }
 
 }
