@@ -17,6 +17,7 @@ class FeedTest extends TestCase {
     private $mockSelect;
     private $mockUpdate;
     private $input;
+    private $input2;
     private $output;
 
     function setUp() : void {
@@ -25,13 +26,16 @@ class FeedTest extends TestCase {
             ->returnValue('SELECT * FROM Feed WHERE id = :id'));
         $this->mockUpdate = $this->createMock('app\framework\database\QueryBuilderParent');
         $this->mockUpdate->expects($this->any())->method('getSql')->will($this
-            ->returnValue('UPDATE Feed SET name = :nameUpdate AND id = :id WHERE id = :id'));
+            ->returnValue('UPDATE Feed SET name = :nameUpdate WHERE id = :id'));
         $this->database = new \app\entity\database\Feed();
         $this->database->assignStatement($this->mockSelect);
         $this->database->assignStatement($this->mockUpdate);
         
         $this->input = new \app\entity\model\Feed();
         $this->input->setId(1);
+
+        $this->input2 = new \app\entity\model\Feed();
+        $this->input2->setName("Voerstra Plus");
 
         $this->output = new \app\entity\model\Feed();
         $this->output->setId(1);
@@ -45,8 +49,8 @@ class FeedTest extends TestCase {
     }
 
     function testInsert() : void {
-        $result = $this->database->insert($this->input);
-        $this->assertEquals('2', $result[0]);
+        $result = $this->database->insert($this->input2);
+       $this->assertEquals('0', $result[0]);
     }
 
     function testUpdate() : void {  

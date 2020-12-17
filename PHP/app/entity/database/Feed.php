@@ -18,7 +18,7 @@ class Feed extends \app\framework\database\CRUD implements \app\framework\databa
 
     // Constructor ter voorbereiding prepared insert statement.
     function __construct(\app\framework\database\QueryBuilderParent ...$query){
-        $sql = 'INSERT INTO Feed (id, name) VALUES (:id, :name)';
+        $sql = "INSERT INTO Feed (name) VALUES (:name)";
         $this->insert = \app\framework\database\Database::getConnection()->prepare($sql);
         parent::__construct($query);
     }
@@ -26,11 +26,6 @@ class Feed extends \app\framework\database\CRUD implements \app\framework\databa
     // Functie om model variable aan prepared insert statement toe te voegen
     // en vervolgens het prepared statement uit te voeren, return error code voor succesindicatie.
     function insert(\app\framework\model\Model $model) : String{
-        try{
-            $this->insert->bindValue(':id', $model->getId());
-        }catch(\app\framework\exception\ModelNullException $e){
-            $this->insert->bindValue(':id', null);
-        }
         try{
             $this->insert->bindValue(':name', $model->getName());
         }catch(\app\framework\exception\ModelNullException $e){
@@ -59,9 +54,6 @@ class Feed extends \app\framework\database\CRUD implements \app\framework\databa
     // Functie voor het updaten van gegevens op basis van nieuw model
     // uitvoering van prepared statement, return error code voor succesindicatie.
     function update(\app\framework\model\Model $model, \app\framework\model\Model $modelOld) : String {
-        try{
-            $this->update[0]->bindValue(':idUpdate', $model->getId());
-        }catch(\app\framework\exception\ModelNullException $e){}
         try{
             $this->update[0]->bindValue(':nameUpdate', $model->getName());
         }catch(\app\framework\exception\ModelNullException $e){}

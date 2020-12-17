@@ -100,15 +100,6 @@ class Quality extends \app\framework\database\CRUD implements \app\framework\dat
     // uitvoering van prepared statement, return error code voor succesindicatie.
     function update(\app\framework\model\Model $model, \app\framework\model\Model $modelOld) : String {
         try{
-            $this->update[0]->bindValue(':animalidUpdate', $model->getAnimalid());
-        }catch(\app\framework\exception\ModelNullException $e){}
-        try{
-            $this->update[0]->bindValue(':dateUpdate', $model->getDate());
-        }catch(\app\framework\exception\ModelNullException $e){}
-        try{
-            $this->update[0]->bindValue(':timeUpdate', $model->getTime());
-        }catch(\app\framework\exception\ModelNullException $e){}
-        try{
             $this->update[0]->bindValue(':catnameUpdate', $model->getCatname());
         }catch(\app\framework\exception\ModelNullException $e){}
         try{

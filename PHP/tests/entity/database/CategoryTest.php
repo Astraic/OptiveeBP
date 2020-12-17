@@ -41,7 +41,7 @@ class CategoryTest extends TestCase {
 
     function testInsert() : void {
         $result = $this->database->insert($this->input);
-        $this->assertEquals('2', $result[0]);
+        $this->assertEquals('0', $result[0]);
     }
 
     function testUpdate() : void {  
