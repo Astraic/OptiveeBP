@@ -6,7 +6,7 @@ class Query extends QueryParent{
     private $selectArguments = array();
     private $orderArguments = array();
 
-    public function __construct(\app\framework\model\Model $entity, \app\framework\api\ForcedApi $api){
+    public function __construct(\app\framework\model\Model $entity, \app\framework\api\ReadonlyApi $api){
         $this->entity = $entity;
         $this->api = $api;
     }
@@ -48,7 +48,7 @@ class Query extends QueryParent{
                   if(count($arguments[$i]) > 0){
                       if($arguments[$i][0] == $approvedArguments[$k][0]){
                           $this->orderArguments[$i][0] = $approvedArguments[$k][0];
-                          $this->orderArguments[$i][1] = $this->getOrderOperator($arguments[$i][1]);
+                          $this->orderArguments[$i][1] = (isset($arguments[$i][1]) ? $this->getOrderOperator($arguments[$i][1]) : "asc");
                       }
                   }else{
                       return false;
@@ -85,7 +85,7 @@ class Query extends QueryParent{
      *
      * @return mixed
      */
-    public function getSelectArguments()
+    public function getSelectArguments() : array
     {
         return $this->selectArguments;
     }
@@ -96,7 +96,7 @@ class Query extends QueryParent{
      *
      * @return mixed
      */
-    public function getOrderArguments()
+    public function getOrderArguments() : array
     {
         return $this->orderArguments;
     }

@@ -14,8 +14,19 @@ abstract class Api {
       protected $order = null;
       protected $json = null;
       protected $delete = null;
+      protected $testing = false;
+      protected $executed = false;
 
-      public function __construct(){}
+      public function __construct(){
+
+      }
+
+      public function checkIfExecuted(){
+          if(!$this->executed){
+              header('HTTP/1.0 400 Bad Request');
+              echo 'The selected method is not supported';
+          }
+      }
 
       public function setHttpCode($code) {
           switch($code){
@@ -68,6 +79,7 @@ abstract class Api {
 
       public function buildQuery(\app\framework\model\Model $entity) : \app\framework\database\QueryBuilder{
           $query = new \app\framework\database\Query($entity, $this);
+
           //check if the user passed a select restriction
           if(isset($this->select)){
               //rebuild the arguments in array form
@@ -157,10 +169,9 @@ abstract class Api {
 
       public function rebuildArgumentsFromJson(String $json){
         //convert json to Asso Array
-        $argumentsUnformated = json_decode($this->json, true);
+        $argumentsUnformated = json_decode($json, true);
         //create new array
         $arguments = array();
-
         //convert Asso Array to Multidementional array
         //Format [['colname', 'colvalue'], ['colname', 'colvalue'], ['colname', 'colvalue']]
         foreach($argumentsUnformated[0] as $key => $value){

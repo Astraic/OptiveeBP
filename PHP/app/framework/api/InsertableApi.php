@@ -2,16 +2,17 @@
 namespace app\framework\api;
 
 require_once(dirname(__FILE__,2) . '/exception/NullPointerException.php');
-require_once(dirname(__FILE__,1) . '/CRUInterface.php');
-require_once(dirname(__FILE__,1) . '/ReadonlyApi.php');
+require_once(dirname(__FILE__,1) . '/Write.php');
+require_once(dirname(__FILE__,1) . '/ForcedApi.php');
 
 abstract class InsertableApi extends ForcedApi implements Write{
 
     public function __construct(String $select = null, String $where = null, String $order = null, String $json = null){
         parent::__construct();
 
-        if($this->json !== null && $this->where === null){
+        if($this->json !== null && $this->where === null && $this->testing === false){
             $this->insert();
+            $this->executed = true;
         }
     }
 

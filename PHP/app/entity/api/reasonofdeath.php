@@ -5,11 +5,11 @@ ini_set('display_startup_errors', 1);
 ini_set('display_errors', 1);
 error_reporting(E_ALL | E_STRICT);
 
-require_once(dirname(__FILE__,3) . '/framework/api/ForcedApi.php');
+require_once(dirname(__FILE__,3) . '/framework/api/InsertableApi.php');
 require_once(dirname(__FILE__,3) . '/entity/model/ReasonOfDeath.php');
-require_once(dirname(__FILE__,3) . '/entity/database/ReasonOfDeath.php');
+require_once(dirname(__FILE__,3) . '/entity/database/Reasonofdeath.php');
 
-class ReasonOfDeath extends \app\framework\api\ForcedApi{
+class ReasonOfDeath extends \app\framework\api\InsertableApi{
     public function __construct(){
         parent::__construct();
     }
@@ -40,4 +40,5 @@ class ReasonOfDeath extends \app\framework\api\ForcedApi{
     }
 }
 $api = new \app\entity\api\ReasonOfDeath();
+$api->checkIfExecuted();
 ?>

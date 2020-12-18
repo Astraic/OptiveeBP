@@ -4,7 +4,7 @@ require_once(dirname(__FILE__,1) . '/QueryParent.php');
 class QueryUpdate extends QueryParent{
 
     private $setArguments;
-    public function __construct(\app\framework\model\Model $entity, \app\framework\api\ForcedApi $api){
+    public function __construct(\app\framework\model\Model $entity, \app\framework\api\ReadonlyApi $api){
         $this->entity = $entity;
         $this->api = $api;
     }
