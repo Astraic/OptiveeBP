@@ -9,18 +9,18 @@ require_once(dirname(__FILE__,3) . '/framework/exception/ModelNullException.php'
 require_once(dirname(__FILE__,3) . '/framework/model/Model.php');
 
 /**
- * FeedDistribution model class op basis van \app\framework\model\Model
+ * Quality model class op basis van \app\framework\model\Model
  * @author Stephan de Jongh
  */
 
-class FeedDistribution extends \app\framework\model\Model {
+class Quality extends \app\framework\model\Model {
     protected $animalid;
     protected $date;
     protected $time;
-    protected $feedname;
-    protected $portionsize;
-    protected $allocated;
-    protected $consumed;
+    protected $catname;
+    protected $fatname;
+    protected $meatname;
+    protected $amount;
 
     // functie voor het maken van een json als php object met de objectvariabelen
     // deze functie is voor elke model class exact hetzelfde, behoort dit niet in de superclass \app\framework\model\Model?
@@ -65,48 +65,48 @@ class FeedDistribution extends \app\framework\model\Model {
         throw new \app\framework\exception\ModelNullException("Time variable is not set correctly.");
     }
 
-    public function setFeedname($feedname){
-        $this->feedname = $feedname;
+    public function setCatname($catname){
+        $this->catname = $catname;
     }
 
-    public function getFeedname() {
-        if($this->feedname !== null) {
-            return $this->feedname;
+    public function getCatname() {
+        if($this->catname !== null) {
+            return $this->catname;
         }
-        throw new \app\framework\exception\ModelNullException("Feedname variable is not set correctly.");
+        throw new \app\framework\exception\ModelNullException("Catname variable is not set correctly.");
     }
 
-    public function setPortionsize($portionsize){
-        $this->portionsize = $portionsize;
+    public function setFatname($fatname){
+        $this->fatname = $fatname;
     }
 
-    public function getPortionsize() {
-        if($this->portionsize !== null) {
-            return $this->portionsize;
+    public function getFatname() {
+        if($this->fatname !== null) {
+            return $this->fatname;
         }
-        throw new \app\framework\exception\ModelNullException("Portionsize variable is not set correctly.");
+        throw new \app\framework\exception\ModelNullException("Fatname variable is not set correctly.");
+    }
+    
+    public function setMeatname($meatname){
+        $this->meatname = $meatname;
     }
 
-    public function setAllocated($allocated){
-        $this->allocated = $allocated;
-    }
-
-    public function getAllocated() {
-        if($this->allocated !== null) {
-            return $this->allocated;
+    public function getMeatname() {
+        if($this->meatname !== null) {
+            return $this->meatname;
         }
-        throw new \app\framework\exception\ModelNullException("Allocated variable is not set correctly.");
+        throw new \app\framework\exception\ModelNullException("Meatname variable is not set correctly.");
     }
 
-    public function setConsumed($consumed){
-        $this->consumed = $consumed;
+    public function setAmount($amount){
+        $this->amount = $amount;
     }
 
-    public function getConsumed() {
-        if($this->consumed !== null) {
-            return $this->consumed;
+    public function getAmount() {
+        if($this->amount !== null) {
+            return $this->amount;
         }
-        throw new \app\framework\exception\ModelNullException("Consumed variable is not set correctly.");
+        throw new \app\framework\exception\ModelNullException("Amount variable is not set correctly.");
     }
 }
 ?>

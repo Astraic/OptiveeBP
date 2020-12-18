@@ -9,11 +9,11 @@ require_once(dirname(__FILE__,3) . '/framework/exception/ModelNullException.php'
 require_once(dirname(__FILE__,3) . '/framework/model/Model.php');
 
 /**
- * MeatGrade model class op basis van \app\framework\model\Model
+ * Meat model class op basis van \app\framework\model\Model
  * @author Stephan de Jongh
  */
 
-class MeatGrade extends \app\framework\model\Model {
+class Meat extends \app\framework\model\Model {
     protected $name;
 
     // functie voor het maken van een json als php object met de objectvariabelen
@@ -36,6 +36,5 @@ class MeatGrade extends \app\framework\model\Model {
         }
         throw new \app\framework\exception\ModelNullException("Name variable is not set correctly.");
     }
-
 }
 ?>

@@ -14,6 +14,7 @@ require_once(dirname(__FILE__,3) . '/framework/model/Model.php');
  */
 
 class Feed extends \app\framework\model\Model {
+    protected $id;
     protected $name;
 
     // functie voor het maken van een json als php object met de objectvariabelen
@@ -26,6 +27,17 @@ class Feed extends \app\framework\model\Model {
 
     // getters en setters voor de variabelen
     // roept app\framework\exception\ModelNullException indien variable null is
+    public function setId($id){
+        $this->id = $id;
+    }
+
+    public function getId() {
+        if($this->id !== null) {
+            return $this->id;
+        }
+        throw new \app\framework\exception\ModelNullException("Id variable is not set correctly.");
+    }
+    
     public function setName($name){
         $this->name = $name;
     }
@@ -36,6 +48,5 @@ class Feed extends \app\framework\model\Model {
         }
         throw new \app\framework\exception\ModelNullException("Name variable is not set correctly.");
     }
-
 }
 ?>

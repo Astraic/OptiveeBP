@@ -6,15 +6,15 @@ ini_set('display_errors', 1);
 error_reporting(E_ALL | E_STRICT);
 
 require_once(dirname(__FILE__,3) . '/framework/api/ForcedApi.php');
-require_once(dirname(__FILE__,3) . '/entity/model/MeatGrade.php');
-require_once(dirname(__FILE__,3) . '/entity/database/MeatGrade.php');
+require_once(dirname(__FILE__,3) . '/entity/model/Meat.php');
+require_once(dirname(__FILE__,3) . '/entity/database/Meat.php');
 
 /**
- * API ter behoeve van framework voor meatgrade model class.
+ * API ter behoeve van framework voor Meat model class.
  * @author Stephan de Jongh
  */
 
-class MeatGrade extends \app\framework\api\ForcedApi {
+class Meat extends \app\framework\api\ForcedApi {
     public function __construct(){
         parent::__construct();
     }
@@ -31,12 +31,12 @@ class MeatGrade extends \app\framework\api\ForcedApi {
 
     // Functie voor het aanmaken van een model class
     public function createModel() : \app\framework\model\Model {
-        return new \app\entity\model\MeatGrade();
+        return new \app\entity\model\Meat();
     }
 
     // Aanmaken van een database query class voor de model class 
     public function createDatabase() : \app\framework\database\CRUD {
-        return new \app\entity\database\MeatGrade();
+        return new \app\entity\database\Meat();
     }
 
     // Databinding van gegevens aan de model class
@@ -49,5 +49,5 @@ class MeatGrade extends \app\framework\api\ForcedApi {
         return $model;
     }
 }
-$api = new \app\entity\api\MeatGrade();
+$api = new \app\entity\api\Meat();
 ?>

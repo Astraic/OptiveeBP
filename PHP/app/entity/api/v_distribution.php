@@ -5,52 +5,58 @@ ini_set('display_startup_errors', 1);
 ini_set('display_errors', 1);
 error_reporting(E_ALL | E_STRICT);
 
-require_once(dirname(__FILE__,3) . '/framework/api/ForcedApi.php');
-require_once(dirname(__FILE__,3) . '/entity/model/Feed.php');
-require_once(dirname(__FILE__,3) . '/entity/database/Feed.php');
+require_once(dirname(__FILE__,3) . '/framework/api/ReadonlyApi.php');
+require_once(dirname(__FILE__,3) . '/entity/model/v_Distribution.php');
+require_once(dirname(__FILE__,3) . '/entity/database/v_Distribution.php');
 
 /**
- * API ter behoeve van framework voor feed model class.
+ * API ter behoeve van framework voor v_Distribution model class.
  * @author Stephan de Jongh
  */
 
-class Feed extends \app\framework\api\ForcedApi {
+class v_Distribution extends \app\framework\api\ReadonlyApi {
     public function __construct(){
         parent::__construct();
     }
 
     // Opvragen van alle variabelen binnen een entiteit.
     public static function getFields() {
-        return [['id'], ['name']];
+        return [['nfc'], ['feedid'], ['portion'], ['assigned']];
     }
 
     // Opvragen van variable van een entiteit die bewerkt mogen worden.
     public static function getUpdateableFields() {
-        return [['name']];
+        return [];
     }
 
     // Functie voor het aanmaken van een model class
     public function createModel() : \app\framework\model\Model {
-        return new \app\entity\model\Feed();
+        return new \app\entity\model\v_Distribution();
     }
 
     // Aanmaken van een database query class voor de model class 
     public function createDatabase() : \app\framework\database\CRUD {
-        return new \app\entity\database\Feed();
+        return new \app\entity\database\v_Distribution();
     }
 
     // Databinding van gegevens aan de model class
     public function bindModel(\app\framework\model\Model $model, Array $value) : \app\framework\model\Model {
-        switch($value[0]){
-            case 'id':
-                $model->setId(end($value));
+          switch($value[0]){
+            case 'nfc':
+                $model->setNfc(end($value));
                 break;
-            case 'name':
-                $model->setName(end($value));
+            case 'feedid':
+                $model->setFeedid(end($value));
+                break; 
+            case 'portion':
+                $model->setPortion(end($value));
                 break;
+            case 'assigned':
+                $model->setAssigned(end($value));
+                break;             
           }
         return $model;
     }
 }
-$api = new \app\entity\api\Feed();
+$api = new \app\entity\api\v_Distribution();
 ?>
