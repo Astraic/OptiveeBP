@@ -1,6 +1,7 @@
 <?php
 namespace app\framework\model;
 abstract class Model implements \JsonSerializable {
+
     function setUpJson(array $vars){
        $json = '{';
        $first = true;
@@ -9,7 +10,7 @@ abstract class Model implements \JsonSerializable {
                 if(!$first){
                     $json .= ',"' . $key . '" : "' . $value . '"';
                 }else{
-                  $json .= '"' . $key . '" : " ' . $value . '"';
+                  $json .= '"' . $key . '" : "' . $value . '"';
                   $first = false;
                 }
             }

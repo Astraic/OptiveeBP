@@ -8,7 +8,7 @@ error_reporting(E_ALL | E_STRICT);
 require_once(dirname(__FILE__,3) . '/framework/exception/ModelNullException.php');
 require_once(dirname(__FILE__,3) . '/framework/model/Model.php');
 
-class Animal extends \app\framework\model\Model {
+class Country extends \app\framework\model\Model {
 
     protected $code;
     protected $name;
