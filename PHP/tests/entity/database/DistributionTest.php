@@ -3,15 +3,15 @@ declare(strict_types=1);
 use PHPUnit\Framework\TestCase;
 
 require_once(dirname(__FILE__,4) . '/app/framework/exception/ModelNullException.php');
-require_once(dirname(__FILE__,4) . '/app/entity/database/Quality.php');
-require_once(dirname(__FILE__,4) . '/app/entity/model/Quality.php');
+require_once(dirname(__FILE__,4) . '/app/entity/database/Distribution.php');
+require_once(dirname(__FILE__,4) . '/app/entity/model/Distribution.php');
 
 /**
- * Quality database class tests
+ * Distribution database class tests
  * @author Stephan de Jongh
  */
 
-class QualityTest extends TestCase {
+class DistributionTest extends TestCase {
 
     private $database;
     private $mockSelect;
@@ -22,26 +22,23 @@ class QualityTest extends TestCase {
     function setUp() : void {
         $this->mockSelect = $this->createMock('app\framework\database\QueryBuilder');
         $this->mockSelect->expects($this->any())->method('getSql')->will($this
-            ->returnValue('SELECT * FROM Quality WHERE animalid = :animalid'));
+            ->returnValue('SELECT * FROM Distribution WHERE animalid = :animalid'));
         $this->mockUpdate = $this->createMock('app\framework\database\QueryBuilderParent');
         $this->mockUpdate->expects($this->any())->method('getSql')->will($this
-            ->returnValue('UPDATE Quality SET catname = :catnameUpdate, fatname = :fatnameUpdate, 
-                meatname = :meatnameUpdate, amount = :amountUpdate WHERE animalid = :animalid'));
-        $this->database = new \app\entity\database\Quality();
+            ->returnValue('UPDATE Distribution SET feedid = :feedidUpdate, portion = :portionUpdate, 
+                assigned = :assignedUpdate WHERE animalid = :animalid'));
+        $this->database = new \app\entity\database\Distribution();
         $this->database->assignStatement($this->mockSelect);
         $this->database->assignStatement($this->mockUpdate);
         
-        $this->input = new \app\entity\model\Quality();
+        $this->input = new \app\entity\model\Distribution();
         $this->input->setAnimalid("C41416A4-B8CA-4945-A762-BC50B9D17680");
 
-        $this->output = new \app\entity\model\Quality();
+        $this->output = new \app\entity\model\Distribution();
         $this->output->setAnimalid("C41416A4-B8CA-4945-A762-BC50B9D17680");
-        $this->output->setDate("2021-01-01");
-        $this->output->setTime("19:50:45");
-        $this->output->setCatname("B");
-        $this->output->setFatname("3");
-        $this->output->setMeatname("O");
-        $this->output->setAmount(84.60);
+        $this->output->setFeedid(5);
+        $this->output->setPortion(0.700);
+        $this->output->setAssigned(4.200);
     }
     
     function testSelect() : void {

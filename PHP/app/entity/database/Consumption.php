@@ -18,7 +18,7 @@ class Consumption extends \app\framework\database\CRUD implements \app\framework
 
     // Constructor ter voorbereiding prepared insert statement.
     function __construct(\app\framework\database\QueryBuilderParent ...$query){
-        $sql = "INSERT INTO Consumption (animelid, date, time, feedid, portion, assigned, consumption) VALUES (:animelid, :date, :time, :feedid, :portion, :assigned, :consumption)";
+        $sql = "INSERT INTO Consumption (animalid, date, time, feedid, portion, assigned, consumption) VALUES (:animalid, :date, :time, :feedid, :portion, :assigned, :consumption)";
         $this->insert = \app\framework\database\Database::getConnection()->prepare($sql);
         parent::__construct($query);
     }
@@ -100,15 +100,6 @@ class Consumption extends \app\framework\database\CRUD implements \app\framework
     // uitvoering van prepared statement, return error code voor succesindicatie.
     function update(\app\framework\model\Model $model, \app\framework\model\Model $modelOld) : String {
         try{
-            $this->update[0]->bindValue(':animalidUpdate', $model->getAnimalid());
-        }catch(\app\framework\exception\ModelNullException $e){}
-        try{
-            $this->update[0]->bindValue(':dateUpdate', $model->getDate());
-        }catch(\app\framework\exception\ModelNullException $e){}
-        try{
-            $this->update[0]->bindValue(':timeUpdate', $model->getTime());
-        }catch(\app\framework\exception\ModelNullException $e){}
-        try{
             $this->update[0]->bindValue(':feedidUpdate', $model->getFeedid());
         }catch(\app\framework\exception\ModelNullException $e){}
         try{
@@ -120,7 +111,6 @@ class Consumption extends \app\framework\database\CRUD implements \app\framework
         try{
             $this->update[0]->bindValue(':consumptionUpdate', $model->getConsumption());
         }catch(\app\framework\exception\ModelNullException $e){}
-
         try{
             $this->update[0]->bindValue(':animalid', $modelOld->getAnimalid());
         }catch(\app\framework\exception\ModelNullException $e){}
@@ -135,7 +125,7 @@ class Consumption extends \app\framework\database\CRUD implements \app\framework
         }catch(\app\framework\exception\ModelNullException $e){}
         try{
             $this->update[0]->bindValue(':portion', $modelOld->getPortion());
-        }catch(app\framework\exception\ModelNullException $e){}
+        }catch(\app\framework\exception\ModelNullException $e){}
         try{
             $this->update[0]->bindValue(':assigned', $modelOld->getAssigned());
         }catch(\app\framework\exception\ModelNullException $e){}

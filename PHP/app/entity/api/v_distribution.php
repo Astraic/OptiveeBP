@@ -5,7 +5,7 @@ ini_set('display_startup_errors', 1);
 ini_set('display_errors', 1);
 error_reporting(E_ALL | E_STRICT);
 
-require_once(dirname(__FILE__,3) . '/framework/api/ForcedApi.php');
+require_once(dirname(__FILE__,3) . '/framework/api/ReadonlyApi.php');
 require_once(dirname(__FILE__,3) . '/entity/model/v_Distribution.php');
 require_once(dirname(__FILE__,3) . '/entity/database/v_Distribution.php');
 
@@ -14,7 +14,7 @@ require_once(dirname(__FILE__,3) . '/entity/database/v_Distribution.php');
  * @author Stephan de Jongh
  */
 
-class v_Distribution extends \app\framework\api\ForcedApi {
+class v_Distribution extends \app\framework\api\ReadonlyApi {
     public function __construct(){
         parent::__construct();
     }
@@ -26,7 +26,7 @@ class v_Distribution extends \app\framework\api\ForcedApi {
 
     // Opvragen van variable van een entiteit die bewerkt mogen worden.
     public static function getUpdateableFields() {
-        return [['feedid'], ['portion'], ['assigned']];
+        return [];
     }
 
     // Functie voor het aanmaken van een model class

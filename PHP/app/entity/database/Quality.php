@@ -18,7 +18,7 @@ class Quality extends \app\framework\database\CRUD implements \app\framework\dat
 
     // Constructor ter voorbereiding prepared insert statement.
     function __construct(\app\framework\database\QueryBuilderParent ...$query){
-        $sql = "INSERT INTO Quality (animelid, date, time, catname, fatname, meatname, amount) VALUES (:animelid, :date, :time, :catname, :fatname, :meatname, :amount)";
+        $sql = "INSERT INTO Quality (animalid, date, time, catname, fatname, meatname, amount) VALUES (:animalid, :date, :time, :catname, :fatname, :meatname, :amount)";
         $this->insert = \app\framework\database\Database::getConnection()->prepare($sql);
         parent::__construct($query);
     }
@@ -27,7 +27,7 @@ class Quality extends \app\framework\database\CRUD implements \app\framework\dat
     // en vervolgens het prepared statement uit te voeren, return error code voor succesindicatie.
     function insert(\app\framework\model\Model $model) : String{
         try{
-            $this->insert->bindValue(':animelid', $model->getAnimalid());
+            $this->insert->bindValue(':animalid', $model->getAnimalid());
         }catch(\app\framework\exception\ModelNullException $e){
             $this->insert->bindValue(':animalid', null);
         }
@@ -111,7 +111,6 @@ class Quality extends \app\framework\database\CRUD implements \app\framework\dat
         try{
             $this->update[0]->bindValue(':amountUpdate', $model->getAmount());
         }catch(\app\framework\exception\ModelNullException $e){}
-
         try{
             $this->update[0]->bindValue(':animalid', $modelOld->getAnimalid());
         }catch(\app\framework\exception\ModelNullException $e){}

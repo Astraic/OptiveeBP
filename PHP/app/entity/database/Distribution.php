@@ -18,7 +18,7 @@ class Distribution extends \app\framework\database\CRUD implements \app\framewor
 
     // Constructor ter voorbereiding prepared insert statement.
     function __construct(\app\framework\database\QueryBuilderParent ...$query){
-        $sql = "INSERT INTO Distribution (animelid, feedid, portion, assigned) VALUES (:animelid, :feedid, :portion, :assigned)";
+        $sql = "INSERT INTO Distribution (animalid, feedid, portion, assigned) VALUES (:animalid, :feedid, :portion, :assigned)";
         $this->insert = \app\framework\database\Database::getConnection()->prepare($sql);
         parent::__construct($query);
     }
@@ -75,9 +75,6 @@ class Distribution extends \app\framework\database\CRUD implements \app\framewor
     // Functie voor het updaten van gegevens op basis van nieuw model
     // uitvoering van prepared statement, return error code voor succesindicatie.
     function update(\app\framework\model\Model $model, \app\framework\model\Model $modelOld) : String {
-        try{
-            $this->update[0]->bindValue(':animalidUpdate', $model->getAnimalid());
-        }catch(\app\framework\exception\ModelNullException $e){}
         try{
             $this->update[0]->bindValue(':feedidUpdate', $model->getFeedid());
         }catch(\app\framework\exception\ModelNullException $e){}
