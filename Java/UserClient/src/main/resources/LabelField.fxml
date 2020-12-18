@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.VBox?>
+
+<fx:root type="javafx.scene.layout.VBox" xmlns:fx="http://javafx.com/fxml/1">
+	<children>
+		<Label styleClass="lbWizard" fx:id="lbLabelField"/>
+		<TextField styleClass="tfWizard" fx:id="tfLabelField"/>
+	</children>
+</fx:root>
