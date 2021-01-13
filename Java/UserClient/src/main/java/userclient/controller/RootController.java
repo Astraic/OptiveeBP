@@ -43,9 +43,11 @@ public class RootController {
                 break;
             case "btnProduction":
                 break;
-            case "btnLogistic":
+            case "btnButcher":
+                loader = new Loader("ButcherPane");
+                root.setCenter(loader.getView());
                 break;
-            case "btnAdmin":
+            case "btnLogistic":
                 break;
         }
     }

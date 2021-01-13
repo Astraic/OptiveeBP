@@ -17,8 +17,8 @@
                 <Button onAction="#handleButtonAction" text="Dagregistratie" fx:id="btnDayregister"/>
                 <Button onAction="#handleButtonAction" text="Voeding" fx:id="btnFeed"/>
                 <Button onAction="#handleButtonAction" text="Productie" fx:id="btnProduction"/>
+                <Button onAction="#handleButtonAction" text="Slachter" fx:id="btnButcher"/>
                 <Button onAction="#handleButtonAction" text="Logistiek" fx:id="btnLogistic"/>
-                <Button onAction="#handleButtonAction" text="Administratief" fx:id="btnAdmin"/>
                 <Region HBox.hgrow="ALWAYS"></Region>
                 <Label fx:id="user" text="Welkom, Hans Peter Anders."/>
                 <Button fx:id="profile"/>   

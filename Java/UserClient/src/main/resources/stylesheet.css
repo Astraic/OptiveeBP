@@ -78,7 +78,7 @@
     -fx-alignment: top-center;
 }
 
-.column .label {
+.column .label, .chart-title {
     -fx-font-size: 18px;
     -fx-font-weight: bold;
 } 
@@ -105,4 +105,18 @@
     -fx-border-color: #000000;
     -fx-border-radius: 3px;
     -fx-font-size: 14px;
+}
+
+.chartBox {
+    -fx-padding: 60px;
+    -fx-spacing: 20px;
+    -fx-alignment: top-left;
+}
+
+.chart {
+    -fx-padding: 0px;
+}
+
+.chart-content {
+    -fx-padding: 48px 0px 24px 0px;
 }
