@@ -16,7 +16,7 @@ public abstract class LabelControl extends VBox {
 	protected Label lbLabelField;
 	
 	public LabelControl(String text) {
-		this.text = text;
+		this.text = text.toUpperCase();
 	}
 	
 	public void initialize() {

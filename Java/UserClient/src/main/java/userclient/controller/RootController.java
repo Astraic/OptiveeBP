@@ -27,14 +27,15 @@ public class RootController {
 	@FXML
     private void handleButtonAction(ActionEvent event) {
 		Button button = (Button) event.getSource();
+                Loader loader = null;
 		switch(button.getId()) {
 			case "btnAnimal":
-				Loader loader = new Loader("AnimalPane");
-				root.setCenter(loader.getView());
+				loader = new Loader("AnimalPane");
 				break;
 			case "btnDayregister":
 				break;
 			case "btnFeed":
+                                loader = new Loader("FeedPane");
 				break;
 			case "btnProduction":
 				break;
@@ -43,6 +44,7 @@ public class RootController {
 			case "btnAdmin":
 				break;
 		}
+                root.setCenter(loader.getView()); 
     }
 
 }

@@ -11,6 +11,8 @@ public class Main extends Application {
 	public void start(Stage primaryStage) throws Exception {
 		Loader root = new Loader("RootPane");
 		Scene primaryScene = new Scene(root.getView());
+                primaryStage.setHeight(1080);
+                primaryStage.setWidth(1920);
 		primaryStage.setFullScreen(true);
 		primaryStage.setScene(primaryScene);
 		primaryScene.getStylesheets().add(getClass().getResource("/stylesheet.css").toExternalForm());

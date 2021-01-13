@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.text.Text?>
+<?import userclient.util.LabelField?>
+
+<HBox fx:controller="userclient.controller.FeedController" xmlns:fx="http://javafx.com/fxml">
+    <children> 
+        <VBox styleClass="column">
+            <children>
+                <Text styleClass="txHeader" text="Dier Selecteren" />
+                <LabelField fx:id="tfLandcode" text="Landcode" />
+                <LabelField fx:id="tfSerienummer" text="Serienummer" />
+                <LabelField fx:id="tfWerknummer" text="Werknummer" />
+                <LabelField fx:id="tfControlegetal" text="Controlegetal" />
+                <Button styleClass="btnConfirm" fx:id="btnSelect" text="Selecteren" onAction="#selectAnimal"/>
+                <LabelField fx:id="tfVoeding" text="Voeding" />
+                <LabelField fx:id="tfPortiegroote" text="Portiegroote" />
+                <LabelField fx:id="tfHoeveelheid" text="Hoeveelheid" />                
+            </children>
+        </VBox>
+    </children>
+</HBox>
