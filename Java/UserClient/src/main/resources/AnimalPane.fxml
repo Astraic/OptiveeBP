@@ -2,76 +2,68 @@
 
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.cell.PropertyValueFactory?>
-<?import javafx.scene.text.Text?>
 <?import userclient.util.LabelField?>
 <?import userclient.util.LabelBox?>
 
 <HBox fx:controller="userclient.controller.AnimalController" 
-    xmlns:fx="http://javafx.com/fxml">
-	<children>
-		<VBox styleClass="row">
-			<children>
-				<Text styleClass="txHeader" text="Koe Toevoegen" />
-				<LabelField text="NFC" fx:id="tfNFC"/>
-				<LabelBox text="Land" fx:id="cbCountry"/>
-				<LabelField text="Serienummer" fx:id="tfSerial"/>
-				<LabelField text="Werknummer" fx:id="tfWork"/>
-				<LabelField text="Controlegetal" fx:id="tfControl"/>
-				<LabelField text="Product" fx:id="tfProduct"/>
-				<LabelBox text="Omgeving" fx:id="cbEnvironment"/>
-			</children>
-		</VBox>
-		<VBox styleClass="row">
-			<children>
-			  <TableView fx:id="tableView">
-			          <columns>
-			              <TableColumn fx:id="colCountry" text="Land" prefWidth="200">
-			                  <cellValueFactory>
-			                      <PropertyValueFactory property="country" />
-			                  </cellValueFactory>
-			              </TableColumn>
-			              <TableColumn fx:id="colSerial" text="Serienummer"  prefWidth="200">
-			                  <cellValueFactory>
-			                      <PropertyValueFactory property="serial" />
-			                  </cellValueFactory>
-			              </TableColumn>
-			              <TableColumn fx:id="colWorking" text="Werknummer" prefWidth="200">
-			                  <cellValueFactory>
-			                      <PropertyValueFactory property="working" />
-			                  </cellValueFactory>
-			              </TableColumn>
-			              <TableColumn fx:id="colControl" text="Controlegetal" prefWidth="200">
-			                  <cellValueFactory>
-			                      <PropertyValueFactory property="control" />
-			                  </cellValueFactory>
-			              </TableColumn>
-			          	  <TableColumn fx:id="colProduct" text="Product"  prefWidth="200">
-			                  <cellValueFactory>
-			                      <PropertyValueFactory property="product" />
-			                  </cellValueFactory>
-			              </TableColumn>
-			               <TableColumn fx:id="colEnvironment" text="Omgeving" prefWidth="200">
-			                  <cellValueFactory>
-			                      <PropertyValueFactory property="environment" />
-			                  </cellValueFactory>
-			              </TableColumn>
-			          </columns>    
-		        </TableView>
-			</children>
-		</VBox>
-		<VBox>
-			<children>
-				
-			</children>
-		</VBox>
-		<VBox>
-			<children>
-				
-			</children>
-		</VBox>
-	</children>
+      xmlns:fx="http://javafx.com/fxml">
+    <children>
+        <VBox styleClass="column">
+            <children>
+                <Label text="Koe Toevoegen" />
+                <LabelField text="NFC" fx:id="tfNFC"/>
+                <LabelBox text="Land" fx:id="cbCountry"/>
+                <LabelField text="Serienummer" fx:id="tfSerial"/>
+                <LabelField text="Werknummer" fx:id="tfWork"/>
+                <LabelField text="Controlegetal" fx:id="tfControl"/>
+                <LabelField text="Product" fx:id="tfProduct"/>
+                <LabelBox text="Omgeving" fx:id="cbEnvironment"/>
+            </children>
+        </VBox>
+        <Separator orientation="vertical" />
+        <VBox styleClass="row">
+            <children>
+                <TableView fx:id="tableView">
+                    <columns>
+                        <TableColumn fx:id="colCountry" text="Land" prefWidth="200">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="country" />
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn fx:id="colSerial" text="Serienummer"  prefWidth="200">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="serial" />
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn fx:id="colWorking" text="Werknummer" prefWidth="200">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="working" />
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn fx:id="colControl" text="Controlegetal" prefWidth="200">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="control" />
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn fx:id="colProduct" text="Product"  prefWidth="200">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="product" />
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn fx:id="colEnvironment" text="Omgeving" prefWidth="200">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="environment" />
+                            </cellValueFactory>
+                        </TableColumn>
+                    </columns>    
+                </TableView>
+            </children>
+        </VBox>
+    </children>
 </HBox>

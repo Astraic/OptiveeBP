@@ -22,4 +22,9 @@ public class FeedController {
     private void selectAnimal(ActionEvent event){
         
     }
+    
+    @FXML
+    private void confirmFeed(ActionEvent event){
+        
+    }
 }

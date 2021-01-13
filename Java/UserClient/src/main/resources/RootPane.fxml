@@ -1,28 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.text.Text?>
-
-
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
 
 <BorderPane fx:controller="userclient.controller.RootController" fx:id="root" 
-    xmlns:fx="http://javafx.com/fxml">
-	<top>
-		<HBox id="header">
-			<Button onAction="#handleButtonAction" styleClass="btnHeader" text="Dieren" fx:id="btnAnimal"/>
-			<Button onAction="#handleButtonAction" styleClass="btnHeader" text="Dagregistratie" fx:id="btnDayregister"/>
-			<Button onAction="#handleButtonAction" styleClass="btnHeader" text="Voeding" fx:id="btnFeed"/>
-			<Button onAction="#handleButtonAction" styleClass="btnHeader" text="Productie" fx:id="btnProduction"/>
-			<Button onAction="#handleButtonAction" styleClass="btnHeader" text="Logistiek" fx:id="btnLogistic"/>
-			<Button onAction="#handleButtonAction" styleClass="btnHeader" text="Administratief" fx:id="btnAdmin"/>
-		</HBox>
-	</top>
-	<bottom>
-		<HBox>
-			<Text id="footer" text="Avans Development BV 2020"/>
-		</HBox>
-	</bottom>
-
+            xmlns:fx="http://javafx.com/fxml">
+    <top>
+        <HBox id="header">
+            <children>
+                <ImageView id="logo" />
+                <Button onAction="#handleButtonAction" text="Dieren" fx:id="btnAnimal"/>
+                <Button onAction="#handleButtonAction" text="Dagregistratie" fx:id="btnDayregister"/>
+                <Button onAction="#handleButtonAction" text="Voeding" fx:id="btnFeed"/>
+                <Button onAction="#handleButtonAction" text="Productie" fx:id="btnProduction"/>
+                <Button onAction="#handleButtonAction" text="Logistiek" fx:id="btnLogistic"/>
+                <Button onAction="#handleButtonAction" text="Administratief" fx:id="btnAdmin"/>
+                <Region HBox.hgrow="ALWAYS"></Region>
+                <Label fx:id="user" text="Welkom, Hans Peter Anders."/>
+                <Button fx:id="profile"/>   
+            </children>
+        </HBox>
+    </top>
+    <bottom>
+        <HBox id="footer">
+            <children>
+                <Label text="© Avans Development B.V. 2021"/>
+                <Region HBox.hgrow="ALWAYS"></Region>
+                <Button fx:id="website" onAction="#linkButtonAction"/>  
+                <Button fx:id="social1" onAction="#linkButtonAction"/>  
+                <Button fx:id="social2" onAction="#linkButtonAction"/>  
+                <Button fx:id="social3" onAction="#linkButtonAction"/>  
+            </children>
+        </HBox>
+    </bottom>
 </BorderPane>
