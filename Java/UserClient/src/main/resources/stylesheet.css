@@ -107,6 +107,14 @@
     -fx-font-size: 14px;
 }
 
+.button:hover {
+    -fx-opacity: 0.78;
+}
+
+.button:pressed {
+    -fx-opacity: 0.92;
+}
+
 .chartBox {
     -fx-padding: 60px;
     -fx-spacing: 20px;
