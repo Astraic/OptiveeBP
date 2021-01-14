@@ -5,60 +5,18 @@ import java.net.URI;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.ProgressIndicator;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import userclient.util.Loader;
 
 public class RootController {
-<<<<<<< HEAD
-	
-	@FXML
-	private BorderPane root;
-	
-	@FXML
-	private HBox header;
-	@FXML
-	private HBox footer;
-
-	public RootController() {
-
-	}
-	
-	public void initialize() {
-		
-	}
-	
-	@FXML
-    private void handleButtonAction(ActionEvent event) {
-		Button button = (Button) event.getSource();
-		Loader loader = getCenterPane(button.getId());
-		root.setCenter(loader.getView());
-    }
-	
-	private Loader getCenterPane(String id) {
-		switch(id) {
-			case "btnAnimal":
-				return new Loader("AnimalPane");
-			case "btnProduction":
-				return new Loader("ProductionPane");
-			case "btnReasonofdeath":
-				return new Loader("ReasonofdeathPane");
-			case "btnCountry":
-				return new Loader("CountryPane");
-			case "btnProduct":
-				return new Loader("ProductPane");
-			default:
-				return null;
-	}
-	}
-=======
 
     @FXML
     private BorderPane root;
 
     @FXML
     private HBox header;
+    @FXML
     private HBox footer;
 
     public RootController() {
@@ -72,29 +30,30 @@ public class RootController {
     @FXML
     private void handleButtonAction(ActionEvent event) {
         Button button = (Button) event.getSource();
-        Loader loader;
-        switch (button.getId()) {
+        Loader loader = getCenterPane(button.getId());
+        root.setCenter(loader.getView());
+    }
+
+    private Loader getCenterPane(String id) {
+        switch (id) {
             case "btnAnimal":
-                loader = new Loader("AnimalPane");
-                root.setCenter(loader.getView());
-                break;
-            case "btnDayregister":
-                break;
-            case "btnFeed":
-                loader = new Loader("FeedPane");
-                root.setCenter(loader.getView());
-                break;
+                return new Loader("AnimalPane");
             case "btnProduction":
-                break;
+                return new Loader("ProductionPane");
+            case "btnReasonofdeath":
+                return new Loader("ReasonofdeathPane");
+            case "btnFeed":
+                return new Loader("FeedPane");    
             case "btnButcher":
-                loader = new Loader("ButcherPane");
-                root.setCenter(loader.getView());
-                break;
-            case "btnLogistic":
-                break;
+                return new Loader("ButcherPane");
+            case "btnCountry":
+                return new Loader("CountryPane");
+            case "btnProduct":
+                return new Loader("ProductPane");
+            default:
+                return null;
         }
     }
->>>>>>> e250c9dc073f226797b934c1222f4f91fb403924
 
     @FXML
     private void linkButtonAction(ActionEvent event) {
