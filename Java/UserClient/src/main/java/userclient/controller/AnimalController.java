@@ -1,9 +1,116 @@
 package userclient.controller;
 
-public class AnimalController {
+import java.time.LocalDate;
 
-	public AnimalController() {
-		// TODO Auto-generated constructor stub
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
+import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.TableView;
+import javafx.scene.input.MouseEvent;
+import userclient.model.Animal;
+import userclient.model.Country;
+import userclient.model.Product;
+import userclient.model.Reasonofdeath;
+import userclient.util.LabelBox;
+import userclient.util.LabelField;
+
+public class AnimalController extends SuperController{
+	
+	@FXML
+	protected TableView<Animal> tvAnimal;
+	
+	@FXML
+	protected LabelField tfNFC,
+							tfSerial,
+							tfWork,
+							tfControl;
+
+	@FXML
+	protected LabelBox<Object> cbEnvironment;
+	@FXML
+	protected LabelBox<Country> cbCountry;
+	@FXML
+	protected LabelBox<Product> cbProduct;
+	@FXML
+	protected LabelBox<Reasonofdeath> cbReasonofdeath;
+	@FXML
+	protected Button btnAddAnimal;
+	@FXML
+	protected Button btnUpdateAnimal;
+	
+	public void initialize() {
+		ObservableList<Animal> data = FXCollections.observableArrayList(animalClient.select());
+		tvAnimal.setItems(data);
+		
+		ObservableList<Country> countries = FXCollections.observableArrayList(countryClient.select());
+		System.out.println(countries.get(0));
+		System.out.println(cbCountry);
+		
+		cbCountry.getCbLabelField().setItems(countries);
+		
+		ObservableList<Product> products = FXCollections.observableArrayList(productClient.select());
+		System.out.println(products.get(0));
+		System.out.println(cbProduct);
+		cbProduct.getCbLabelField().setItems(products);
+		
+//		ObservableList<Reasonofdeath> reasonofdeath = FXCollections.observableArrayList(reasonofdeathClient.select());
+//		cbReasonofdeath.getCbLabelField().setItems(reasonofdeath);
+		
+		btnAddAnimal.setOnMouseClicked(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				add();
+			}
+		});
+		
+		btnUpdateAnimal.setOnMouseClicked(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				update();
+			}
+		});
 	}
+	
+	public void add() {
+		try {
+			Animal animal = new Animal();
+			animal.setNfc(tfNFC.getTfLabelField().getText());
+			animal.setSerial(Integer.parseInt(tfSerial.getTfLabelField().getText()));
+			animal.setWorking(Integer.parseInt(tfWork.getTfLabelField().getText()));
+			animal.setControl(Integer.parseInt(tfControl.getTfLabelField().getText()));
+			animal.setProduct(cbProduct.getCbLabelField().getSelectionModel().getSelectedItem().getProduct());
+			animal.setCountry(cbCountry.getCbLabelField().getSelectionModel().getSelectedItem().getCode());
+			animalClient.insert(animal);
+			ObservableList<Animal> data = FXCollections.observableArrayList(animalClient.select());
+			tvAnimal.setItems(data);
+		}catch(NumberFormatException e) {
+			(new Alert(AlertType.ERROR, "Een van de velden is niet ingevuld", ButtonType.OK)).show();
+		}
+	}
+	
+	public void update() {
+		try {
+			Animal animal = new Animal();
+			animal.setPassdate(LocalDate.now());
+			animal.setReasonofdeath(cbCountry.getCbLabelField().getSelectionModel().getSelectedItem().getCode());
+
+			animalClient.update(animal, tvAnimal.getSelectionModel().getSelectedItem());
+			ObservableList<Animal> data = FXCollections.observableArrayList(animalClient.select());
+			tvAnimal.setItems(data);
+		}catch(NumberFormatException e) {
+			(new Alert(AlertType.ERROR, "Een van de velden is niet ingevuld", ButtonType.OK)).show();
+		}
+	}
+	
+	
+	
+	
+	
+	
 
 }

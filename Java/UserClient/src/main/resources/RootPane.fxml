@@ -19,6 +19,9 @@
 			<Button onAction="#handleButtonAction" styleClass="btnHeader" text="Administratief" fx:id="btnAdmin"/>
 		</HBox>
 	</top>
+	<center>
+		<fx:include source="AnimalPane.fxml"/>
+	</center>
 	<bottom>
 		<HBox>
 			<Text id="footer" text="Avans Development BV 2020"/>

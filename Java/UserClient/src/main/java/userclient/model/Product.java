@@ -15,4 +15,9 @@ public class Product {
 	public void setProduct(String product) {
 		this.product = product;
 	}
+
+	@Override
+	public String toString() {
+		return product;
+	}
 }

@@ -12,6 +12,11 @@
     -fx-font-weight: bold;
 }
 
+.chart {
+	-fx-pref-width: 1300;
+	-fx-pref-height: 700;
+}
+
 #footer {
 	-fx-background-color:#c8df59;
 }

@@ -6,133 +6,80 @@ import java.util.UUID;
 public class Animal {
 
 	private UUID id;
-	private Product product;
+	private String product;
 	private String environment;
 	private String nfc;
-	private ReasonOfDeath reasonOfDeath;
-	private Country country;
+	private String reasonofdeath;
+	private String country;
 	private int serial;
 	private int working;
 	private int control;
 	private LocalDate passdate;
-
+	
 	public UUID getId() {
-		return this.id;
+		return id;
 	}
-
-	/**
-	 * 
-	 * @param id
-	 */
 	public void setId(UUID id) {
 		this.id = id;
 	}
-
-	public Product getProduct() {
-		return this.product;
+	public String getProduct() {
+		return product;
 	}
-
-	/**
-	 * 
-	 * @param product
-	 */
-	public void setProduct(Product product) {
+	public void setProduct(String product) {
 		this.product = product;
 	}
-
 	public String getEnvironment() {
-		return this.environment;
+		return environment;
 	}
-
-	/**
-	 * 
-	 * @param environment
-	 */
 	public void setEnvironment(String environment) {
 		this.environment = environment;
 	}
-
 	public String getNfc() {
-		return this.nfc;
+		return nfc;
 	}
-
-	/**
-	 * 
-	 * @param nfc
-	 */
 	public void setNfc(String nfc) {
 		this.nfc = nfc;
 	}
-
-	public ReasonOfDeath getReasonOfDeath() {
-		return this.reasonOfDeath;
+	public String getReasonofdeath() {
+		return reasonofdeath;
 	}
-
-	/**
-	 * 
-	 * @param reasonOfDeath
-	 */
-	public void setReasonOfDeath(ReasonOfDeath reasonOfDeath) {
-		this.reasonOfDeath = reasonOfDeath;
+	public void setReasonofdeath(String reasonofdeath) {
+		this.reasonofdeath = reasonofdeath;
 	}
-
-	public Country getCountry() {
-		return this.country;
+	public String getCountry() {
+		return country;
 	}
-
-	/**
-	 * 
-	 * @param country
-	 */
-	public void setCountry(Country country) {
+	public void setCountry(String country) {
 		this.country = country;
 	}
-
 	public int getSerial() {
-		return this.serial;
+		return serial;
 	}
-
-	/**
-	 * 
-	 * @param serial
-	 */
 	public void setSerial(int serial) {
 		this.serial = serial;
 	}
-
 	public int getWorking() {
-		return this.working;
+		return working;
 	}
-
-	/**
-	 * 
-	 * @param working
-	 */
 	public void setWorking(int working) {
 		this.working = working;
 	}
-
 	public int getControl() {
-		return this.control;
+		return control;
 	}
-
-	/**
-	 * 
-	 * @param control
-	 */
 	public void setControl(int control) {
 		this.control = control;
 	}
-
 	public LocalDate getPassdate() {
-		return this.passdate;
+		return passdate;
 	}
-
-	/**
-	 * 
-	 * @param passdate
-	 */
 	public void setPassdate(LocalDate passdate) {
 		this.passdate = passdate;
 	}
+
+	@Override
+	public String toString() {
+		return country + " " + serial + " " + working + " " + control;
+	}
+	
 }

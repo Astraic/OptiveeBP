@@ -6,10 +6,16 @@ import javafx.stage.Stage;
 import userclient.util.Loader;
 
 public class Main extends Application {
-
+	private static String role = "";
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		Loader root = new Loader("RootPane");
+		Loader root;
+		if(!role.equals("admin")) {
+			root = new Loader("RootPane");
+		}else {
+			root = new Loader("RootAdminPane");
+		}
+		
 		Scene primaryScene = new Scene(root.getView());
 		primaryStage.setFullScreen(true);
 		primaryStage.setScene(primaryScene);

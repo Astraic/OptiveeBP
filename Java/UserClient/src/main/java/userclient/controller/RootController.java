@@ -3,6 +3,7 @@ package userclient.controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ProgressIndicator;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import userclient.util.Loader;
@@ -14,6 +15,7 @@ public class RootController {
 	
 	@FXML
 	private HBox header;
+	@FXML
 	private HBox footer;
 
 	public RootController() {
@@ -27,22 +29,25 @@ public class RootController {
 	@FXML
     private void handleButtonAction(ActionEvent event) {
 		Button button = (Button) event.getSource();
-		switch(button.getId()) {
-			case "btnAnimal":
-				Loader loader = new Loader("AnimalPane");
-				root.setCenter(loader.getView());
-				break;
-			case "btnDayregister":
-				break;
-			case "btnFeed":
-				break;
-			case "btnProduction":
-				break;
-			case "btnLogistic":
-				break;
-			case "btnAdmin":
-				break;
-		}
+		Loader loader = getCenterPane(button.getId());
+		root.setCenter(loader.getView());
     }
+	
+	private Loader getCenterPane(String id) {
+		switch(id) {
+			case "btnAnimal":
+				return new Loader("AnimalPane");
+			case "btnProduction":
+				return new Loader("ProductionPane");
+			case "btnReasonofdeath":
+				return new Loader("ReasonofdeathPane");
+			case "btnCountry":
+				return new Loader("CountryPane");
+			case "btnProduct":
+				return new Loader("ProductPane");
+			default:
+				return null;
+	}
+	}
 
 }

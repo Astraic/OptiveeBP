@@ -21,13 +21,14 @@
 				<LabelField text="Serienummer" fx:id="tfSerial"/>
 				<LabelField text="Werknummer" fx:id="tfWork"/>
 				<LabelField text="Controlegetal" fx:id="tfControl"/>
-				<LabelField text="Product" fx:id="tfProduct"/>
-				<LabelBox text="Omgeving" fx:id="cbEnvironment"/>
+				<LabelBox text="Product" fx:id="cbProduct"/>
+				<!--<LabelBox text="Omgeving" fx:id="cbEnvironment"/>-->
+				<Button text="Toevoegen" fx:id="btnAddAnimal"/>
 			</children>
 		</VBox>
 		<VBox styleClass="row">
 			<children>
-			  <TableView fx:id="tableView">
+			  <TableView fx:id="tvAnimal">
 			          <columns>
 			              <TableColumn fx:id="colCountry" text="Land" prefWidth="200">
 			                  <cellValueFactory>
@@ -63,9 +64,11 @@
 		        </TableView>
 			</children>
 		</VBox>
-		<VBox>
+		<VBox styleClass="row">
 			<children>
-				
+				<Text styleClass="txHeader" text="Koe doodverklaren" />
+				<LabelBox text="Doodsoorzaak" fx:id="cbReasonofdeath"/>
+				<Button text="Toevoegen" fx:id="btnUpdateAnimal"/>
 			</children>
 		</VBox>
 		<VBox>

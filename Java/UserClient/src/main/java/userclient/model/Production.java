@@ -6,54 +6,38 @@ public class Production {
 
 	private Animal animal;
 	private int production;
-	private Product product;
+	private String product;
 	private LocalDateTime productiondatetime;
 
 	public Animal getAnimal() {
 		return this.animal;
 	}
 
-	/**
-	 * 
-	 * @param animal
-	 */
-	public void setAnimal(Animal animal) {
-		this.animal = animal;
-	}
-
 	public int getProduction() {
-		return this.production;
+		return production;
 	}
 
-	/**
-	 * 
-	 * @param production
-	 */
 	public void setProduction(int production) {
 		this.production = production;
 	}
 
-	public Product getProduct() {
-		return this.product;
+	public String getProduct() {
+		return product;
 	}
 
-	/**
-	 * 
-	 * @param product
-	 */
-	public void setProduct(Product product) {
+	public void setProduct(String product) {
 		this.product = product;
 	}
 
-	public LocalDateTime getDate() {
-		return this.productiondatetime;
+	public LocalDateTime getProductiondatetime() {
+		return productiondatetime;
 	}
 
-	/**
-	 * 
-	 * @param date
-	 */
-	public void setDate(LocalDateTime date) {
-		this.productiondatetime = date;
+	public void setProductiondatetime(LocalDateTime productiondatetime) {
+		this.productiondatetime = productiondatetime;
+	}
+
+	public void setAnimal(Animal animal) {
+		this.animal = animal;
 	}
 }

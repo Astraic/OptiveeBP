@@ -22,10 +22,15 @@ public class Country {
 	}
 
 	/**
-	 * 
+	 * a
 	 * @param name
 	 */
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	@Override
+	public String toString() {
+		return name + "(" + code + ")";
 	}
 }
