@@ -17,8 +17,12 @@ public class Main extends Application {
 		}
 		
 		Scene primaryScene = new Scene(root.getView());
+		primaryStage.setHeight(1080);
+        primaryStage.setWidth(1920);
 		primaryStage.setFullScreen(true);
 		primaryStage.setScene(primaryScene);
+        primaryStage.setTitle("Optivee - Rundveehouderij Managementsysteem");
+        primaryStage.getIcons().add(new Image(getClass().getClassLoader().getResourceAsStream("images/Logo.png")));
 		primaryScene.getStylesheets().add(getClass().getResource("/stylesheet.css").toExternalForm());
 		primaryStage.show();
 	}
