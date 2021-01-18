@@ -19,7 +19,7 @@ class Animal extends \app\framework\api\InsertableApi{
     }
 
     public function getUpdateableFields() : array{
-        return [];
+        return [['reasonofdeath'],['passdate']];
     }
 
     public function createModel() : \app\framework\model\Model {
