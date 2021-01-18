@@ -13,6 +13,11 @@ public class CountryClient extends HttpClient<Country>{
 	public String getUpdateClause(Country model) {
 		return "country-eq-" + model.getCode();
 	}
+
+	@Override
+	protected Country removeOverhead(Country model) {
+		return model;
+	}
 	
 	
 }

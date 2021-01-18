@@ -41,4 +41,12 @@ public class AnimalClient extends HttpClient<Animal>{
 		return "id-eq-" + model.getId();
 	}
 
+	@Override
+	protected Animal removeOverhead(Animal model) {
+		Animal newModel = new Animal();
+		newModel.setReasonofdeath(model.getReasonofdeath());
+		newModel.setPassdate(model.getPassdate());
+		return newModel;
+	}
+
 }

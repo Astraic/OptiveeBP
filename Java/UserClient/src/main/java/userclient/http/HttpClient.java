@@ -62,7 +62,8 @@ public abstract class HttpClient<T> {
 	
 	public void update(T model, T modelOld) {
 		try {
-			this.setupConnection(getBaseURL() + "?json=[" + gson.toJson(model) + "]" + "&where=" + getUpdateClause(modelOld));
+			T overheadlessModel = this.removeOverhead(model);
+			this.setupConnection(getBaseURL() + "?json=[" + gson.toJson(overheadlessModel) + "]" + "&where=" + getUpdateClause(modelOld));
 		    connection.connect();
 		    System.out.println(connection.getResponseCode());
 		} catch (IOException e) {
@@ -110,6 +111,8 @@ public abstract class HttpClient<T> {
 		
 		return results;
 	}
+	
+	protected abstract T removeOverhead(T model);
 	
 	protected String getBaseURL() {
 		return "https://optivee-api.azurewebsites.net/app/entity/api/" + entity.getSimpleName().toLowerCase() + ".php";

@@ -87,4 +87,9 @@ public class ProductionClient extends HttpClient<Production>{
 		
 	}
 
+	@Override
+	protected Production removeOverhead(Production model) {
+		return model;
+	}
+
 }
