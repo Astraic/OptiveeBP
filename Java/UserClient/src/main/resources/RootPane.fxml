@@ -25,6 +25,9 @@
             </children>
         </HBox>
     </top>
+    <center>
+    	<fx:include source="AnimalPane.fxml" fx:id="animal"/>
+    </center>
     <bottom>
         <HBox id="footer">
             <children>
