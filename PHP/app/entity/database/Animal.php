@@ -12,7 +12,7 @@ require_once(dirname(__FILE__,3) . '/entity/model/Animal.php');
                                                               \app\framework\database\Update {
 
       function __construct(\app\framework\database\QueryBuilderParent ...$query){
-            $sql = "INSERT INTO Animal (id, nfc) VALUES (:id, :nfc)";
+            $sql = "INSERT INTO Animal (nfc, country, serial, working, control, product) VALUES (:nfc, :country, :serial, :working, :control, :product)";
 
             $this->insert = \app\framework\database\Database::getConnection()->prepare($sql);
             parent::__construct($query);
@@ -21,15 +21,39 @@ require_once(dirname(__FILE__,3) . '/entity/model/Animal.php');
       function insert(\app\framework\model\Model $model) : String{
 
           try{
-              $this->insert->bindValue(':id', $model->getId());
-          }catch(\app\framework\exception\ModelNullException $e){
-              $this->insert->bindValue(':id', null);
-          }
-
-          try{
               $this->insert->bindValue(':nfc', $model->getNfc());
           }catch(\app\framework\exception\ModelNullException $e){
               $this->insert->bindValue(':nfc', null);
+          }
+
+	  try{
+              $this->insert->bindValue(':country', $model->getCountry());
+          }catch(\app\framework\exception\ModelNullException $e){
+              $this->insert->bindValue(':country', null);
+          }
+
+	  try{
+              $this->insert->bindValue(':serial', $model->getSerial());
+          }catch(\app\framework\exception\ModelNullException $e){
+              $this->insert->bindValue(':serial', null);
+          }
+
+	  try{
+              $this->insert->bindValue(':working', $model->getWorking());
+          }catch(\app\framework\exception\ModelNullException $e){
+              $this->insert->bindValue(':working', null);
+          }
+
+	  try{
+              $this->insert->bindValue(':control', $model->getControl());
+          }catch(\app\framework\exception\ModelNullException $e){
+              $this->insert->bindValue(':control', null);
+          }
+
+	   try{
+              $this->insert->bindValue(':product', $model->getProduct());
+          }catch(\app\framework\exception\ModelNullException $e){
+              $this->insert->bindValue(':product', null);
           }
 
           $this->insert->execute();
