@@ -23,6 +23,7 @@ public class Main extends Application {
         primaryStage.setHeight(1080);
         primaryStage.setWidth(1920);
         primaryStage.setFullScreen(true);
+        primaryStage.setResizable(false);
         primaryStage.setScene(primaryScene);
         primaryStage.setTitle("Optivee - Rundveehouderij Managementsysteem");
         primaryStage.getIcons().add(new Image(getClass().getClassLoader().getResourceAsStream("images/Logo.png")));

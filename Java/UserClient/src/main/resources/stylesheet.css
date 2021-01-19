@@ -26,11 +26,6 @@
     -fx-font-size: 18px;
 }
 
-.chart {
-	-fx-pref-width: 1300;
-	-fx-pref-height: 700;
-}
-
 #footer {
     -fx-pref-height: 50px;
 }
@@ -77,7 +72,7 @@
 }
 
 .column {
-    -fx-pref-width: 480px;
+    -fx-min-width: 480px;
     -fx-padding: 60px;
     -fx-spacing: 20px;
     -fx-alignment: top-center;
@@ -127,6 +122,8 @@
 }
 
 .chart {
+    -fx-pref-width: 840;
+    -fx-pref-height: 600;
     -fx-padding: 0px;
 }
 
