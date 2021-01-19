@@ -66,10 +66,10 @@ public class ConsumptionClient extends HttpClient<Consumption> {
     public String getUpdateClause(Consumption model) {
         return new StringBuilder("animalid-eq-")
                 .append(model.getAnimalId())
-                //.append("&date-eq-")
-                //.append(model.getDate())
-                //.append("&time-eq-")
-                //.append(model.getTime())
+                .append(".date-eq-")
+                .append(model.getDate())
+                .append(".time-eq-")
+                .append(model.getTime())
                 .toString();
     }
 
