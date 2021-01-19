@@ -11,28 +11,28 @@ package userclient.model;
  */
 public class Distribution {
     
-    private Animal animalId;
-    private Feed feedId;
+    private Animal animalid;
+    private Feed feedid;
     private double portion;
     private double assigned;
 
     public Distribution() {
     }
 
-    public Animal getAnimalId() {
-        return animalId;
+    public Animal getAnimalid() {
+        return animalid;
     }
 
-    public void setAnimalId(Animal animalId) {
-        this.animalId = animalId;
+    public void setAnimalid(Animal animalid) {
+        this.animalid = animalid;
     }
 
-    public Feed getFeedId() {
-        return feedId;
+    public Feed getFeedid() {
+        return feedid;
     }
 
-    public void setFeedId(Feed feedId) {
-        this.feedId = feedId;
+    public void setFeedid(Feed feedid) {
+        this.feedid = feedid;
     }
 
     public double getPortion() {

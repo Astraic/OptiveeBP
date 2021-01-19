@@ -14,10 +14,10 @@ import java.time.LocalTime;
  */
 public class Consumption {
     
-    private Animal animalId;
+    private Animal animalid;
     private LocalDate date;
     private LocalTime time;
-    private Feed feedId;
+    private Feed feedid;
     private double portion;
     private double assigned;
     private double consumption;
@@ -25,12 +25,12 @@ public class Consumption {
     public Consumption() {
     }
 
-    public Animal getAnimalId() {
-        return animalId;
+    public Animal getAnimalid() {
+        return animalid;
     }
 
-    public void setAnimalId(Animal animalId) {
-        this.animalId = animalId;
+    public void setAnimalid(Animal animalid) {
+        this.animalid = animalid;
     }
 
     public LocalDate getDate() {
@@ -49,12 +49,12 @@ public class Consumption {
         this.time = time;
     }
 
-    public Feed getFeedId() {
-        return feedId;
+    public Feed getFeedid() {
+        return feedid;
     }
 
-    public void setFeedId(Feed feedId) {
-        this.feedId = feedId;
+    public void setFeedid(Feed feedid) {
+        this.feedid = feedid;
     }
 
     public double getPortion() {

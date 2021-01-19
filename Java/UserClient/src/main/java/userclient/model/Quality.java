@@ -14,23 +14,23 @@ import java.time.LocalTime;
  */
 public class Quality {
     
-    private Animal animalId;
+    private Animal animalid;
     private LocalDate date;
     private LocalTime time;
-    private Category catName;
-    private Fat fatName;
-    private Meat meatName;
+    private Category catname;
+    private Fat fatname;
+    private Meat meatname;
     private double amount;
 
     public Quality() {
     }
 
-    public Animal getAnimalId() {
-        return animalId;
+    public Animal getAnimalid() {
+        return animalid;
     }
 
-    public void setAnimalId(Animal animalId) {
-        this.animalId = animalId;
+    public void setAnimalid(Animal animalid) {
+        this.animalid = animalid;
     }
 
     public LocalDate getDate() {
@@ -49,28 +49,28 @@ public class Quality {
         this.time = time;
     }
 
-    public Category getCatName() {
-        return catName;
+    public Category getCatname() {
+        return catname;
     }
 
-    public void setCatName(Category catName) {
-        this.catName = catName;
+    public void setCatname(Category catname) {
+        this.catname = catname;
     }
 
-    public Fat getFatName() {
-        return fatName;
+    public Fat getFatname() {
+        return fatname;
     }
 
-    public void setFatName(Fat fatName) {
-        this.fatName = fatName;
+    public void setFatname(Fat fatname) {
+        this.fatname = fatname;
     }
 
-    public Meat getMeatName() {
-        return meatName;
+    public Meat getMeatname() {
+        return meatname;
     }
 
-    public void setMeatName(Meat meatName) {
-        this.meatName = meatName;
+    public void setMeatname(Meat meatname) {
+        this.meatname = meatname;
     }
 
     public double getAmount() {
