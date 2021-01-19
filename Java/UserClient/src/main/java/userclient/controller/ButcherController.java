@@ -12,7 +12,7 @@ import javafx.fxml.FXML;
  *
  * @author Stephan de Jongh
  */
-public class ButcherController {
+public class ButcherController extends SuperController {
     
     public ButcherController() {
         

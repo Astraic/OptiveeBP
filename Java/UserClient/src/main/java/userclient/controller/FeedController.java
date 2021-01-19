@@ -12,7 +12,7 @@ import javafx.fxml.FXML;
  *
  * @author Stephan de Jongh
  */
-public class FeedController {
+public class FeedController extends SuperController {
     
     public FeedController() {
         
