@@ -20,12 +20,12 @@ class Quality extends \app\framework\api\InsertableApi {
     }
 
     // Opvragen van alle variabelen binnen een entiteit.
-    public static function getFields() {
+    public function getFields() : array {
         return [['animalid'], ['date'], ['time'], ['catname'], ['fatname'], ['meatname'], ['amount']];
     }
 
     // Opvragen van variable van een entiteit die bewerkt mogen worden.
-    public static function getUpdateableFields() {
+    public function getUpdateableFields() : array {
         return [['catname'], ['fatname'], ['meatname'], ['amount']];
     }
 

@@ -20,12 +20,12 @@ class Feed extends \app\framework\api\InsertableApi {
     }
 
     // Opvragen van alle variabelen binnen een entiteit.
-    public static function getFields() {
+    public function getFields() : array {
         return [['id'], ['name']];
     }
 
     // Opvragen van variable van een entiteit die bewerkt mogen worden.
-    public static function getUpdateableFields() {
+    public function getUpdateableFields() : array {
         return [['name']];
     }
 
