@@ -24,7 +24,6 @@
                 <LabelField text="Werknummer" fx:id="tfWork"/>
                 <LabelField text="Controlegetal" fx:id="tfControl"/>
                 <LabelBox text="Product" fx:id="cbProduct"/>
-                <!--<LabelBox text="Omgeving" fx:id="cbEnvironment"/>-->
                 <Button text="Toevoegen" fx:id="btnAddAnimal"/>
             </children>
         </VBox>
@@ -56,11 +55,6 @@
                         <TableColumn fx:id="colProduct" text="Product"  prefWidth="200">
                             <cellValueFactory>
                                 <PropertyValueFactory property="product" />
-                            </cellValueFactory>
-                        </TableColumn>
-                        <TableColumn fx:id="colEnvironment" text="Omgeving" prefWidth="200">
-                            <cellValueFactory>
-                                <PropertyValueFactory property="environment" />
                             </cellValueFactory>
                         </TableColumn>
                     </columns>    

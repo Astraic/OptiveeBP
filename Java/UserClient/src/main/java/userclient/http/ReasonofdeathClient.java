@@ -13,6 +13,11 @@ public class ReasonofdeathClient extends HttpClient<Reasonofdeath> {
 	public String getUpdateClause(Reasonofdeath model) {
 		return "reasonofdeath-eq-" + model.getReasonofdeath();
 	}
+
+	@Override
+	protected Reasonofdeath removeOverhead(Reasonofdeath model) {
+		return model;
+	}
 	
 	
 

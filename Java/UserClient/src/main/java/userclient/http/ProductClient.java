@@ -13,6 +13,11 @@ public class ProductClient extends HttpClient<Product> {
 	public String getUpdateClause(Product model) {
 		return "product-eq-" + model.getProduct();
 	}
+
+	@Override
+	protected Product removeOverhead(Product model) {
+		return model;
+	}
 	
 	
 

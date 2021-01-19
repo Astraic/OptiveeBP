@@ -11,9 +11,9 @@ public class Animal {
 	private String nfc;
 	private String reasonofdeath;
 	private String country;
-	private int serial;
-	private int working;
-	private int control;
+	private Integer serial;
+	private Integer working;
+	private Integer control;
 	private LocalDate passdate;
 	
 	public UUID getId() {

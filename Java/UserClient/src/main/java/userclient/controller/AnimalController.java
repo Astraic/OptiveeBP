@@ -58,8 +58,8 @@ public class AnimalController extends SuperController{
 		System.out.println(cbProduct);
 		cbProduct.getCbLabelField().setItems(products);
 		
-//		ObservableList<Reasonofdeath> reasonofdeath = FXCollections.observableArrayList(reasonofdeathClient.select());
-//		cbReasonofdeath.getCbLabelField().setItems(reasonofdeath);
+		ObservableList<Reasonofdeath> reasonofdeath = FXCollections.observableArrayList(reasonofdeathClient.select());
+		cbReasonofdeath.getCbLabelField().setItems(reasonofdeath);
 		
 		btnAddAnimal.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
@@ -97,13 +97,16 @@ public class AnimalController extends SuperController{
 		try {
 			Animal animal = new Animal();
 			animal.setPassdate(LocalDate.now());
-			animal.setReasonofdeath(cbCountry.getCbLabelField().getSelectionModel().getSelectedItem().getCode());
+			animal.setReasonofdeath(cbReasonofdeath.getCbLabelField().getSelectionModel().getSelectedItem().getReasonofdeath());
 
 			animalClient.update(animal, tvAnimal.getSelectionModel().getSelectedItem());
 			ObservableList<Animal> data = FXCollections.observableArrayList(animalClient.select());
 			tvAnimal.setItems(data);
 		}catch(NumberFormatException e) {
 			(new Alert(AlertType.ERROR, "Een van de velden is niet ingevuld", ButtonType.OK)).show();
+		}catch(NullPointerException e) {
+			e.printStackTrace();
+			(new Alert(AlertType.ERROR, "Klik een dier aan", ButtonType.OK)).show();
 		}
 	}
 	
