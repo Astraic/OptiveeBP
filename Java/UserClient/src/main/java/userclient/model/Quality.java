@@ -7,7 +7,6 @@ package userclient.model;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.UUID;
 
 /**
  *
@@ -15,7 +14,7 @@ import java.util.UUID;
  */
 public class Quality {
     
-    private UUID animalId;
+    private Animal animalId;
     private LocalDate date;
     private LocalTime time;
     private Category catName;
@@ -26,11 +25,11 @@ public class Quality {
     public Quality() {
     }
 
-    public UUID getAnimalId() {
+    public Animal getAnimalId() {
         return animalId;
     }
 
-    public void setAnimalId(UUID animalId) {
+    public void setAnimalId(Animal animalId) {
         this.animalId = animalId;
     }
 

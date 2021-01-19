@@ -5,15 +5,13 @@
  */
 package userclient.model;
 
-import java.util.UUID;
-
 /**
  *
  * @author Stephan de Jongh
  */
 public class Distribution {
     
-    private UUID animalId;
+    private Animal animalId;
     private Feed feedId;
     private double portion;
     private double assigned;
@@ -21,11 +19,11 @@ public class Distribution {
     public Distribution() {
     }
 
-    public UUID getAnimalId() {
+    public Animal getAnimalId() {
         return animalId;
     }
 
-    public void setAnimalId(UUID animalId) {
+    public void setAnimalId(Animal animalId) {
         this.animalId = animalId;
     }
 
