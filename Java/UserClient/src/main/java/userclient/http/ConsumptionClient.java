@@ -72,4 +72,9 @@ public class ConsumptionClient extends HttpClient<Consumption> {
                 //.append(model.getTime())
                 .toString();
     }
+
+    @Override
+    protected Consumption removeOverhead(Consumption model) {
+        return model;
+    }
 }

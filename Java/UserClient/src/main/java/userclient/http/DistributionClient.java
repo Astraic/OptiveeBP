@@ -51,4 +51,9 @@ public class DistributionClient extends HttpClient<Distribution> {
     public String getUpdateClause(Distribution model) {
         return new StringBuilder("animalid-eq-").append(model.getAnimalId()).toString();
     }
+
+    @Override
+    protected Distribution removeOverhead(Distribution model) {
+        return model;
+    }
 }

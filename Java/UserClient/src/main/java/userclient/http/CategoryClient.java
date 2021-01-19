@@ -22,4 +22,9 @@ public class CategoryClient extends HttpClient<Category> {
     public String getUpdateClause(Category model) {
         return new StringBuilder("name-eq-").append(model.getName()).toString();
     }
+
+    @Override
+    protected Category removeOverhead(Category model) {
+        return model;
+    }
 }

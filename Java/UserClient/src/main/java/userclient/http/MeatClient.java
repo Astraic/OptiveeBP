@@ -22,4 +22,9 @@ public class MeatClient extends HttpClient<Meat> {
     public String getUpdateClause(Meat model) {
         return new StringBuilder("name-eq-").append(model.getName()).toString();
     }
+
+    @Override
+    protected Meat removeOverhead(Meat model) {
+        return model;
+    }
 }

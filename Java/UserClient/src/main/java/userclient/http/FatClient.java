@@ -22,4 +22,9 @@ public class FatClient extends HttpClient<Fat> {
     public String getUpdateClause(Fat model) {
         return new StringBuilder("name-eq-").append(model.getName()).toString();
     }
+
+    @Override
+    protected Fat removeOverhead(Fat model) {
+        return model;
+    }
 }

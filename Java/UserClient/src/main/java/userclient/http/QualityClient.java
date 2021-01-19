@@ -86,4 +86,9 @@ public class QualityClient extends HttpClient<Quality> {
     public String getUpdateClause(Quality model) {
         return new StringBuilder("animalid-eq-").append(model.getAnimalId()).toString();
     }
+
+    @Override
+    protected Quality removeOverhead(Quality model) {
+        return model;
+    }
 }

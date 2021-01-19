@@ -22,4 +22,9 @@ public class FeedClient extends HttpClient<Feed> {
     public String getUpdateClause(Feed model) {
         return new StringBuilder("id-eq-").append(model.getId()).toString();
     }
+
+    @Override
+    protected Feed removeOverhead(Feed model) {
+        return model;
+    }
 }
