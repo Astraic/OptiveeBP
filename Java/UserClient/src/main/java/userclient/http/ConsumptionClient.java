@@ -31,7 +31,7 @@ public class ConsumptionClient extends HttpClient<Consumption> {
         
         builder.registerTypeAdapter(Animal.class, (JsonDeserializer<Animal>) (JsonElement je, Type type, JsonDeserializationContext jdc) -> {
             Animal a = new Animal();
-            a.setId(UUID.fromString(je.getAsJsonPrimitive().getAsString()));
+            a.setId(UUID.fromString(je.getAsString()));
             return a;
         });
         
@@ -39,20 +39,20 @@ public class ConsumptionClient extends HttpClient<Consumption> {
                 new JsonPrimitive(t.getId().toString()));
         
         builder.registerTypeAdapter(LocalDate.class, (JsonDeserializer<LocalDate>) (JsonElement je, Type type, JsonDeserializationContext jdc) -> 
-                LocalDate.parse(je.getAsJsonPrimitive().getAsString()));
+                LocalDate.parse(je.getAsString()));
         
         builder.registerTypeAdapter(LocalDate.class, (JsonSerializer<LocalDate>) (LocalDate t, Type type, JsonSerializationContext jsc) -> 
                 new JsonPrimitive(t.format(DateTimeFormatter.ISO_LOCAL_DATE)));
         
         builder.registerTypeAdapter(LocalTime.class, (JsonDeserializer<LocalTime>) (JsonElement je, Type type, JsonDeserializationContext jdc) -> 
-                LocalTime.parse(je.getAsJsonPrimitive().getAsString()));
+                LocalTime.parse(je.getAsString()));
         
         builder.registerTypeAdapter(LocalTime.class, (JsonSerializer<LocalTime>) (LocalTime t, Type type, JsonSerializationContext jsc) -> 
                 new JsonPrimitive(t.format(DateTimeFormatter.ISO_LOCAL_TIME)));
         
         builder.registerTypeAdapter(Feed.class, (JsonDeserializer<Feed>) (JsonElement je, Type type, JsonDeserializationContext jdc) -> {
             Feed f = new Feed();
-            f.setId(je.getAsJsonPrimitive().getAsInt());
+            f.setId(je.getAsInt());
             return f;
         });
         
@@ -65,7 +65,7 @@ public class ConsumptionClient extends HttpClient<Consumption> {
     @Override
     public String getUpdateClause(Consumption model) {
         return new StringBuilder("animalid-eq-")
-                .append(model.getAnimalId())
+                .append(model.getAnimalid())
                 .append(".date-eq-")
                 .append(model.getDate())
                 .append(".time-eq-")

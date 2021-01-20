@@ -33,7 +33,7 @@ public class QualityClient extends HttpClient<Quality> {
         
         builder.registerTypeAdapter(Animal.class, (JsonDeserializer<Animal>) (JsonElement je, Type type, JsonDeserializationContext jdc) -> {
             Animal a = new Animal();
-            a.setId(UUID.fromString(je.getAsJsonPrimitive().getAsString()));
+            a.setId(UUID.fromString(je.getAsString()));
             return a;
         });
         
@@ -41,13 +41,13 @@ public class QualityClient extends HttpClient<Quality> {
                 new JsonPrimitive(t.getId().toString()));
         
         builder.registerTypeAdapter(LocalDate.class, (JsonDeserializer<LocalDate>) (JsonElement je, Type type, JsonDeserializationContext jdc) -> 
-                LocalDate.parse(je.getAsJsonPrimitive().getAsString()));
+                LocalDate.parse(je.getAsString()));
         
         builder.registerTypeAdapter(LocalDate.class, (JsonSerializer<LocalDate>) (LocalDate t, Type type, JsonSerializationContext jsc) -> 
                 new JsonPrimitive(t.format(DateTimeFormatter.ISO_LOCAL_DATE)));
         
         builder.registerTypeAdapter(LocalTime.class, (JsonDeserializer<LocalTime>) (JsonElement je, Type type, JsonDeserializationContext jdc) -> 
-                LocalTime.parse(je.getAsJsonPrimitive().getAsString()));
+                LocalTime.parse(je.getAsString()));
         
         builder.registerTypeAdapter(LocalTime.class, (JsonSerializer<LocalTime>) (LocalTime t, Type type, JsonSerializationContext jsc) -> 
                 new JsonPrimitive(t.format(DateTimeFormatter.ISO_LOCAL_TIME)));
@@ -84,7 +84,7 @@ public class QualityClient extends HttpClient<Quality> {
 
     @Override
     public String getUpdateClause(Quality model) {
-        return new StringBuilder("animalid-eq-").append(model.getAnimalId()).toString();
+        return new StringBuilder("animalid-eq-").append(model.getAnimalid()).toString();
     }
 
     @Override

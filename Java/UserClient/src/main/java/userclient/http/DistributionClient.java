@@ -28,7 +28,7 @@ public class DistributionClient extends HttpClient<Distribution> {
         
         builder.registerTypeAdapter(Animal.class, (JsonDeserializer<Animal>) (JsonElement je, Type type, JsonDeserializationContext jdc) -> {
             Animal a = new Animal();
-            a.setId(UUID.fromString(je.getAsJsonPrimitive().getAsString()));
+            a.setId(UUID.fromString(je.getAsString()));
             return a;
         });
         
@@ -37,7 +37,7 @@ public class DistributionClient extends HttpClient<Distribution> {
         
         builder.registerTypeAdapter(Feed.class, (JsonDeserializer<Feed>) (JsonElement je, Type type, JsonDeserializationContext jdc) -> {
             Feed f = new Feed();
-            f.setId(je.getAsJsonPrimitive().getAsInt());
+            f.setId(je.getAsInt());
             return f;
         });
         
@@ -49,7 +49,7 @@ public class DistributionClient extends HttpClient<Distribution> {
 
     @Override
     public String getUpdateClause(Distribution model) {
-        return new StringBuilder("animalid-eq-").append(model.getAnimalId()).toString();
+        return new StringBuilder("animalid-eq-").append(model.getAnimalid()).toString();
     }
 
     @Override
