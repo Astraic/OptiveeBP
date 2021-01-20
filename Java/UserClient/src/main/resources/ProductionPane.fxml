@@ -15,13 +15,13 @@
 <HBox fx:controller="userclient.controller.ProductionController" 
     xmlns:fx="http://javafx.com/fxml">
 	<children>
-		<VBox styleClass="row">
+		<VBox styleClass="column">
 			<children>
 				<Text styleClass="txHeader" text="Selecteer een dier" />
 				<LabelBox text="Dier" fx:id="cbAnimal"/>
 			</children>
 		</VBox>
-		<VBox styleClass="row">
+		<VBox styleClass="column">
 			<children>
 			 	<LineChart fx:id="chartProduction" styleClass="chart">
   					<xAxis>
@@ -31,6 +31,12 @@
 				    	<NumberAxis fx:id="axisProduction" label="Productie (kg)" />
 				  </yAxis>
 				</LineChart>
+			</children>
+		</VBox>
+		<VBox styleClass="column">
+			<children>
+				<Text styleClass="txHeader" text="Voorspelling voor morgen" />
+				<LabelField text="Productie" fx:id="tfPrediction"/>
 			</children>
 		</VBox>
 	</children>

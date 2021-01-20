@@ -3,8 +3,6 @@ package userclient.http;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -17,6 +15,10 @@ import org.json.simple.parser.ParseException;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 
 public abstract class HttpClient<T> {
 	protected HttpURLConnection connection = null;
@@ -36,6 +38,7 @@ public abstract class HttpClient<T> {
 			this.setupConnection(getBaseURL());
 			connection.connect();
 			return this.bufferToModel(this.resultToBuffer(connection));
+			
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 			return null;
@@ -54,7 +57,16 @@ public abstract class HttpClient<T> {
 		try {
 			this.setupConnection(getBaseURL() + "?json=[" + gson.toJson(model) + "]");
 		    connection.connect();
-		    System.out.println(connection.getResponseCode());
+		    if(connection.getResponseCode() == 400) {
+		    	(new Alert(AlertType.ERROR, "De ingevoerde data is fout, probeer eens iets anders", ButtonType.OK)).show();
+		    	return;
+			}else if(connection.getResponseCode() == 200) {
+				(new Alert(AlertType.INFORMATION, "Handeling is succesvol verwerkt", ButtonType.OK)).show();
+				return;
+			}else {
+				(new Alert(AlertType.ERROR, "De server kan niet bereikt worden, probeer het later nog een keer", ButtonType.OK)).show();
+				return;
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -65,6 +77,13 @@ public abstract class HttpClient<T> {
 			T overheadlessModel = this.removeOverhead(model);
 			this.setupConnection(getBaseURL() + "?json=[" + gson.toJson(overheadlessModel) + "]" + "&where=" + getUpdateClause(modelOld));
 		    connection.connect();
+		    if(connection.getResponseCode() == 400) {
+		    	(new Alert(AlertType.ERROR, "De ingevoerde data is fout, probeer eens iets anders", ButtonType.OK)).show();
+			}else if(connection.getResponseCode() == 200) {
+				(new Alert(AlertType.INFORMATION, "Handeling is succesvol verwerkt", ButtonType.OK)).show();
+			}else {
+				(new Alert(AlertType.ERROR, "De server kan niet bereikt worden, probeer het later nog een keer", ButtonType.OK)).show();
+			}
 		    System.out.println(connection.getResponseCode());
 		} catch (IOException e) {
 			e.printStackTrace();

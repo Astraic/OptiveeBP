@@ -64,20 +64,16 @@
     -fx-graphic: url("/images/Social3.png");
 }
 
-.row {
-    -fx-padding: 50px;
-    -fx-border-insets: 50px;
-    -fx-background-insets: 50px;
-}
-
-.row > * {
+.column > * {
     -fx-padding: 10px;
     -fx-border-insets: 10px;
     -fx-background-insets: 10px;
 }
 
 .column {
-    -fx-pref-width: 480px;
+    -fx-border-insets: 50px;
+    -fx-background-insets: 50px;
+    -fx-min-width: 480px;
     -fx-padding: 60px;
     -fx-spacing: 20px;
     -fx-alignment: top-center;
