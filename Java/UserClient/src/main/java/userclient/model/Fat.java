@@ -23,4 +23,9 @@ public class Fat {
     public void setName(char name) {
         this.name = name;
     }
+    
+    @Override
+    public String toString() {
+        return Character.toString(getName());
+    }
 }
