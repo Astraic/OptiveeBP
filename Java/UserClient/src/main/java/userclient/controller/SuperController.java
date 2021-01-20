@@ -1,5 +1,6 @@
 package userclient.controller;
 
+import userclient.http.AIClient;
 import userclient.http.AnimalClient;
 import userclient.http.CategoryClient;
 import userclient.http.ConsumptionClient;
@@ -20,13 +21,14 @@ public abstract class SuperController {
 	protected CountryClient countryClient;
 	protected ProductClient productClient;
 	protected ReasonofdeathClient reasonofdeathClient;
-        protected CategoryClient categoryClient;
-        protected ConsumptionClient consumptionClient;
-        protected DistributionClient distributionClient;
-        protected FatClient fatClient;
-        protected FeedClient feedClient;
-        protected MeatClient meatClient;
-        protected QualityClient qualityClient;
+    protected CategoryClient categoryClient;
+    protected ConsumptionClient consumptionClient;
+    protected DistributionClient distributionClient;
+    protected FatClient fatClient;
+    protected FeedClient feedClient;
+    protected MeatClient meatClient;
+    protected QualityClient qualityClient;
+    protected AIClient aiClient;
 	
 	public SuperController() {
 		animalClient = new AnimalClient();
@@ -34,12 +36,13 @@ public abstract class SuperController {
 		productClient = new ProductClient();
 		reasonofdeathClient = new ReasonofdeathClient();
 		productionClient = new ProductionClient();
-                categoryClient = new CategoryClient();
-                consumptionClient = new ConsumptionClient();
-                distributionClient = new DistributionClient();
-                fatClient = new FatClient();
-                feedClient = new FeedClient();
-                meatClient = new MeatClient();
-                qualityClient = new QualityClient();
+        categoryClient = new CategoryClient();
+        consumptionClient = new ConsumptionClient();
+        distributionClient = new DistributionClient();
+        fatClient = new FatClient();
+        feedClient = new FeedClient();
+        meatClient = new MeatClient();
+        qualityClient = new QualityClient();
+        aiClient = new AIClient();
 	}
 }

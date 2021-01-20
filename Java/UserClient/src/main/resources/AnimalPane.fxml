@@ -28,7 +28,7 @@
             </children>
         </VBox>
         <Separator orientation="vertical" />
-        <VBox styleClass="row">
+        <VBox styleClass="column">
             <children>
                 <TableView fx:id="tvAnimal">
                     <columns>

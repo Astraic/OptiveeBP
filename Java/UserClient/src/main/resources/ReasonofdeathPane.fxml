@@ -11,7 +11,7 @@
 <HBox fx:controller="userclient.controller.ReasonofdeathController" 
     xmlns:fx="http://javafx.com/fxml">
 	<children>
-		<VBox styleClass="row">
+		<VBox styleClass="column">
 			<children>
 				<Text styleClass="txHeader" text="Doodsoorzaak toevoegen / aanpassen" />
 				<LabelBox text="Bestaand Product" fx:id="cbReasonofdeathExist"/>

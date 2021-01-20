@@ -11,7 +11,7 @@ public class CountryClient extends HttpClient<Country>{
 
 	@Override
 	public String getUpdateClause(Country model) {
-		return "country-eq-" + model.getCode();
+		return "countrycode-eq-" + model.getCode();
 	}
 
 	@Override

@@ -11,12 +11,13 @@
 <HBox fx:controller="userclient.controller.CountryController" 
     xmlns:fx="http://javafx.com/fxml">
 	<children>
-		<VBox styleClass="row">
+		<VBox styleClass="column">
 			<children>
 				<Text styleClass="txHeader" text="Land toevoegen / aanpassen" />
 				<LabelBox text="Bestaand Land" fx:id="cbCountryExist"/>
 				<LabelField text="Nieuw Land" fx:id="tfCountryname"/>
 				<LabelField text="Nieuw Code" fx:id="tfCountrycode"/>
+				<Button text="Toevoegen" fx:id="tfButton"/>
 			</children>
 		</VBox>
 	</children>

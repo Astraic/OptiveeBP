@@ -13,11 +13,13 @@ public class Loader {
 	private final Parent view;
 	
 	public Loader(String resource) {
+		System.out.println(resource);
 		fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource(resource + ".fxml"));
 		Parent view = null;
 		try {
+			System.out.println(fxmlLoader.getLocation());
 			view = fxmlLoader.load();
-			System.out.println(view);
+			
 		} catch (IOException e) {
 			view = new GridPane();
 			e.printStackTrace();
