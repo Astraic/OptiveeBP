@@ -10,17 +10,16 @@
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.NumberAxis?>
 <?import userclient.util.LabelField?>
+<?import userclient.util.LabelBox?>
 
 <HBox fx:controller="userclient.controller.ButcherController" xmlns:fx="http://javafx.com/fxml">
     <children> 
         <VBox styleClass="column">
             <children>
                 <Label text="Dier Selecteren" />
-                <LabelField fx:id="tfLandcode" text="Landcode" />
-                <LabelField fx:id="tfSerienummer" text="Serienummer" />
-                <LabelField fx:id="tfWerknummer" text="Werknummer" />
-                <LabelField fx:id="tfControlegetal" text="Controlegetal" />
-                <Button fx:id="btnSelect" text="Selecteren" onAction="#selectAnimal"/>             
+                <LabelBox fx:id="cbLand" text="Land" />
+                <LabelBox fx:id="cbDier" text="Dier" />
+                <Button fx:id="btnSelect" text="Selecteren" onAction="#select"/>             
             </children>
         </VBox>
         <Separator orientation="vertical" />
@@ -30,10 +29,10 @@
                 <LabelField fx:id="tfDatum" text="Datum" />
                 <LabelField fx:id="tfTijd" text="Tijd" />
                 <LabelField fx:id="tfHoeveelheid" text="Hoeveelheid" />
-                <LabelField fx:id="tfCategorie" text="Categorie" />
-                <LabelField fx:id="tfVetheid" text="Vetheid" />
-                <LabelField fx:id="tfBevleesdheid" text="Bevleesdheid" />
-                <Button fx:id="btnConfirm" text="Bevestigen" onAction="#confirmQuality"/>              
+                <LabelBox fx:id="cbCategorie" text="Categorie" />
+                <LabelBox fx:id="cbVetheid" text="Vetheid" />
+                <LabelBox fx:id="cbBevleesdheid" text="Bevleesdheid" />
+                <Button fx:id="btnConfirm" text="Bevestigen" onAction="#confirm"/>              
             </children>
         </VBox>  
         <Separator orientation="vertical" />
