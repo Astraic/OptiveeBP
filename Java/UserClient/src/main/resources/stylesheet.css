@@ -115,6 +115,8 @@
 }
 
 .chartGrid {
+    -fx-max-width: 960px;
+    -fx-max-height: 960px;
     -fx-hgap: 40px;
     -fx-vgap: 40px;
 }
