@@ -102,14 +102,6 @@ public class FeedController extends SuperController {
     private ObservableList<Series<String, Double>> getData(ArrayList<Production> production, ArrayList<Consumption> consumption) {
         ObservableList<Series<String, Double>> data = FXCollections.observableArrayList();
 
-        feed.forEach(f -> {
-            Series<String, Double> series = new Series<>();
-            series.setName(new StringBuilder("Voer: ").append(f.getName()).toString());
-            consumption.stream().filter(p -> p.getFeedid().getId() == f.getId()).forEach(c -> {
-                series.getData().add(new Data<>(c.getDate().toString(), c.getConsumption()));
-            });
-            if(!series.getData().isEmpty()) data.add(series);
-        });
         
         Series<String, Double> series = new Series<>();
         production.stream().filter(p -> p.getProductiondatetime().toLocalDate().isAfter(LocalDate.now().minusMonths(1))).forEach(p -> {
@@ -118,6 +110,15 @@ public class FeedController extends SuperController {
             
         });
         if(!series.getData().isEmpty()) data.add(series);
+        
+        feed.forEach(f -> {
+            Series<String, Double> s = new Series<>();
+            s.setName(new StringBuilder("Voer: ").append(f.getName()).toString());
+            consumption.stream().filter(p -> p.getFeedid().getId() == f.getId()).forEach(c -> {
+                s.getData().add(new Data<>(c.getDate().toString(), c.getConsumption()));
+            });
+            if(!s.getData().isEmpty()) data.add(s);
+        });
         
         return data;
     }

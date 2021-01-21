@@ -19,8 +19,6 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.UUID;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.json.simple.parser.ParseException;
 import userclient.model.Animal;
 import userclient.model.Consumption;
@@ -86,6 +84,7 @@ public class ConsumptionClient extends HttpClient<Consumption> {
                     .append(animal.getId())
                     .append(".date-gr-")
                     .append(LocalDate.now().minusMonths(1))
+                    .append("&order=date")
                     .toString());
             connection.connect();
             return super.bufferToModel(this.resultToBuffer(connection));
