@@ -133,7 +133,7 @@ public class ButcherController extends SuperController {
                     qualityClient.update(getUpdateModel(), getOldModel());
                     a.setAlertType(AlertType.INFORMATION);
                     a.setContentText("Bewerking succesvol uitgevoerd.");
-                    a.show();
+                    //a.show();
                 }
             } else {
                 qualityClient.insert(getInsertModel());
@@ -141,7 +141,7 @@ public class ButcherController extends SuperController {
                 Alert a = new Alert(AlertType.INFORMATION);
                 a.setHeaderText(null);
                 a.setContentText("Gegevens succesvol ingevoerd.");
-                a.show();
+                //a.show();
             }
         } catch (NullPointerException e) {
             (new Alert(AlertType.ERROR, "Een of meerdere waarden zijn niet ingevoerd.")).show();
