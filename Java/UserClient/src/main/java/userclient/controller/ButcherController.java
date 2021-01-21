@@ -147,6 +147,7 @@ public class ButcherController extends SuperController {
         } catch (NumberFormatException e) {
             (new Alert(AlertType.ERROR, "De ingevoerde hoeveelheid is geen correcte waarde.")).show();
         } catch (NoSuchElementException e) {
+            state = false;
             (new Alert(AlertType.ERROR, "Er is geen eerdere invoer voor dit dier gevonden.")).show();
         }
     }

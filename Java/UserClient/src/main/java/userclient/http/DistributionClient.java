@@ -11,8 +11,12 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonPrimitive;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
+import java.io.IOException;
 import java.lang.reflect.Type;
+import java.net.MalformedURLException;
+import java.util.ArrayList;
 import java.util.UUID;
+import org.json.simple.parser.ParseException;
 import userclient.model.Animal;
 import userclient.model.Distribution;
 import userclient.model.Feed;
@@ -49,9 +53,26 @@ public class DistributionClient extends HttpClient<Distribution> {
 
     @Override
     public String getUpdateClause(Distribution model) {
-        return new StringBuilder("animalid-eq-").append(model.getAnimalid()).toString();
+        return new StringBuilder("animalid-eq-").append(model.getAnimalid().getId()).toString();
     }
 
+     public ArrayList<Distribution> select(Animal animal) {
+        try {
+            super.setupConnection(new StringBuilder(super.getBaseURL())
+                    .append("?where=animalid-eq-")
+                    .append(animal.getId())
+                    .toString());
+            connection.connect();
+            return super.bufferToModel(this.resultToBuffer(connection));
+        } catch (MalformedURLException e) {
+            return null;
+        } catch (IOException | ParseException e) {
+            return null;
+        } finally {
+            connection.disconnect();
+        }
+    }
+    
     @Override
     protected Distribution removeOverhead(Distribution model) {
         return model;

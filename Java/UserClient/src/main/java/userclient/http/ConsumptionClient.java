@@ -11,11 +11,17 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonPrimitive;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
+import java.io.IOException;
 import java.lang.reflect.Type;
+import java.net.MalformedURLException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.UUID;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.json.simple.parser.ParseException;
 import userclient.model.Animal;
 import userclient.model.Consumption;
 import userclient.model.Feed;
@@ -71,6 +77,25 @@ public class ConsumptionClient extends HttpClient<Consumption> {
                 .append(".time-eq-")
                 .append(model.getTime())
                 .toString();
+    }
+    
+    public ArrayList<Consumption> select(Animal animal) {
+        try {
+            super.setupConnection(new StringBuilder(super.getBaseURL())
+                    .append("?where=animalid-eq-")
+                    .append(animal.getId())
+                    .append(".date-gr-")
+                    .append(LocalDate.now().minusMonths(1))
+                    .toString());
+            connection.connect();
+            return super.bufferToModel(this.resultToBuffer(connection));
+        } catch (MalformedURLException e) {
+            return null;
+        } catch (IOException | ParseException e) {
+            return null;
+        } finally {
+            connection.disconnect();
+        }
     }
 
     @Override

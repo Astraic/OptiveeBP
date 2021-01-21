@@ -9,31 +9,31 @@
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.NumberAxis?>
 <?import userclient.util.LabelField?>
+<?import userclient.util.LabelBox?>
 
 <HBox fx:controller="userclient.controller.FeedController" xmlns:fx="http://javafx.com/fxml">
     <children> 
         <VBox styleClass="column">
             <children>
                 <Label text="Dier Selecteren" />
-                <LabelField fx:id="tfLandcode" text="Landcode" />
-                <LabelField fx:id="tfSerienummer" text="Serienummer" />
-                <LabelField fx:id="tfWerknummer" text="Werknummer" />
-                <LabelField fx:id="tfControlegetal" text="Controlegetal" />
-                <Button fx:id="btnSelect" text="Selecteren" onAction="#selectAnimal"/>
-                <LabelField fx:id="tfVoeding" text="Voeding" />
+                <LabelBox fx:id="cbLand" text="Land" />
+                <LabelBox fx:id="cbDier" text="Dier" />
+                <Button fx:id="btnSelect" text="Selecteren" onAction="#select"/>
+                <Label text="Voervoorspelling" /> 
+                <LabelBox fx:id="cbVoeding" text="Voeding" />
                 <LabelField fx:id="tfPortiegroote" text="Portiegroote" />
                 <LabelField fx:id="tfHoeveelheid" text="Hoeveelheid" />
-                <Button fx:id="btnConfirm" text="Bevestigen" onAction="#confirmFeed"/>              
+                <Button fx:id="btnConfirm" text="Bevestigen" onAction="#confirm"/>              
             </children>
         </VBox>
         <Separator orientation="vertical" />
         <VBox styleClass="chartBox">
-            <LineChart fx:id="feedProductionChart" title="Melkproductie vs Voeding">
+            <LineChart fx:id="feedChart" title="Melkproductie vs Voeding">
                 <xAxis>
-                    <CategoryAxis side="BOTTOM" />
+                    <CategoryAxis side="BOTTOM" label="Datum" animated="false" gapStartAndEnd="false" />
                 </xAxis>
                 <yAxis>
-                    <CategoryAxis side="LEFT" />
+                    <NumberAxis side="LEFT" label="Hoeveelheid (kg)" />
                 </yAxis>
             </LineChart>
         </VBox>

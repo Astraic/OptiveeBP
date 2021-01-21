@@ -17,6 +17,7 @@ import com.google.gson.JsonParseException;
 import com.google.gson.JsonPrimitive;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
+import java.time.LocalDate;
 
 import userclient.model.Animal;
 import userclient.model.Production;
@@ -86,6 +87,24 @@ public class ProductionClient extends HttpClient<Production>{
 		}		
 		
 	}
+        
+    public ArrayList<Production> selectMilkProduction(Animal animal) {
+        try {
+            super.setupConnection(new StringBuilder(super.getBaseURL())
+                    .append("?where=animal-eq-")
+                    .append(animal.getId())
+                    .append(".product-eq-Melk")
+                    .toString());
+            connection.connect();
+            return super.bufferToModel(this.resultToBuffer(connection));
+        } catch (MalformedURLException e) {
+            return null;
+        } catch (IOException | ParseException e) {
+            return null;
+        } finally {
+            connection.disconnect();
+        }
+    }
 
 	@Override
 	protected Production removeOverhead(Production model) {
