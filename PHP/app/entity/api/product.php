@@ -5,20 +5,20 @@ ini_set('display_startup_errors', 1);
 ini_set('display_errors', 1);
 error_reporting(E_ALL | E_STRICT);
 
-require_once(dirname(__FILE__,3) . '/framework/api/ForcedApi.php');
+require_once(dirname(__FILE__,3) . '/framework/api/InsertableApi.php');
 require_once(dirname(__FILE__,3) . '/entity/model/Product.php');
 require_once(dirname(__FILE__,3) . '/entity/database/Product.php');
 
-class Product extends \app\framework\api\ForcedApi{
+class Product extends \app\framework\api\InsertableApi{
     public function __construct(){
         parent::__construct();
     }
 
-    public static function getFields() {
+    public function getFields() : array{
         return [['product']];
     }
 
-    public static function getUpdateableFields(){
+    public function getUpdateableFields() : array{
         return [['product']];
     }
 
@@ -40,4 +40,5 @@ class Product extends \app\framework\api\ForcedApi{
     }
 }
 $api = new \app\entity\api\Product();
+$api->checkIfExecuted();
 ?>

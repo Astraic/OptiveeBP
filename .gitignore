@@ -1,5 +1,6 @@
+.pio
+.metadata
 vendor
 composer.json
 composer.lock
-.metadata
-Java/UserClient/nbactions.xml
+Java

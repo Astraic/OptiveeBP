@@ -36,6 +36,5 @@ class Category extends \app\framework\model\Model {
         }
         throw new \app\framework\exception\ModelNullException("Name variable is not set correctly.");
     }
-
 }
 ?>

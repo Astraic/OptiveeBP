@@ -5,20 +5,20 @@ ini_set('display_startup_errors', 1);
 ini_set('display_errors', 1);
 error_reporting(E_ALL | E_STRICT);
 
-require_once(dirname(__FILE__,3) . '/framework/api/ForcedApi.php');
+require_once(dirname(__FILE__,3) . '/framework/api/ReadonlyApi.php');
 require_once(dirname(__FILE__,3) . '/entity/model/Animal.php');
 require_once(dirname(__FILE__,3) . '/entity/database/Animal.php');
 
-class Animal extends \app\framework\api\ForcedApi{
+class Animal extends \app\framework\api\ReadonlyApi{
     public function __construct(){
         parent::__construct();
     }
 
-    public static function getFields() {
-        return [['id'], ['nfc'], ['country'], ['serial'], ['working'], ['control'], ['product'], ['room'], ['environment'], ['passdate'], ['reasonofdeath']];
+    public function getFields() : array{
+        return [['id'], ['nfc'], ['country'], ['serial'], ['working'], ['control'], ['product'], ['environment'], ['passdate'], ['reasonofdeath']];
     }
 
-    public static function getUpdateableFields(){
+    public function getUpdateableFields() : array{
         return [];
     }
 
@@ -57,7 +57,8 @@ class Animal extends \app\framework\api\ForcedApi{
                 $model->setReasonofdeath(end($value));
                 break;
               case 'passdate':
-                $model->setPassdate(end($value));
+                $date = \DateTime::createFromFormat('Y-m-d', end($value));
+                $model->setPassdate($date);
                 break;
               case 'room':
                 $model->setRoom(end($value));
@@ -70,4 +71,5 @@ class Animal extends \app\framework\api\ForcedApi{
     }
 }
 $api = new \app\entity\api\Animal();
+$api->checkIfExecuted();
 ?>
