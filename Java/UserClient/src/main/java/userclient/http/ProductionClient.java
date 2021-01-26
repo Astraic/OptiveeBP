@@ -17,7 +17,6 @@ import com.google.gson.JsonParseException;
 import com.google.gson.JsonPrimitive;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
-import java.time.LocalDate;
 
 import userclient.model.Animal;
 import userclient.model.Production;
@@ -72,7 +71,26 @@ public class ProductionClient extends HttpClient<Production>{
 		try {
 			super.setupConnection(super.getBaseURL() + "?where=animal-eq-" + animal.getId());
 			connection.connect();
-			return super.bufferToModel(this.resultToBuffer(connection));
+			ArrayList<Production> production = super.bufferToModel(this.resultToBuffer(connection));
+			ArrayList<Production> newproduction = new ArrayList<>();
+            LocalDateTime current =  LocalDateTime.now();
+            System.out.println(current.getYear());
+        	System.out.println(current.getMonthValue());
+        	System.out.println(current.getYear());
+        	System.out.println(current.getMonthValue());
+        	
+            for(Production product : production) {
+            	if(product.getProductiondatetime().getYear() == 2020 && product.getProductiondatetime().getMonthValue() == 12) {
+            		newproduction.add(product);
+            	}
+            }
+            for(Production product : newproduction) {
+            	System.out.println(product.getProduction());
+            	System.out.println(product.getProduct());
+            	System.out.println(product.getProductiondatetime());
+            	System.out.println(product.getAnimal());
+            }
+            return newproduction;
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 			return null;
@@ -96,7 +114,18 @@ public class ProductionClient extends HttpClient<Production>{
                     .append(".product-eq-Melk")
                     .toString());
             connection.connect();
-            return super.bufferToModel(this.resultToBuffer(connection));
+            ArrayList<Production> production = super.bufferToModel(this.resultToBuffer(connection));
+            LocalDateTime current =  LocalDateTime.now();
+            System.out.println(current.getYear());
+        	System.out.println(current.getMonthValue());
+        	System.out.println(current.getYear());
+        	System.out.println(current.getMonthValue());
+            for(Production product : production) {
+            	if(product.getProductiondatetime().getMonthValue() != current.getMonthValue() || product.getProductiondatetime().getYear() != current.getYear()) {
+            		production.remove(product);
+            	}
+            }
+            return production;
         } catch (MalformedURLException e) {
             return null;
         } catch (IOException | ParseException e) {

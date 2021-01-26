@@ -48,14 +48,10 @@ public class AnimalController extends SuperController{
 		tvAnimal.setItems(data);
 		
 		ObservableList<Country> countries = FXCollections.observableArrayList(countryClient.select());
-		System.out.println(countries.get(0));
-		System.out.println(cbCountry);
 		
 		cbCountry.getCbLabelField().setItems(countries);
 		
 		ObservableList<Product> products = FXCollections.observableArrayList(productClient.select());
-		System.out.println(products.get(0));
-		System.out.println(cbProduct);
 		cbProduct.getCbLabelField().setItems(products);
 		
 		ObservableList<Reasonofdeath> reasonofdeath = FXCollections.observableArrayList(reasonofdeathClient.select());

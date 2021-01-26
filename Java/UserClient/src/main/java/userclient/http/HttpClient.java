@@ -37,6 +37,10 @@ public abstract class HttpClient<T> {
 		try {
 			this.setupConnection(getBaseURL());
 			connection.connect();
+			if(connection.getResponseCode() != 200) {
+				(new Alert(AlertType.ERROR, "De server kan niet bereikt worden, probeer het later nog een keer", ButtonType.OK)).show();
+				return new ArrayList<>();
+			}
 			return this.bufferToModel(this.resultToBuffer(connection));
 			
 		} catch (MalformedURLException e) {
@@ -119,9 +123,7 @@ public abstract class HttpClient<T> {
 	}
 	
 	protected ArrayList<T> bufferToModel(String json) throws ParseException {		
-		System.out.println(json);
 		ArrayList<T> results = new ArrayList<>();
-		System.out.println(json);
 		JSONArray array = (JSONArray) parser.parse(json);
 		for(int i = 0; i < array.size(); i++) {
 			JSONObject object = (JSONObject) array.get(i);
