@@ -1,0 +1,10 @@
+C:\Users\Thijs\source\repos\MLWebAPI\MLWebAPIML.Model\bin\Debug\netstandard2.0\MLModel.zip
+C:\Users\Thijs\source\repos\MLWebAPI\MLWebAPIML.Model\bin\Debug\netstandard2.0\MLWebAPIML.Model.deps.json
+C:\Users\Thijs\source\repos\MLWebAPI\MLWebAPIML.Model\bin\Debug\netstandard2.0\MLWebAPIML.Model.dll
+C:\Users\Thijs\source\repos\MLWebAPI\MLWebAPIML.Model\bin\Debug\netstandard2.0\MLWebAPIML.Model.pdb
+C:\Users\Thijs\source\repos\MLWebAPI\MLWebAPIML.Model\obj\Debug\netstandard2.0\MLWebAPIML.Model.csprojAssemblyReference.cache
+C:\Users\Thijs\source\repos\MLWebAPI\MLWebAPIML.Model\obj\Debug\netstandard2.0\MLWebAPIML.Model.AssemblyInfoInputs.cache
+C:\Users\Thijs\source\repos\MLWebAPI\MLWebAPIML.Model\obj\Debug\netstandard2.0\MLWebAPIML.Model.AssemblyInfo.cs
+C:\Users\Thijs\source\repos\MLWebAPI\MLWebAPIML.Model\obj\Debug\netstandard2.0\MLWebAPIML.Model.csproj.CoreCompileInputs.cache
+C:\Users\Thijs\source\repos\MLWebAPI\MLWebAPIML.Model\obj\Debug\netstandard2.0\MLWebAPIML.Model.dll
+C:\Users\Thijs\source\repos\MLWebAPI\MLWebAPIML.Model\obj\Debug\netstandard2.0\MLWebAPIML.Model.pdb
