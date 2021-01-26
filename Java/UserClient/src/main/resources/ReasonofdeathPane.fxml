@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.text.Text?>
+<?import userclient.util.LabelField?>
+<?import userclient.util.LabelBox?>
+
+
+<HBox fx:controller="userclient.controller.ReasonofdeathController" 
+    xmlns:fx="http://javafx.com/fxml">
+	<children>
+		<VBox styleClass="column">
+			<children>
+				<Text styleClass="txHeader" text="Doodsoorzaak toevoegen / aanpassen" />
+				<LabelBox text="Bestaand Product" fx:id="cbReasonofdeathExist"/>
+				<LabelField text="Nieuw Product" fx:id="tfReasonofdeath"/>
+				<Button text="Toevoegen" fx:id="tfButton"/>
+			</children>
+		</VBox>
+	</children>
+</HBox>

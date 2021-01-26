@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.XYChart?>
+<?import userclient.util.LabelField?>
+<?import userclient.util.LabelBox?>
+
+
+<HBox fx:controller="userclient.controller.ProductionController" 
+    xmlns:fx="http://javafx.com/fxml">
+	<children>
+		<VBox styleClass="column">
+			<children>
+				<Text styleClass="txHeader" text="Selecteer een dier" />
+				<LabelBox text="Dier" fx:id="cbAnimal"/>
+			</children>
+		</VBox>
+		<VBox styleClass="column">
+			<children>
+			 	<LineChart fx:id="chartProduction" styleClass="chart">
+  					<xAxis>
+				    	<NumberAxis fx:id="axisDateTime" label="Datum" autoRanging="false" lowerBound="1" upperBound="31" tickUnit="1"/>
+				  </xAxis>
+				  <yAxis>
+				    	<NumberAxis fx:id="axisProduction" label="Productie (kg)" />
+				  </yAxis>
+				</LineChart>
+			</children>
+		</VBox>
+		<VBox styleClass="column">
+			<children>
+				<Text styleClass="txHeader" text="Voorspelling voor morgen" />
+				<LabelField text="Productie" fx:id="tfPrediction"/>
+			</children>
+		</VBox>
+	</children>
+</HBox>
