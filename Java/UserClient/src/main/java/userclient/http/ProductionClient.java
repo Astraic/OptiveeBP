@@ -17,6 +17,7 @@ import com.google.gson.JsonParseException;
 import com.google.gson.JsonPrimitive;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
+import java.time.Month;
 
 import userclient.model.Animal;
 import userclient.model.Production;
@@ -115,16 +116,8 @@ public class ProductionClient extends HttpClient<Production>{
                     .toString());
             connection.connect();
             ArrayList<Production> production = super.bufferToModel(this.resultToBuffer(connection));
-            LocalDateTime current =  LocalDateTime.now();
-            System.out.println(current.getYear());
-        	System.out.println(current.getMonthValue());
-        	System.out.println(current.getYear());
-        	System.out.println(current.getMonthValue());
-            for(Production product : production) {
-            	if(product.getProductiondatetime().getMonthValue() != current.getMonthValue() || product.getProductiondatetime().getYear() != current.getYear()) {
-            		production.remove(product);
-            	}
-            }
+            production.removeIf(p -> p.getProductiondatetime().isBefore(LocalDateTime.now().minusMonths(1))); //Laatste maand
+            production.sort((d1, d2) -> d1.getProductiondatetime().compareTo(d2.getProductiondatetime())); // Sorteren op datum
             return production;
         } catch (MalformedURLException e) {
             return null;
