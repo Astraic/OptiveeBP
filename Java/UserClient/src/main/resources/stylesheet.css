@@ -1,0 +1,134 @@
+.root {
+    -fx-background-color:#F5F5F5;
+}
+
+#header, #footer {
+    -fx-background-color:#C8DF59;
+    -fx-padding: 0px 16px 0px 16px;
+    -fx-alignment: center-left;
+}
+
+#header {
+    -fx-pref-height: 70px;
+    -fx-spacing: 10px;
+}
+
+#header .button, #footer .button {
+    -fx-background-color:#C8DF59;
+    -fx-text-fill: #FAFAFA;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-alignment: center;
+}
+
+#header .label {
+    -fx-text-fill: #FAFAFA;
+    -fx-font-size: 18px;
+}
+
+.chart {
+	-fx-pref-width: 1300;
+	-fx-pref-height: 700;
+}
+
+#footer {
+    -fx-pref-height: 50px;
+}
+
+#footer .label {
+    -fx-text-fill: #FAFAFA;
+    -fx-font-size: 14px;
+}
+
+#logo {
+    -fx-image: url("/images/Logo.png");
+}
+
+#profile {
+    -fx-graphic: url("/images/Profile.png");
+}
+
+#website {
+    -fx-graphic: url("/images/Website.png");
+}
+
+#social1 {
+    -fx-graphic: url("/images/Social1.png");
+}
+
+#social2 {
+    -fx-graphic: url("/images/Social2.png");
+}
+
+#social3 {
+    -fx-graphic: url("/images/Social3.png");
+}
+
+.column {
+    -fx-min-width: 480px;
+    -fx-padding: 60px;
+    -fx-spacing: 20px;
+    -fx-alignment: top-center;
+}
+
+.column .label, .chart-title, .txHeader {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+} 
+
+.column .button {
+    -fx-background-color: #C8DF59;
+    -fx-text-fill: #FAFAFA;
+    -fx-font-weight: bold;
+}
+
+.lbControl {
+    -fx-spacing: 8px;
+}
+
+.lbControl .label {
+    -fx-font-size: 10px;
+    -fx-font-weight: bold;
+}
+
+.lbControl .combo-box, .lbControl .text-field, .column .button {
+    -fx-pref-width: 360px;
+    -fx-pref-height: 40px;
+    -fx-background-radius: 3px;
+    -fx-border-color: #000000;
+    -fx-border-radius: 3px;
+    -fx-font-size: 14px;
+}
+
+.button:hover {
+    -fx-opacity: 0.78;
+}
+
+.button:pressed {
+    -fx-opacity: 0.92;
+}
+
+.chartBox, .chartGrid {
+    -fx-padding: 60px;
+    -fx-spacing: 20px;
+    -fx-alignment: top-left;
+}
+
+.chartGrid {
+    -fx-max-width: 960px;
+    -fx-max-height: 960px;
+    -fx-hgap: 40px;
+    -fx-vgap: 40px;
+}
+
+.chart {
+    -fx-padding: 0px;
+}
+
+.chart-content {
+    -fx-padding: 48px 0px 24px 0px;
+}
+
+.bar-chart {
+    -fx-legend-visible: false;
+}
