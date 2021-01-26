@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import userclient.util.LabelField?>
+<?import userclient.util.LabelBox?>
+
+<HBox fx:controller="userclient.controller.FeedController" xmlns:fx="http://javafx.com/fxml">
+    <children> 
+        <VBox styleClass="column">
+            <children>
+                <Label text="Dier Selecteren" />
+                <LabelBox fx:id="cbLand" text="Land" />
+                <LabelBox fx:id="cbDier" text="Dier" />
+                <Button fx:id="btnSelect" text="Selecteren" onAction="#select"/>
+                <Label text="Voervoorspelling" /> 
+                <LabelBox fx:id="cbVoeding" text="Voeding" />
+                <LabelField fx:id="tfPortiegroote" text="Portiegroote" />
+                <LabelField fx:id="tfHoeveelheid" text="Hoeveelheid" />
+                <Button fx:id="btnConfirm" text="Bevestigen" onAction="#confirm"/>              
+            </children>
+        </VBox>
+        <Separator orientation="vertical" />
+        <VBox styleClass="chartBox">
+            <LineChart fx:id="feedChart" title="Melkproductie vs Voeding">
+                <xAxis>
+                    <CategoryAxis side="BOTTOM" label="Datum" animated="false" gapStartAndEnd="false" />
+                </xAxis>
+                <yAxis>
+                    <NumberAxis side="LEFT" label="Hoeveelheid (kg)" />
+                </yAxis>
+            </LineChart>
+        </VBox>
+    </children>
+</HBox>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.text.Text?>
+<?import userclient.util.LabelField?>
+<?import userclient.util.LabelBox?>
+
+
+<HBox fx:controller="userclient.controller.CountryController" 
+    xmlns:fx="http://javafx.com/fxml">
+	<children>
+		<VBox styleClass="column">
+			<children>
+				<Text styleClass="txHeader" text="Land toevoegen / aanpassen" />
+				<LabelBox text="Bestaand Land" fx:id="cbCountryExist"/>
+				<LabelField text="Nieuw Land" fx:id="tfCountryname"/>
+				<LabelField text="Nieuw Code" fx:id="tfCountrycode"/>
+				<Button text="Toevoegen" fx:id="tfButton"/>
+			</children>
+		</VBox>
+	</children>
+</HBox>

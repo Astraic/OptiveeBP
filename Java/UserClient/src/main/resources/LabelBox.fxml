@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.layout.VBox?>
+
+<fx:root type="javafx.scene.layout.VBox" styleClass="lbControl" xmlns:fx="http://javafx.com/fxml/1">
+	<children>
+		<Label styleClass="lbWizard" fx:id="lbLabelField"/>
+		<ComboBox styleClass="cbWizard" fx:id="cbLabelField"/>
+	</children>
+</fx:root>
+

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.text.Text?>
+
+
+
+<BorderPane fx:controller="userclient.controller.RootController" fx:id="root" 
+    xmlns:fx="http://javafx.com/fxml">
+	<top>
+		<HBox id="header">
+			<Button onAction="#handleButtonAction" styleClass="btnHeader" text="Doodsoorzaak" fx:id="btnReasonofdeath"/>
+			<Button onAction="#handleButtonAction" styleClass="btnHeader" text="Land" fx:id="btnCountry"/>
+			<Button onAction="#handleButtonAction" styleClass="btnHeader" text="Product" fx:id="btnProduct"/>
+		</HBox>
+	</top>
+		<center>
+		<fx:include source="ProductPane.fxml"/>
+	</center>
+	<bottom>
+		<HBox>
+			<Text id="footer" text="Avans Development BV 2020"/>
+		</HBox>
+	</bottom>
+
+</BorderPane>
